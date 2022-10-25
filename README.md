@@ -1,5 +1,12 @@
 # react-native-cpk-library
 A react native wrappper for the CPK, implementing all Community Pass Actions
+
+## Requirements
+- Community Pass Approved Android Device with the CPK Installed and Activated
+- Reliant App GUID
+- Program GUID
+- Test Cards
+
 ## Installation
 
 ```sh
@@ -9,21 +16,36 @@ npm install react-native-cpk-library
 ## Usage
 
 ```js
-import { multiply } from "react-native-cpk-library";
+import { connect } from "react-native-cpk-library";
 
 // ...
 
-const result = await multiply(3, 7);
+const result = await connect(RELIANT_APP_GUID);
 ```
 
-## Contributing
+## API
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+| Method                                                                                            | Return Type         |
+| --------------------------------------------------------------------------------------------------| ------------------- |
+| [connect(RELIANT_APP_GUID: string)](#connect())                                                     | `Promise<Object>`   |
+| [authenticatePasscode(RELIANT_APP_GUID: String, PROGRAM_GUID: String, PASSCODE, String)](#aupass) | `Promise<Object>`   |
+| [authenticateBio(RELIANT_APP_GUID: string)](#aubio)                                               | `Promise<Object>`   |
+
+
+### connect()
+
+Connects to the CPK
+
+#### Examples
+
+```js
+connect("RELIANT_APP_GUID").then((res) => {
+    //res is a JSON Object
+    // success response here {"data": null, "message": "Not connected", "status": false}
+    // fail response here {"data": null, "message": "connected", "status": true}
+});
+```
 
 ## License
 
 MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)

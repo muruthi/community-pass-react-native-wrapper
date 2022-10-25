@@ -1,4 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.reactnativecpklibrary">
+  package="com.reactnativecpklibrary">
+
+  <uses-permission android:name="com.mastercard.compass.permission.GET_INSTANCE_ID" />
+  <uses-permission android:name="com.mastercard.compass.permission.BIND_SERVICE" />
+
+  <application>
+    <activity
+      android:name=".activity.CpkAuthenticateActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+  </application>
 
 </manifest>

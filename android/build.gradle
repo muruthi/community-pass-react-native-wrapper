@@ -11,6 +11,7 @@ buildscript {
     classpath 'com.android.tools.build:gradle:3.5.3'
     // noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10'
   }
 }
 
@@ -135,6 +136,20 @@ dependencies {
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   implementation files('libs/kernel-services-client-release-protected.aar')
+  implementation 'com.android.support:appcompat-v7:28.0.0'
+
+  //CPK additional libraries
+  implementation 'androidx.core:core-ktx:1.8.0'
+  implementation 'androidx.appcompat:appcompat:1.5.0'
+  implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+  implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+  implementation 'androidx.fragment:fragment-ktx:1.5.2'
+  implementation "androidx.activity:activity-ktx:1.6.0"
+  implementation 'com.google.code.gson:gson:2.8.6' //Required for object serialization and deserialization while performing CPK communication
+  implementation 'io.jsonwebtoken:jjwt-api:0.11.2' //Required for JWT encoding and decoding in some of the biometric use cases
+  implementation 'io.jsonwebtoken:jjwt-impl:0.11.2' //Required for JWT encoding and decoding in some of the biometric use cases
+  implementation 'io.jsonwebtoken:jjwt-orgjson:0.11.2' //Required for JWT encoding and decoding in some of the biometric use cases
+  implementation 'org.apache.commons:commons-lang3:3.1'
 
 // From node_modules
 }

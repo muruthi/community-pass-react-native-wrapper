@@ -17,6 +17,13 @@ const CpkLibrary = NativeModules.CpkLibrary
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
+/**export function multiply(a: number, b: number): Promise<number> {
   return CpkLibrary.multiply(a, b);
+}**/
+export function connect(RELIANT_APP_GUID: string){
+  return CpkLibrary.connectToCpk(RELIANT_APP_GUID)
+}
+
+export function hello(){
+  return CpkLibrary.hello()
 }
