@@ -134,6 +134,8 @@ dependencies {
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation files('libs/kernel-services-client-release-protected.aar')
+
 // From node_modules
 }
 
