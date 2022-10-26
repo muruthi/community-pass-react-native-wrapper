@@ -46,6 +46,19 @@ connect("RELIANT_APP_GUID").then((res) => {
 });
 ```
 
+### authenticatePasscode()
+
+Connects to the CPK
+
+#### Examples
+
+```js
+connect(RELIANT_APP_GUID: String, PROGRAM_GUID: String, PASSCODE, String).then((res) => {
+    //res is a JSON Object
+    // {"data": null, "message": "Authenticated", "status": true}
+});
+```
+
 ## License
 
 MIT
