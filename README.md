@@ -7,6 +7,8 @@ A react native wrappper for the CPK, implementing all Community Pass Actions
 - Program GUID
 - Test Cards
 
+Refer to the Community Pass [Getting Started Guide](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/)
+
 ## Installation
 
 ```sh
