@@ -18,8 +18,6 @@ npm install react-native-cpk-library
 ```js
 import { connect } from "react-native-cpk-library";
 
-// ...
-
 const result = await connect(RELIANT_APP_GUID);
 ```
 
