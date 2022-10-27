@@ -7,21 +7,7 @@
 
   <application>
     <activity
-      android:name=".CpkBioRegistrationActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
-      android:name=".activity.CpkRegistrationMethodActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
-      android:name=".activity.CpkAuthenticateActivity"
+      android:name=".activity.CpkConnectActivity"
       android:exported="false">
       <meta-data
         android:name="android.app.lib_name"
@@ -34,6 +20,14 @@
         android:name="android.app.lib_name"
         android:value="" />
     </activity>
+    <activity
+      android:name=".activity.CpkRegistrationMethodActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    
   </application>
 
 </manifest>

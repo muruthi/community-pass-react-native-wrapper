@@ -1,10 +1,9 @@
 package com.reactnativecpklibrary
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import com.facebook.react.bridge.*
-import com.reactnativecpklibrary.activity.CpkAuthenticateActivity
 import com.reactnativecpklibrary.activity.CpkBioRegistrationActivity
+import com.reactnativecpklibrary.activity.CpkConnectActivity
 import com.reactnativecpklibrary.activity.CpkRegistrationMethodActivity
 
 class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext), ActivityEventListener {
@@ -24,7 +23,7 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
   fun connectToCpk(reliantAppGuid: String, promise: Promise)
   {
     this.promise = promise
-    val connectIntent = Intent(reactApplicationContext, CpkAuthenticateActivity::class.java)
+    val connectIntent = Intent(reactApplicationContext, CpkConnectActivity::class.java)
     connectIntent.putExtra("reliantAppGuid", reliantAppGuid);
     currentActivity?.startActivityForResult(connectIntent, 2)
   }
