@@ -8,7 +8,7 @@ import com.tiv.mastercard.cpkservices.CompassKernelUIController
 class CpkAuthenticateActivity : CompassKernelUIController.CompassKernelActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("TIVMC", intent.extras?.getString("reliantAppGuid").toString());
+        Log.d("TIVMC", intent.getStringExtra("reliantAppGuid").toString());
         if(hasActiveKernelConnection){
           var d = Intent()
           d.putExtra("success", true)

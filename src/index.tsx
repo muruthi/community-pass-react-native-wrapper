@@ -24,3 +24,12 @@ export function connect(RELIANT_APP_GUID: string){
 export function hello(){
   return CpkLibrary.hello()
 }
+
+export function checkRegistrationStatus(PROGRAM_GUID : string, RELIANT_APP_GUID: string){
+  return CpkLibrary.checkRegistrationStatus(PROGRAM_GUID, RELIANT_APP_GUID)
+}
+
+export function startBioRegistration(PROGRAM_GUID : string, RELIANT_APP_GUID: string){
+  return CpkLibrary.initBioRegistration(PROGRAM_GUID, RELIANT_APP_GUID)
+}
+

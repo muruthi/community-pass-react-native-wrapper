@@ -1,4 +1,4 @@
-package com.cpklibraryexample.newarchitecture.components;
+package com.tiv.mastercard.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
