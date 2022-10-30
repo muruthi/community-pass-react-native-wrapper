@@ -21,6 +21,8 @@ def isNewArchitectureEnabled() {
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.kotlin.android.extensions'
+
 
 if (isNewArchitectureEnabled()) {
   apply plugin: 'com.facebook.react'
@@ -36,7 +38,9 @@ def getExtOrIntegerDefault(name) {
 
 android {
   compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
-
+  androidExtensions {
+    experimental = true
+  }
   defaultConfig {
     minSdkVersion getExtOrIntegerDefault('minSdkVersion')
     targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
@@ -150,6 +154,7 @@ dependencies {
   implementation 'io.jsonwebtoken:jjwt-impl:0.11.2' //Required for JWT encoding and decoding in some of the biometric use cases
   implementation 'io.jsonwebtoken:jjwt-orgjson:0.11.2' //Required for JWT encoding and decoding in some of the biometric use cases
   implementation 'org.apache.commons:commons-lang3:3.1'
+  implementation 'com.android.support.constraint:constraint-layout:2.0.4'
 
 // From node_modules
 }

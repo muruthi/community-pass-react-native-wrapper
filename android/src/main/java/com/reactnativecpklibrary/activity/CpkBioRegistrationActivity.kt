@@ -3,6 +3,7 @@ package com.reactnativecpklibrary.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -14,12 +15,16 @@ import com.mastercard.compass.base.OperationMode
 import com.mastercard.compass.jwt.RegisterUserForBioTokenResponse
 import com.mastercard.compass.model.biometrictoken.Modality
 import com.mastercard.compass.model.consent.Consent
+import com.reactnativecpklibrary.model.BioResponse
+import com.reactnativecpklibrary.model.RegResponse
 import com.tiv.mastercard.cpkservices.CompassKernelUIController
 
 class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivity() {
 
   private lateinit var registerUserForBioIntent : Intent
   private lateinit var bioCaptureStartForResult: ActivityResultLauncher<Intent>
+  private lateinit var cardWriteStartForResult: ActivityResultLauncher<Intent>
+  private lateinit var cardWriteIntent: Intent
 
   private lateinit var reliantAppGuid: String
   private lateinit var programGuid: String
@@ -34,16 +39,40 @@ class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivi
     super.onCreate(savedInstanceState)
     reliantAppGuid = intent.getStringExtra("reliantAppGuid").toString()
     programGuid = intent.getStringExtra("programGuid").toString()
-    val consent = Consent(ConsentValue.ACCEPT, programGuid)
-    val response = compassKernelServiceInstance.saveBiometricConsent(consent)
-    val jwt = helper.generateBioTokenJWT(
-      reliantAppGuid, programGuid, response.consentId, listOf(
-      Modality.FACE,
-      Modality.LEFT_PALM,
-      Modality.RIGHT_PALM
-    ))
-    registerUserForBioIntent = compassKernelServiceInstance?.getRegisterUserForBioTokenActivityIntent(jwt,
-      reliantAppGuid, OperationMode.BEST_AVAILABLE)!!
+
+    cardWriteStartForResult =
+      registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        when (result.resultCode) {
+          Activity.RESULT_OK -> {
+            val consumerDeviceId = result.data?.getStringExtra(Constants.EXTRA_DATA)!!
+            var d = Intent()
+            d.putExtra("success", true)
+            val regResponse = RegResponse()
+            regResponse.status = "success"
+            regResponse.rId = rId
+            regResponse.devicdeId = consumerDeviceId
+            d.putExtra("data", regResponse);
+            d.putExtra("message", "Successfully Issued Card via Biometrics")
+            setResult(RESULT_OK, d)
+            finish()
+          }
+          else -> {
+            val code = result.data?.extras?.getInt(Constants.EXTRA_ERROR_CODE) ?: 0
+            val message = result.data?.extras?.getString(Constants.EXTRA_ERROR_MESSAGE) ?: ""
+            var d = Intent()
+            d.putExtra("success", true)
+            val regResponse = RegResponse()
+            regResponse.status = "fail"
+            regResponse.rId = rId
+            d.putExtra("data", regResponse);
+            d.putExtra("message", "$code: $message")
+            setResult(RESULT_OK, d)
+            finish()
+          }
+        }
+      }
+
+
     bioCaptureStartForResult =
       registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
         when (result.resultCode) {
@@ -53,18 +82,19 @@ class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivi
             when(response.enrolmentStatus){
               EnrolmentStatus.NEW -> {
                 rId = response.rId
-                var d = Intent()
-                d.putExtra("success", true)
-                d.putExtra("data", rId);
-                d.putExtra("message", "New User")
-                setResult(RESULT_OK, d)
-                finish()
+                cardWriteIntent = compassKernelServiceInstance?.getWriteProfileActivityIntent(
+                  programGuid, rId)!!
+                cardWriteIntent?.putExtra(Constants.EXTRA_OVERWRITE_CARD, true)
+                cardWriteStartForResult.launch(cardWriteIntent)
               }
               EnrolmentStatus.EXISTING -> {
                 rId = response.rId
+                val bioResponse = BioResponse()
+                bioResponse.status = "existing"
+                bioResponse.rId = rId
                 var d = Intent()
                 d.putExtra("success", true)
-                d.putExtra("data", rId);
+                d.putExtra("data", bioResponse);
                 d.putExtra("message", "Existing User")
                 setResult(RESULT_OK, d)
                 finish()
@@ -85,29 +115,27 @@ class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivi
             var d = Intent()
             d.putExtra("success", false)
             d.putExtra("data", "");
-            d.putExtra("message", "$message")
+            d.putExtra("message", "$code: $message")
             setResult(RESULT_OK, d)
             finish()
           }
         }
       }
 
-    if(hasActiveKernelConnection){
-      //registrationDataCheckIntent = compassKernelServiceInstance?.getRegistrationDataActivityIntent(programGuid, reliantAppGuid)!!
-      //registrationDataCheckActivityForResult.launch(registrationDataCheckIntent)
-      bioCaptureStartForResult.launch(registerUserForBioIntent)
-    } else {
-      connect()
-    }
-  }
-
-  private fun connect() {
     connectKernelService(reliantAppGuid) { isSuccess, errorCode, errorMessage ->
       when (isSuccess) {
         true -> {
+          val consent = Consent(ConsentValue.ACCEPT, programGuid)
+          val response = compassKernelServiceInstance.saveBiometricConsent(consent)
+          val jwt = helper.generateBioTokenJWT(
+            reliantAppGuid, programGuid, response.consentId, listOf(
+            //Modality.FACE,
+            Modality.LEFT_PALM,
+            Modality.RIGHT_PALM
+          ))
+          registerUserForBioIntent = compassKernelServiceInstance?.getRegisterUserForBioTokenActivityIntent(jwt,
+            reliantAppGuid, OperationMode.BEST_AVAILABLE)!!
           bioCaptureStartForResult.launch(registerUserForBioIntent)
-          //registrationDataCheckIntent = compassKernelServiceInstance?.getRegistrationDataActivityIntent(programGuid, reliantAppGuid)!!
-          //registrationDataCheckActivityForResult.launch(registrationDataCheckIntent)
         }
         false -> {
           var d = Intent()

@@ -11,6 +11,8 @@ import com.mastercard.compass.base.Constants
 import com.mastercard.compass.model.biometrictoken.AuthenticationType
 import com.mastercard.compass.model.biometrictoken.Modality
 import com.mastercard.compass.model.card.RegistrationStatusData
+import com.reactnativecpklibrary.model.PasscodeResponse
+import com.reactnativecpklibrary.model.RegMethodResponse
 import com.tiv.mastercard.cpkservices.CompassKernelUIController
 
 class CpkRegistrationMethodActivity : CompassKernelUIController.CompassKernelActivity() {
@@ -40,8 +42,11 @@ class CpkRegistrationMethodActivity : CompassKernelUIController.CompassKernelAct
             when {
               !response.isRegisteredInProgram -> {
                 var d = Intent()
-                d.putExtra("success", false)
-                d.putExtra("data", "");
+                d.putExtra("success", true)
+                val regMethodResponse = RegMethodResponse()
+                regMethodResponse.status = "fail"
+                regMethodResponse.method = "N/A"
+                d.putExtra("data", regMethodResponse);
                 d.putExtra("message", "User not registered in program. Register user first.")
                 setResult(RESULT_OK, d)
                 finish()
@@ -50,8 +55,11 @@ class CpkRegistrationMethodActivity : CompassKernelUIController.CompassKernelAct
                 Log.d(TAG, "User has biometric authentication. Authenticating via biometrics")
                 var d = Intent()
                 d.putExtra("success", true)
-                d.putExtra("data", "bio");
-                d.putExtra("message", "User has Biometric Authentication")
+                val regMethodResponse = RegMethodResponse()
+                regMethodResponse.status = "success"
+                regMethodResponse.method = "BIO"
+                d.putExtra("data", regMethodResponse);
+                d.putExtra("message", "User has Biometric Authentication. Proceed to authenticate via Biometrics")
                 setResult(RESULT_OK, d)
                 finish()
               }
@@ -59,8 +67,11 @@ class CpkRegistrationMethodActivity : CompassKernelUIController.CompassKernelAct
                 Log.d(TAG, "User has passcode authentication. Authenticating via passcode")
                 var d = Intent()
                 d.putExtra("success", true)
-                d.putExtra("data", "passcode");
-                d.putExtra("message", "User has passcode authentication. Authenticating via passcode")
+                val regMethodResponse = RegMethodResponse()
+                regMethodResponse.status = "success"
+                regMethodResponse.method = "PASSCODE"
+                d.putExtra("data", regMethodResponse);
+                d.putExtra("message", "User has passcode authentication. Proceed to authenticate via passcode")
                 setResult(RESULT_OK, d)
                 finish()
               }
@@ -72,7 +83,9 @@ class CpkRegistrationMethodActivity : CompassKernelUIController.CompassKernelAct
             Log.e(TAG, "Error calling Kernel API. Code: $code Message: $message")
             var d = Intent()
             d.putExtra("success", false)
-            d.putExtra("data", "");
+            val regMethodResponse = RegMethodResponse()
+            regMethodResponse.status = "fail"
+            regMethodResponse.method = "N/A"
             d.putExtra("message", "$message")
             setResult(RESULT_OK, d)
             finish()
@@ -99,7 +112,9 @@ class CpkRegistrationMethodActivity : CompassKernelUIController.CompassKernelAct
         false -> {
           var d = Intent()
           d.putExtra("success", false)
-          d.putExtra("data", "");
+          val regMethodResponse = RegMethodResponse()
+          regMethodResponse.status = "fail"
+          regMethodResponse.method = "N/A"
           d.putExtra("message", "$errorMessage")
           setResult(RESULT_OK, d)
           finish()

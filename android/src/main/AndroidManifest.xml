@@ -7,6 +7,27 @@
 
   <application>
     <activity
+      android:name=".CpkPasscodeAuthenticationActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    <activity
+      android:name=".CpkBioAuthenticationActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    <activity
+      android:name=".CpkPasscodeRegistrationActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    <activity
       android:name=".activity.CpkConnectActivity"
       android:exported="false">
       <meta-data
@@ -27,7 +48,20 @@
         android:name="android.app.lib_name"
         android:value="" />
     </activity>
-    
+    <activity
+      android:name=".activity.CpkPasscodeRegistrationActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    <activity
+      android:name=".activity.CpkPasscodeAuthenticationActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
   </application>
 
 </manifest>
