@@ -28,11 +28,11 @@ const result = await connect(RELIANT_APP_GUID);
 | Method                                                                                            | Return Type         |
 | --------------------------------------------------------------------------------------------------| ------------------- |
 | [connect(RELIANT_APP_GUID: string)](#connect())                                                     | `Promise<Object>`   |
-| [authenticateWithPasscode(RELIANT_APP_GUID: String, PROGRAM_GUID: String, PASSCODE, String)](#aupass) | `Promise<Object>`   |
-| [authenticateWithBio(PROGRAM_GUID : string, RELIANT_APP_GUID: string)](#aubio)                                               | `Promise<Object>`   |
-| [checkRegistrationStatus(PROGRAM_GUID : string, RELIANT_APP_GUID: string)](#checkreg)                                               | `Promise<Object>`   |
-| [resgisterWithBio(PROGRAM_GUID : string, RELIANT_APP_GUID: string, OVERWRITE: boolean)](#regbio)                                               | `Promise<Object>`   |
-| [resgisterWithPasscode(PROGRAM_GUID : string, RELIANT_APP_GUID: string, PASSCODE: string, OVERWRITE: boolean)](#regpass)                                               | `Promise<Object>`   |
+| [authenticateWithPasscode(RELIANT_APP_GUID: String, PROGRAM_GUID: String, PASSCODE, String)](#authenticatewithpasscode) | `Promise<Object>`   |
+| [authenticateWithBio(PROGRAM_GUID : string, RELIANT_APP_GUID: string)](#authenticatewithbio)                                               | `Promise<Object>`   |
+| [checkRegistrationStatus(PROGRAM_GUID : string, RELIANT_APP_GUID: string)](#checkregistrationstatus)                                               | `Promise<Object>`   |
+| [resgisterWithBio(PROGRAM_GUID : string, RELIANT_APP_GUID: string, OVERWRITE: boolean)](#registerwithbio)                                               | `Promise<Object>`   |
+| [resgisterWithPasscode(PROGRAM_GUID : string, RELIANT_APP_GUID: string, PASSCODE: string, OVERWRITE: boolean)](#registerwithpasscode)                                               | `Promise<Object>`   |
 
 
 ### connect()
