@@ -62,6 +62,17 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
     currentActivity?.startActivityForResult(connectIntent, 2)
   }
 
+  @ReactMethod
+  fun blackListCard(programGuid: String, reliantAppGuid: String, rId: String, consumerDeviceId: String, promise: Promise){
+    this.promise = promise
+    val blackListIntent = Intent(reactApplicationContext, CpkBlacklistCardActivity::class.java)
+    blackListIntent.putExtra("reliantAppGuid", reliantAppGuid);
+    blackListIntent.putExtra("programGuid", programGuid);
+    blackListIntent.putExtra("rId", rId);
+    blackListIntent.putExtra("consumerDeviceId", consumerDeviceId)
+    currentActivity?.startActivityForResult(blackListIntent, 9)
+  }
+
 
   @ReactMethod
   fun authenticateWithPasscode(programGuid: String, reliantAppGuid: String, passCode: String, promise: Promise){

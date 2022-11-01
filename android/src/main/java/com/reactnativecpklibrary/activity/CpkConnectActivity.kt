@@ -23,7 +23,7 @@ class CpkConnectActivity : CompassKernelUIController.CompassKernelActivity() {
           }
           false -> {
             var d = Intent()
-            d.putExtra("success", "error")
+            d.putExtra("status", "error")
             d.putExtra("data", "");
             d.putExtra("message", "$errorMessage")
             setResult(RESULT_OK, d)

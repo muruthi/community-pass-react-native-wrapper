@@ -41,3 +41,7 @@ export function authenticateWithPasscode(PROGRAM_GUID : string, RELIANT_APP_GUID
   return CpkLibrary.authenticateWithPasscode(PROGRAM_GUID, RELIANT_APP_GUID, PASSCODE)
 }
 
+export function blackListCard(programGuid: string, reliantAppGuid: string, rId: string, consumerDeviceId: string){
+  return CpkLibrary.blackListCard(programGuid, reliantAppGuid, rId, consumerDeviceId)
+}
+
