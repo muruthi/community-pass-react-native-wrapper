@@ -15,7 +15,7 @@ class CpkConnectActivity : CompassKernelUIController.CompassKernelActivity() {
         when (isSuccess) {
           true -> {
             var d = Intent()
-            d.putExtra("success", true)
+            d.putExtra("status", "success")
             d.putExtra("data", "");
             d.putExtra("message", "Connected")
             setResult(RESULT_OK, d)
@@ -23,7 +23,7 @@ class CpkConnectActivity : CompassKernelUIController.CompassKernelActivity() {
           }
           false -> {
             var d = Intent()
-            d.putExtra("success", false)
+            d.putExtra("success", "error")
             d.putExtra("data", "");
             d.putExtra("message", "$errorMessage")
             setResult(RESULT_OK, d)

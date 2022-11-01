@@ -16,6 +16,7 @@ import com.mastercard.compass.jwt.RegisterUserForBioTokenResponse
 import com.mastercard.compass.model.biometrictoken.Modality
 import com.mastercard.compass.model.consent.Consent
 import com.reactnativecpklibrary.model.BioResponse
+import com.reactnativecpklibrary.model.ErrorResponse
 import com.reactnativecpklibrary.model.RegResponse
 import com.tiv.mastercard.cpkservices.CompassKernelUIController
 
@@ -46,7 +47,7 @@ class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivi
           Activity.RESULT_OK -> {
             val consumerDeviceId = result.data?.getStringExtra(Constants.EXTRA_DATA)!!
             var d = Intent()
-            d.putExtra("success", true)
+            d.putExtra("status", "success")
             val regResponse = RegResponse()
             regResponse.status = "success"
             regResponse.rId = rId
@@ -60,11 +61,11 @@ class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivi
             val code = result.data?.extras?.getInt(Constants.EXTRA_ERROR_CODE) ?: 0
             val message = result.data?.extras?.getString(Constants.EXTRA_ERROR_MESSAGE) ?: ""
             var d = Intent()
-            d.putExtra("success", true)
-            val regResponse = RegResponse()
-            regResponse.status = "fail"
-            regResponse.rId = rId
-            d.putExtra("data", regResponse);
+            d.putExtra("status", "error")
+            val errorResponse = ErrorResponse()
+            errorResponse.errorMessage = message
+            errorResponse.errorCode = code
+            d.putExtra("data", errorResponse);
             d.putExtra("message", "$code: $message")
             setResult(RESULT_OK, d)
             finish()
@@ -90,19 +91,20 @@ class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivi
               EnrolmentStatus.EXISTING -> {
                 rId = response.rId
                 val bioResponse = BioResponse()
-                bioResponse.status = "existing"
+                bioResponse.status = "success"
                 bioResponse.rId = rId
                 var d = Intent()
-                d.putExtra("success", true)
+                d.putExtra("status", "success")
                 d.putExtra("data", bioResponse);
-                d.putExtra("message", "Existing User")
+                d.putExtra("message", "This user already exists in the community. You could give them a new card")
                 setResult(RESULT_OK, d)
                 finish()
               }
               else -> {
                 var d = Intent()
-                d.putExtra("success", true)
-                d.putExtra("data", "");
+                d.putExtra("status", "error")
+                val errorResponse = ErrorResponse()
+                d.putExtra("data", errorResponse);
                 d.putExtra("message", "Something unknown happened")
                 setResult(RESULT_OK, d)
                 finish()
@@ -113,9 +115,12 @@ class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivi
             val code = result.data?.extras?.getInt(Constants.EXTRA_ERROR_CODE) ?: 0
             val message = result.data?.extras?.getString(Constants.EXTRA_ERROR_MESSAGE) ?: ""
             var d = Intent()
-            d.putExtra("success", false)
+            d.putExtra("status", "error")
             d.putExtra("data", "");
-            d.putExtra("message", "$code: $message")
+            val errorResponse = ErrorResponse()
+            errorResponse.errorCode = code
+            errorResponse.errorMessage = message
+            d.putExtra("message", "$message")
             setResult(RESULT_OK, d)
             finish()
           }
@@ -139,8 +144,11 @@ class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivi
         }
         false -> {
           var d = Intent()
-          d.putExtra("success", false)
-          d.putExtra("data", "");
+          d.putExtra("status", "error")
+          val errorResponse = ErrorResponse()
+          errorResponse.errorCode = errorCode!!
+          errorResponse.errorMessage = errorMessage!!
+          d.putExtra("data", errorResponse);
           d.putExtra("message", "$errorMessage")
           setResult(RESULT_OK, d)
           finish()

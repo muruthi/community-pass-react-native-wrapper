@@ -40,7 +40,7 @@ class CpkPasscodeAuthenticationActivity : CompassKernelUIController.CompassKerne
             when(response?.status == true){
               true -> {
                 var d = Intent()
-                d.putExtra("success", true)
+                d.putExtra("status", "success")
                 val passcodeResponse = PasscodeResponse()
                 passcodeResponse.status = "success"
                 passcodeResponse.rId = response?.rid
@@ -51,7 +51,7 @@ class CpkPasscodeAuthenticationActivity : CompassKernelUIController.CompassKerne
               }
               false -> {
                 var d = Intent()
-                d.putExtra("success", true)
+                d.putExtra("status", "error")
                 val passcodeResponse = PasscodeResponse()
                 passcodeResponse.status = "fail"
                 passcodeResponse.rId = response?.rid
@@ -66,7 +66,7 @@ class CpkPasscodeAuthenticationActivity : CompassKernelUIController.CompassKerne
             val code = result.data?.extras?.getInt(Constants.EXTRA_ERROR_CODE) ?: 0
             val message = result.data?.extras?.getString(Constants.EXTRA_ERROR_MESSAGE) ?: ""
             var d = Intent()
-            d.putExtra("success", false)
+            d.putExtra("status", "error")
             val passcodeResponse = PasscodeResponse()
             passcodeResponse.status = "fail"
             d.putExtra("data", passcodeResponse);
