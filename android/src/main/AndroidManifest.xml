@@ -7,41 +7,6 @@
 
   <application>
     <activity
-      android:name=".CpkBlacklistCardActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
-      android:name=".BlacklistCardActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
-      android:name=".CpkPasscodeAuthenticationActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
-      android:name=".CpkBioAuthenticationActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
-      android:name=".CpkPasscodeRegistrationActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
       android:name=".activity.CpkConnectActivity"
       android:exported="false">
       <meta-data
@@ -71,6 +36,20 @@
     </activity>
     <activity
       android:name=".activity.CpkPasscodeAuthenticationActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    <activity
+      android:name=".activity.CpkBlacklistCardActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    <activity
+      android:name=".activity.CpkAddBiometricsActivity"
       android:exported="false">
       <meta-data
         android:name="android.app.lib_name"
