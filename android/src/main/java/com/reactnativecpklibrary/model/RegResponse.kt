@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class RegResponse(
-  var rId: String? = null,
+  var rId: String?,
   var devicdeId: String? = null,
   var status: String? = null,
 ) : Parcelable {

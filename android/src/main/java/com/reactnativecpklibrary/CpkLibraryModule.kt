@@ -35,41 +35,49 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
   @ReactMethod
   fun checkRegistrationStatus(programGuid: String, reliantAppGuid: String, promise: Promise){
     this.promise = promise
-    val connectIntent = Intent(reactApplicationContext, CpkRegistrationMethodActivity::class.java)
-    connectIntent.putExtra("reliantAppGuid", reliantAppGuid);
-    connectIntent.putExtra("programGuid", programGuid);
-    currentActivity?.startActivityForResult(connectIntent, 1)
+    val checkIntent = Intent(reactApplicationContext, CpkRegistrationMethodActivity::class.java)
+    checkIntent.let {
+      it.putExtra("reliantAppGuid", reliantAppGuid)
+      it.putExtra("programGuid", programGuid)
+    }
+    currentActivity?.startActivityForResult(checkIntent, 1)
   }
 
   @ReactMethod
   fun registerWithPasscode(programGuid: String, reliantAppGuid: String, passCode: String, overWrite: Boolean, promise: Promise){
     this.promise = promise
-    val connectIntent = Intent(reactApplicationContext, CpkPasscodeRegistrationActivity::class.java)
-    connectIntent.putExtra("reliantAppGuid", reliantAppGuid);
-    connectIntent.putExtra("programGuid", programGuid);
-    connectIntent.putExtra("passCode", passCode);
-    connectIntent.putExtra("overWrite", overWrite);
-    currentActivity?.startActivityForResult(connectIntent, 2)
+    val registerPasscodeIntent = Intent(reactApplicationContext, CpkPasscodeRegistrationActivity::class.java)
+    registerPasscodeIntent.let {
+      it.putExtra("reliantAppGuid", reliantAppGuid);
+      it.putExtra("programGuid", programGuid);
+      it.putExtra("passCode", passCode);
+      it.putExtra("overWrite", overWrite);
+    }
+    currentActivity?.startActivityForResult(registerPasscodeIntent, 2)
   }
 
   @ReactMethod
   fun registerWithBio(programGuid: String, reliantAppGuid: String, overWrite: Boolean, promise: Promise){
     this.promise = promise
-    val connectIntent = Intent(reactApplicationContext, CpkPasscodeRegistrationActivity::class.java)
-    connectIntent.putExtra("reliantAppGuid", reliantAppGuid);
-    connectIntent.putExtra("programGuid", programGuid);
-    connectIntent.putExtra("overWrite", overWrite);
-    currentActivity?.startActivityForResult(connectIntent, 2)
+    val registerBioIntent = Intent(reactApplicationContext, CpkPasscodeRegistrationActivity::class.java)
+    registerBioIntent.let {
+      it.putExtra("reliantAppGuid", reliantAppGuid);
+      it.putExtra("programGuid", programGuid);
+      it.putExtra("overWrite", overWrite);
+    }
+    currentActivity?.startActivityForResult(registerBioIntent, 2)
   }
 
   @ReactMethod
   fun blackListCard(programGuid: String, reliantAppGuid: String, rId: String, consumerDeviceId: String, promise: Promise){
     this.promise = promise
     val blackListIntent = Intent(reactApplicationContext, CpkBlacklistCardActivity::class.java)
-    blackListIntent.putExtra("reliantAppGuid", reliantAppGuid);
-    blackListIntent.putExtra("programGuid", programGuid);
-    blackListIntent.putExtra("rId", rId);
-    blackListIntent.putExtra("consumerDeviceId", consumerDeviceId)
+    blackListIntent.let {
+      it.putExtra("reliantAppGuid", reliantAppGuid);
+      it.putExtra("programGuid", programGuid);
+      it.putExtra("rId", rId);
+      it.putExtra("consumerDeviceId", consumerDeviceId)
+    }
     currentActivity?.startActivityForResult(blackListIntent, 9)
   }
 
@@ -77,22 +85,24 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
   @ReactMethod
   fun authenticateWithPasscode(programGuid: String, reliantAppGuid: String, passCode: String, promise: Promise){
     this.promise = promise
-    val connectIntent = Intent(reactApplicationContext, CpkPasscodeAuthenticationActivity::class.java)
-    connectIntent.putExtra("reliantAppGuid", reliantAppGuid);
-    connectIntent.putExtra("programGuid", programGuid);
-    connectIntent.putExtra("passCode", passCode);
-    currentActivity?.startActivityForResult(connectIntent, 3)
+    val authenticatePasscodeIntent = Intent(reactApplicationContext, CpkPasscodeAuthenticationActivity::class.java)
+    authenticatePasscodeIntent.let {
+      it.putExtra("reliantAppGuid", reliantAppGuid);
+      it.putExtra("programGuid", programGuid);
+      it.putExtra("passCode", passCode);
+    }
+    currentActivity?.startActivityForResult(authenticatePasscodeIntent, 3)
   }
 
 
-  @ReactMethod
+  /**@ReactMethod
   fun initBioRegistration(programGuid: String, reliantAppGuid: String, promise: Promise){
     this.promise = promise
     val connectIntent = Intent(reactApplicationContext, CpkBioRegistrationActivity::class.java)
     connectIntent.putExtra("reliantAppGuid", reliantAppGuid);
     connectIntent.putExtra("programGuid", programGuid);
     currentActivity?.startActivityForResult(connectIntent, 2)
-  }
+  }**/
 
   override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {
     when(resultCode){
@@ -153,22 +163,4 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
   override fun onNewIntent(p0: Intent?) {
     TODO("Not yet implemented")
   }
-
-  fun pojo2Map(obj: Any): Map<String, Any> {
-    val hashMap: MutableMap<String, Any> = HashMap()
-    try {
-      val c: Class<out Any> = obj.javaClass
-      val m = c.methods
-      for (i in m.indices) {
-        if (m[i].name.indexOf("get") == 0) {
-          val name = m[i].name.lowercase(Locale.getDefault()).substring(3, 4) + m[i].name.substring(4)
-          hashMap[name] = m[i].invoke(obj, *arrayOfNulls(0))
-        }
-      }
-    } catch (e: Throwable) {
-      //log error
-    }
-    return hashMap
-  }
-
 }
