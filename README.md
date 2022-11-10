@@ -1,5 +1,12 @@
 # react-native-cpk-library
-A react native wrappper for the CPK, implementing all Community Pass Actions
+A react native wrappper for Mastercard’s Community Pass Kernel (CPK), implementing all Community Pass Actions
+
+## Table of Contents
+
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Example](#example)
+  - [React Native CPK API](#api)
 
 ## Requirements
 - Community Pass Approved Android Device with the CPK Installed and Activated
@@ -15,7 +22,7 @@ Refer to the Community Pass [Getting Started Guide](https://developer.mastercard
 npm install react-native-cpk-library
 ```
 
-## Usage
+## Example
 
 ```js
 import { connect } from "react-native-cpk-library";
