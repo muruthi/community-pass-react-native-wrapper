@@ -50,7 +50,7 @@ class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivi
             d.putExtra("status", "success")
             val regResponse = RegResponse()
             regResponse.status = "success"
-            regResponse.rId = rId
+            //regResponse.rId = rId
             regResponse.devicdeId = consumerDeviceId
             d.putExtra("data", regResponse);
             d.putExtra("message", "Successfully Issued Card via Biometrics")
