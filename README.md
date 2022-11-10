@@ -5,6 +5,7 @@ A react native wrappper for Mastercard’s Community Pass Kernel (CPK), implemen
 
   - [Requirements](#requirements)
   - [Installation](#installation)
+    - [Package Manager] (#package-manager)
   - [Example](#example)
   - [React Native CPK API](#api)
 
@@ -13,16 +14,28 @@ A react native wrappper for Mastercard’s Community Pass Kernel (CPK), implemen
 - Reliant App GUID
 - Program GUID
 - Test Cards
-
-Refer to the Community Pass [Getting Started Guide](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/)
+- React Native Library Zip File
 
 ## Installation
+Download the react-native-cpk-library and store it in a folder or location that is accessible relative to your react native project. You will need to reference this path when installing the CPK using your package manager
+
+### Package Manager
+
+using npm
 
 ```sh
-npm install react-native-cpk-library
+npm install /path/to/react-native-cpk-library
+```
+
+using yarn
+
+```sh
+yarn add /path/to/react-native-cpk-library
 ```
 
 ## Example
+
+Once the package is installed, you can import the library using import or require approach:
 
 ```js
 import { connect } from "react-native-cpk-library";
