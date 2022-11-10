@@ -21,6 +21,23 @@ export function connect(RELIANT_APP_GUID: string){
   return CpkLibrary.connectToCpk(RELIANT_APP_GUID)
 }
 
-export function hello(){
-  return CpkLibrary.hello()
+export function checkRegistrationStatus(PROGRAM_GUID : string, RELIANT_APP_GUID: string){
+  return CpkLibrary.checkRegistrationStatus(PROGRAM_GUID, RELIANT_APP_GUID)
 }
+
+export function resgisterWithBio(PROGRAM_GUID : string, RELIANT_APP_GUID: string, OVERWRITE: boolean){
+  return CpkLibrary.registerWithBio(PROGRAM_GUID, RELIANT_APP_GUID, OVERWRITE)
+}
+
+export function resgisterWithPasscode(PROGRAM_GUID : string, RELIANT_APP_GUID: string, PASSCODE: string, OVERWRITE: boolean){
+  return CpkLibrary.registerWithPassCode(PROGRAM_GUID, RELIANT_APP_GUID, PASSCODE, OVERWRITE)
+}
+
+export function authenticateWithBio(PROGRAM_GUID : string, RELIANT_APP_GUID: string){
+  return CpkLibrary.authenticateWithPasscode(PROGRAM_GUID, RELIANT_APP_GUID)
+}
+
+export function authenticateWithPasscode(PROGRAM_GUID : string, RELIANT_APP_GUID: string, PASSCODE: string){
+  return CpkLibrary.authenticateWithPasscode(PROGRAM_GUID, RELIANT_APP_GUID, PASSCODE)
+}
+

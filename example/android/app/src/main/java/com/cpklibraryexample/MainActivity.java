@@ -1,4 +1,4 @@
-package com.cpklibraryexample;
+package com.tiv.mastercard;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
