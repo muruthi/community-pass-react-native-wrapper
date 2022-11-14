@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { authenticateWithPasscode } from 'react-native-cpk-library';
+import { connectKernelService } from 'react-native-cpk-library';
 
 export default function App() {
 
@@ -9,10 +9,11 @@ export default function App() {
   const PROGRAM_GUID = "752a94d5-cf80-45e6-8d2c-305f1b841991"
 
   React.useEffect(() => {
+    connectKernelService(RELIANT_APP_GUID).then((res: any) => console.log(res))
     //checkRegistrationStatus(P)
     //checkRegistrationStatus(PROGRAM_GUID, RELIANT_APP_GUID).then((res: any) => console.log(res))
     //startBioRegistration(PROGRAM_GUID, RELIANT_APP_GUID).then((res: any) => console.log(res))
-    authenticateWithPasscode(PROGRAM_GUID, RELIANT_APP_GUID, "999999").then((res: any) => console.log(res))
+    //authenticateWithPasscode(PROGRAM_GUID, RELIANT_APP_GUID, "999999").then((res: any) => console.log(res))
   }, []);
 
   return (

@@ -17,8 +17,8 @@ const CpkLibrary = NativeModules.CpkLibrary
       }
     );
 
-export function connect(RELIANT_APP_GUID: string){
-  return CpkLibrary.connectToCpk(RELIANT_APP_GUID)
+export function connectKernelService(RELIANT_APP_GUID: string){
+  return CpkLibrary.connectKernelService(RELIANT_APP_GUID)
 }
 
 export function checkRegistrationStatus(PROGRAM_GUID : string, RELIANT_APP_GUID: string){

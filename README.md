@@ -5,7 +5,6 @@ A react native wrappper for Mastercard’s Community Pass Kernel (CPK), implemen
 
   - [Requirements](#requirements)
   - [Installation](#installation)
-  - [Installatio ](#installation)
     - [Package manager](#package-manager)
   - [Example](#example)
   - [React Native CPK API](#api)

@@ -3,10 +3,7 @@ import android.app.Activity
 import android.content.Intent
 import com.facebook.react.bridge.*
 import com.reactnativecpklibrary.activity.*
-import com.reactnativecpklibrary.model.BioResponse
-import com.reactnativecpklibrary.model.ErrorResponse
-import com.reactnativecpklibrary.model.PasscodeResponse
-import com.reactnativecpklibrary.model.RegMethodResponse
+import com.reactnativecpklibrary.model.*
 import java.util.*
 
 
@@ -24,12 +21,12 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
   }
 
   @ReactMethod
-  fun connectToCpk(reliantAppGuid: String, promise: Promise)
+  fun connectKernelService(reliantAppGuid: String, promise: Promise)
   {
     this.promise = promise
     val connectIntent = Intent(reactApplicationContext, CpkConnectActivity::class.java)
     connectIntent.putExtra("reliantAppGuid", reliantAppGuid);
-    currentActivity?.startActivityForResult(connectIntent, 2)
+    currentActivity?.startActivityForResult(connectIntent, 1)
   }
 
   @ReactMethod
@@ -129,18 +126,28 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
             }
           }
           1 -> {
-            val status = data?.getBooleanExtra("success", false)
-            val response = data?.getParcelableExtra<RegMethodResponse>("data")
-            val message = data?.getStringExtra("message")
-            val map = Arguments.createMap()
-            map.putBoolean("status", status!!)
-            map.putMap("data", response?.toWritaableMap())
-            map.putString("message", message)
-            this.promise.resolve(map)
+            val status = data?.getStringExtra("status")
+            if(status.equals("success", ignoreCase = true)){
+              val response = data?.getParcelableExtra<ConnectResponse>("data")
+              val message = data?.getStringExtra("message")
+              val map = Arguments.createMap()
+              map.putString("status", status)
+              map.putMap("data", response?.toWritaableMap())
+              map.putString("message", message)
+              this.promise.resolve(map)
+            } else {
+              val response = data?.getParcelableExtra<ErrorResponse>("data")
+              val message = data?.getStringExtra("message")
+              val map = Arguments.createMap()
+              map.putString("status", status)
+              map.putMap("data", response?.toWritaableMap())
+              map.putString("message", message)
+              this.promise.resolve(map)
+            }
           }
           else -> {
             val status = data?.getBooleanExtra("success", false)
-            val response = data?.getParcelableExtra<BioResponse>("data")
+            val response = data?.getParcelableExtra<ErrorResponse>("data")
             val message = data?.getStringExtra("message")
             val map = Arguments.createMap()
             map.putBoolean("status", status!!)
@@ -161,6 +168,6 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
   }
 
   override fun onNewIntent(p0: Intent?) {
-    TODO("Not yet implemented")
+
   }
 }
