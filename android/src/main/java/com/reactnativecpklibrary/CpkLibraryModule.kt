@@ -54,13 +54,14 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
   }
 
   @ReactMethod
-  fun registerWithBio(programGuid: String, reliantAppGuid: String, overWrite: Boolean, promise: Promise){
+  fun registerWithBio(programGuid: String, reliantAppGuid: String, modalities : Array<String>, overWrite: Boolean, promise: Promise){
     this.promise = promise
     val registerBioIntent = Intent(reactApplicationContext, CpkPasscodeRegistrationActivity::class.java)
     registerBioIntent.let {
       it.putExtra("reliantAppGuid", reliantAppGuid);
       it.putExtra("programGuid", programGuid);
       it.putExtra("overWrite", overWrite);
+      it.putExtra("modalities", modalities);
     }
     currentActivity?.startActivityForResult(registerBioIntent, 2)
   }
