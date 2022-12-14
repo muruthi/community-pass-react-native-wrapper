@@ -2,6 +2,8 @@ package com.reactnativecpklibrary.activity
 
 import android.content.Intent
 import android.os.Bundle
+import com.reactnativecpklibrary.model.ConnectResponse
+import com.reactnativecpklibrary.model.ErrorResponse
 import com.tiv.mastercard.cpkservices.CompassKernelUIController
 
 class CpkConnectActivity : CompassKernelUIController.CompassKernelActivity() {
@@ -16,15 +18,20 @@ class CpkConnectActivity : CompassKernelUIController.CompassKernelActivity() {
           true -> {
             var d = Intent()
             d.putExtra("status", "success")
-            d.putExtra("data", "");
+            val connectResponse = ConnectResponse(status = "success")
+            d.putExtra("data", connectResponse);
             d.putExtra("message", "Connected")
             setResult(RESULT_OK, d)
             finish()
           }
           false -> {
             var d = Intent()
-            d.putExtra("success", "error")
+            d.putExtra("status", "error")
             d.putExtra("data", "");
+            val errorResponse = ErrorResponse()
+            errorResponse.errorCode = errorCode!!
+            errorResponse.errorMessage = errorMessage!!
+            d.putExtra("data", errorResponse);
             d.putExtra("message", "$errorMessage")
             setResult(RESULT_OK, d)
             finish()

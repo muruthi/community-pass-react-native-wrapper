@@ -12,6 +12,7 @@ import com.mastercard.compass.base.Constants
 import com.mastercard.compass.model.card.VerifyPasscodeRequest
 import com.mastercard.compass.model.card.VerifyPasscodeResponse
 import com.reactnativecpklibrary.model.BioResponse
+import com.reactnativecpklibrary.model.ErrorResponse
 import com.reactnativecpklibrary.model.PasscodeResponse
 import com.tiv.mastercard.cpkservices.CompassKernelUIController
 
@@ -52,10 +53,8 @@ class CpkPasscodeAuthenticationActivity : CompassKernelUIController.CompassKerne
               false -> {
                 var d = Intent()
                 d.putExtra("status", "error")
-                val passcodeResponse = PasscodeResponse()
-                passcodeResponse.status = "fail"
-                passcodeResponse.rId = response?.rid
-                d.putExtra("data", passcodeResponse);
+                val errorResponse = ErrorResponse()
+                d.putExtra("data", errorResponse);
                 d.putExtra("message", "Authentication failed. Passcode retry attempts remaining ${response?.counter?.retryCount}")
                 setResult(RESULT_OK, d)
                 finish()
@@ -67,10 +66,11 @@ class CpkPasscodeAuthenticationActivity : CompassKernelUIController.CompassKerne
             val message = result.data?.extras?.getString(Constants.EXTRA_ERROR_MESSAGE) ?: ""
             var d = Intent()
             d.putExtra("status", "error")
-            val passcodeResponse = PasscodeResponse()
-            passcodeResponse.status = "fail"
-            d.putExtra("data", passcodeResponse);
-            d.putExtra("message", "$message")
+            val errorResponse = ErrorResponse()
+            errorResponse.errorCode = code;// = "fail"
+            errorResponse.errorMessage = message
+            d.putExtra("data", errorResponse);
+            d.putExtra("message", "$code: $message")
             setResult(RESULT_OK, d)
             finish()
           }
@@ -86,11 +86,10 @@ class CpkPasscodeAuthenticationActivity : CompassKernelUIController.CompassKerne
 
         false -> {
           var d = Intent()
-          d.putExtra("success", false)
-          val passcodeResponse = PasscodeResponse()
-          passcodeResponse.status = "fail"
-          d.putExtra("data", passcodeResponse);
-          d.putExtra("message", "$errorCode: $errorMessage")
+          d.putExtra("status", "error")
+          val errorResponse = ErrorResponse()
+          d.putExtra("data", errorResponse);
+          d.putExtra("message", "An error occured")
           setResult(RESULT_OK, d)
           finish()
         }

@@ -31,6 +31,7 @@ class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivi
   private lateinit var programGuid: String
   private var overWrite: Boolean = false
   private lateinit var rId : String
+  private  lateinit var modalities :  Array<String>
 
   companion object {
     private const val TAG = "TIVMASTERCARD"
@@ -40,6 +41,7 @@ class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivi
     super.onCreate(savedInstanceState)
     reliantAppGuid = intent.getStringExtra("reliantAppGuid").toString()
     programGuid = intent.getStringExtra("programGuid").toString()
+    modalities = intent.getStringArrayExtra("modalities")!!
 
     cardWriteStartForResult =
       registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -50,7 +52,7 @@ class CpkBioRegistrationActivity : CompassKernelUIController.CompassKernelActivi
             d.putExtra("status", "success")
             val regResponse = RegResponse()
             regResponse.status = "success"
-            regResponse.rId = rId
+            //regResponse.rId = rId
             regResponse.devicdeId = consumerDeviceId
             d.putExtra("data", regResponse);
             d.putExtra("message", "Successfully Issued Card via Biometrics")

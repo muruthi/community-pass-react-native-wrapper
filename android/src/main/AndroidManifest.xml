@@ -1,74 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.reactnativecpklibrary">
+  package="com.reactnativecpklibrary">
 
-    <uses-permission android:name="com.mastercard.compass.permission.GET_INSTANCE_ID" />
-    <uses-permission android:name="com.mastercard.compass.permission.BIND_SERVICE" />
+  <uses-permission android:name="com.mastercard.compass.permission.GET_INSTANCE_ID" />
+  <uses-permission android:name="com.mastercard.compass.permission.BIND_SERVICE" />
 
-    <application>
-        <activity
-            android:name=".BlacklistCardActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".CpkPasscodeAuthenticationActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".CpkBioAuthenticationActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".CpkPasscodeRegistrationActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".activity.CpkConnectActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".activity.CpkBioRegistrationActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".activity.CpkRegistrationMethodActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".activity.CpkPasscodeRegistrationActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".activity.CpkPasscodeAuthenticationActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-    </application>
+  <application>
+    <activity
+      android:name=".activity.CpkConnectActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    <activity
+      android:name=".activity.CpkBioRegistrationActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    <activity
+      android:name=".activity.CpkRegistrationMethodActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    <activity
+      android:name=".activity.CpkPasscodeRegistrationActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    <activity
+      android:name=".activity.CpkPasscodeAuthenticationActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    <activity
+      android:name=".activity.CpkBlacklistCardActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+    <activity
+      android:name=".activity.CpkAddBiometricsActivity"
+      android:exported="false">
+      <meta-data
+        android:name="android.app.lib_name"
+        android:value="" />
+    </activity>
+  </application>
 
 </manifest>

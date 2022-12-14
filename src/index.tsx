@@ -17,8 +17,8 @@ const CpkLibrary = NativeModules.CpkLibrary
       }
     );
 
-export function connect(RELIANT_APP_GUID: string){
-  return CpkLibrary.connectToCpk(RELIANT_APP_GUID)
+export function connectKernelService(RELIANT_APP_GUID: string){
+  return CpkLibrary.connectKernelService(RELIANT_APP_GUID)
 }
 
 export function checkRegistrationStatus(PROGRAM_GUID : string, RELIANT_APP_GUID: string){
@@ -39,5 +39,9 @@ export function authenticateWithBio(PROGRAM_GUID : string, RELIANT_APP_GUID: str
 
 export function authenticateWithPasscode(PROGRAM_GUID : string, RELIANT_APP_GUID: string, PASSCODE: string){
   return CpkLibrary.authenticateWithPasscode(PROGRAM_GUID, RELIANT_APP_GUID, PASSCODE)
+}
+
+export function blackListCard(programGuid: string, reliantAppGuid: string, rId: string, consumerDeviceId: string){
+  return CpkLibrary.blackListCard(programGuid, reliantAppGuid, rId, consumerDeviceId)
 }
 
