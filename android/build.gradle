@@ -139,7 +139,7 @@ dependencies {
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation files('libs/kernel-services-client-release-protected.aar')
+  implementation files('libs/community-pass-library-v2.4.0.aar')
   implementation 'com.android.support:appcompat-v7:28.0.0'
 
   //CPK additional libraries
