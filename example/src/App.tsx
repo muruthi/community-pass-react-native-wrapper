@@ -1,53 +1,83 @@
-import * as React from 'react';
+import 'react-native-gesture-handler';
+import React from 'react';
+import {
+  TransitionPresets,
+  createStackNavigator,
+} from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-import { StyleSheet, View, Text, Button } from 'react-native';
-import { getRegisterUserWithBiometrics } from 'react-native-cpk-library';
+import SaveBiometricConsent from './screens/SaveBiometricConsent';
+import WritePasscode from './screens/WritePasscode';
+import WriteProfile from './screens/WriteProfile';
+import RegisterUserWithBiometrics from './screens/RegisterUserWithBiometrics';
+import RegisterBasicUser from './screens/RegisterBasicUser';
+import Home from './screens/Home';
+import PreTransactions from './screens/PreTransactions';
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  const RELIANT_APP_GUID: string = '4559ce55-c9a4-40fc-b22a-051244c01ec1';
-  const PROGRAM_GUID: string = '752a94d5-cf80-45e6-8d2c-305f1b841991';
-  const CONSENT_ID: string = '752a94d5-cf80-45e6-8d2c-305f1b841991';
-  // const OVERWRITE: boolean = true;
-
-  // React.useEffect(() => {
-  //   connectKernelService(RELIANT_APP_GUID).then((res: any) => console.log(res));
-  //   //checkRegistrationStatus(P)
-  //   //checkRegistrationStatus(PROGRAM_GUID, RELIANT_APP_GUID).then((res: any) => console.log(res))
-  //   //startBioRegistration(PROGRAM_GUID, RELIANT_APP_GUID).then((res: any) => console.log(res))
-  //   //authenticateWithPasscode(PROGRAM_GUID, RELIANT_APP_GUID, "999999").then((res: any) => console.log(res))
-  // }, []);
-
-  const startRegistrationWithBioToken = () => {
-    // resgisterWithBio(PROGRAM_GUID, RELIANT_APP_GUID, OVERWRITE).then(
-    //   (res: any) => console.log(res)
-    getRegisterUserWithBiometrics(
-      RELIANT_APP_GUID,
-      PROGRAM_GUID,
-      CONSENT_ID
-    ).then((res: any) => {
-      console.log(res);
-    });
-  };
   return (
-    <View style={styles.container}>
-      <Text>CPK Test</Text>
-      <Button
-        title="Start Bio Registration"
-        onPress={startRegistrationWithBioToken}
-      />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerMode: 'screen',
+          headerTintColor: 'white',
+          headerStyle: { backgroundColor: '#F79E1B' },
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      >
+        <Stack.Screen
+          name="Home"
+          options={{
+            headerTitle: 'Community Pass React Native App',
+          }}
+          component={Home}
+        />
+        <Stack.Screen
+          name="SaveBiometricConsent"
+          options={{
+            headerTitle: 'Save Biometric Consent',
+          }}
+          component={SaveBiometricConsent}
+        />
+        <Stack.Screen
+          name="RegisterUserWithBiometrics"
+          options={{
+            headerTitle: 'Register User With Biometrics',
+          }}
+          component={RegisterUserWithBiometrics}
+        />
+        <Stack.Screen
+          name="RegisterBasicUser"
+          options={{
+            headerTitle: 'Register basic User',
+          }}
+          component={RegisterBasicUser}
+        />
+        <Stack.Screen
+          name="WritePasscode"
+          options={{
+            headerTitle: 'Write Passcode',
+          }}
+          component={WritePasscode}
+        />
+        <Stack.Screen
+          name="WriteProfile"
+          options={{
+            headerTitle: 'Write Profile',
+          }}
+          component={WriteProfile}
+        />
+        <Stack.Screen
+          name="PreTransactions"
+          options={{
+            headerTitle: 'Pre Transactions',
+          }}
+          component={PreTransactions}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
