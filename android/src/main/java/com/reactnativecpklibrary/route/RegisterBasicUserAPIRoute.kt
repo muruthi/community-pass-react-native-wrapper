@@ -4,11 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReactApplicationContext
 import com.reactnativecpklibrary.ui.RegisterBasicUserCompassApiHandlerActivity
 import com.reactnativecpklibrary.util.ErrorCode
 import com.reactnativecpklibrary.util.Key
 
-class RegisterBasicUserAPIRoute(private val activity: Activity) {
+class RegisterBasicUserAPIRoute(private val context: ReactApplicationContext, private val currentActivity: Activity?) {
     companion object {
         val REQUEST_CODE_RANGE = 400 until 500
 
@@ -18,15 +19,13 @@ class RegisterBasicUserAPIRoute(private val activity: Activity) {
     fun startRegisterBasicUserIntent(
       reliantAppGuid: String,
       programGuid: String,
-      consentId: String,
-      modalities: Array<String>,
     ){
-        val intent = Intent(activity, RegisterBasicUserCompassApiHandlerActivity::class.java).apply {
+        val intent = Intent(context, RegisterBasicUserCompassApiHandlerActivity::class.java).apply {
             putExtra(Key.RELIANT_APP_GUID, reliantAppGuid)
             putExtra(Key.PROGRAM_GUID, programGuid)
         }
 
-        activity.startActivityForResult(intent, REGISTER_BASIC_USER_REQUEST_CODE)
+        currentActivity?.startActivityForResult(intent, REGISTER_BASIC_USER_REQUEST_CODE)
     }
 
     fun handleRegisterBasicUserIntentResponse(

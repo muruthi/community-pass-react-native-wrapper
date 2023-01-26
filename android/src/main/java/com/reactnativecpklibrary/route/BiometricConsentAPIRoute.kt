@@ -4,11 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReactApplicationContext
 import com.reactnativecpklibrary.ui.BiometricConsentCompassApiHandlerActivity
 import com.reactnativecpklibrary.util.ErrorCode
 import com.reactnativecpklibrary.util.Key
 
-class BiometricConsentAPIRoute(private val activity: Activity) {
+class BiometricConsentAPIRoute(private val context: ReactApplicationContext, private val currentActivity: Activity?) {
     companion object {
         val REQUEST_CODE_RANGE = 600 until 700
 
@@ -16,12 +17,12 @@ class BiometricConsentAPIRoute(private val activity: Activity) {
     }
 
     fun startBiometricConsentIntent(reliantAppGuid: String, programGuid: String){
-        val intent = Intent(activity, BiometricConsentCompassApiHandlerActivity::class.java).apply {
+        val intent = Intent(context, BiometricConsentCompassApiHandlerActivity::class.java).apply {
             putExtra(Key.PROGRAM_GUID, programGuid)
             putExtra(Key.RELIANT_APP_GUID, reliantAppGuid )
         }
 
-        activity.startActivityForResult(intent, BIOMETRIC_CONSENT_REQUEST_CODE)
+        currentActivity?.startActivityForResult(intent, BIOMETRIC_CONSENT_REQUEST_CODE)
     }
 
     fun handleBiometricConsentIntentResponse(

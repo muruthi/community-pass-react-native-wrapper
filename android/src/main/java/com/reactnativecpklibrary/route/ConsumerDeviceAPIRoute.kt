@@ -4,15 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReactApplicationContext
 import com.reactnativecpklibrary.ui.WriteProfileCompassApiHandlerActivity
 import com.reactnativecpklibrary.util.ErrorCode
 import com.reactnativecpklibrary.util.Key
 
-class ConsumerDeviceAPIRoute(
-    private val activity: Activity
-) {
-
-
+class ConsumerDeviceAPIRoute(private val context: ReactApplicationContext, private val currentActivity: Activity?) {
     companion object {
         val REQUEST_CODE_RANGE = 200 until 300
 
@@ -20,14 +17,14 @@ class ConsumerDeviceAPIRoute(
     }
 
     fun startWriteProfileIntent(reliantAppGuid: String, programGuid: String, rId: String, overwriteCard: Boolean){
-        val intent = Intent(activity, WriteProfileCompassApiHandlerActivity::class.java).apply {
+        val intent = Intent(context, WriteProfileCompassApiHandlerActivity::class.java).apply {
             putExtra(Key.RELIANT_APP_GUID, reliantAppGuid)
             putExtra(Key.PROGRAM_GUID, programGuid)
             putExtra(Key.RID, rId)
             putExtra(Key.OVERWRITE_CARD, overwriteCard)
         }
 
-        activity.startActivityForResult(intent, WRITE_PROFILE_REQUEST_CODE)
+        currentActivity?.startActivityForResult(intent, WRITE_PROFILE_REQUEST_CODE)
     }
 
     fun handleWriteProfileIntentResponse(

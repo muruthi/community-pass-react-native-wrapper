@@ -1,11 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text, Button } from 'react-native';
-import {
-  // connectKernelService,
-  resgisterWithBio,
-  // checkRegistrationStatus,
-} from 'react-native-cpk-library';
+import { getRegisterUserWithBiometrics } from 'react-native-cpk-library';
 
 export default function App() {
   const RELIANT_APP_GUID: string = '4559ce55-c9a4-40fc-b22a-051244c01ec1';
@@ -24,11 +20,13 @@ export default function App() {
   const startRegistrationWithBioToken = () => {
     // resgisterWithBio(PROGRAM_GUID, RELIANT_APP_GUID, OVERWRITE).then(
     //   (res: any) => console.log(res)
-    resgisterWithBio(RELIANT_APP_GUID, PROGRAM_GUID, CONSENT_ID).then(
-      (res: any) => {
-        console.log(res);
-      }
-    );
+    getRegisterUserWithBiometrics(
+      RELIANT_APP_GUID,
+      PROGRAM_GUID,
+      CONSENT_ID
+    ).then((res: any) => {
+      console.log(res);
+    });
   };
   return (
     <View style={styles.container}>
