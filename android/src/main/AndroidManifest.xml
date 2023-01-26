@@ -4,57 +4,16 @@
 
   <uses-permission android:name="com.mastercard.compass.permission.GET_INSTANCE_ID" />
   <uses-permission android:name="com.mastercard.compass.permission.BIND_SERVICE" />
+  <uses-permission android:name="android.permission.CAMERA" />
+
+  <uses-feature android:name="android.hardware.camera" />
 
   <application>
-    <activity
-      android:name=".activity.CpkConnectActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
-      android:name=".activity.CpkBioRegistrationActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
-      android:name=".activity.CpkRegistrationMethodActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
-      android:name=".activity.CpkPasscodeRegistrationActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
-      android:name=".activity.CpkPasscodeAuthenticationActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
-      android:name=".activity.CpkBlacklistCardActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
-    <activity
-      android:name=".activity.CpkAddBiometricsActivity"
-      android:exported="false">
-      <meta-data
-        android:name="android.app.lib_name"
-        android:value="" />
-    </activity>
+    <activity android:name=".ui.BiometricConsentCompassApiHandlerActivity" android:theme="@style/Theme.Transparent"/>
+    <activity android:name=".ui.RegisterBasicUserCompassApiHandlerActivity" android:theme="@style/Theme.Transparent"/>
+    <activity android:name=".ui.RegisterUserForBioTokenCompassApiHandlerActivity" android:theme="@style/Theme.Transparent"/>
+    <activity android:name=".ui.WritePasscodeCompassApiHandlerActivity" android:theme="@style/Theme.Transparent"/>
+    <activity android:name=".ui.WriteProfileCompassApiHandlerActivity" android:theme="@style/Theme.Transparent"/>
   </application>
 
 </manifest>
