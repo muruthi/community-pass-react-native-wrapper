@@ -2,16 +2,22 @@ package com.reactnativecpklibrary.ui
 
 import com.mastercard.compass.base.ConsentValue
 import com.mastercard.compass.model.consent.Consent
+import com.mastercard.compass.model.consent.ConsentResponse
 import com.reactnativecpklibrary.util.Key
 
-class BiometricConsentCompassApiHandlerActivity: CompassApiHandlerActivity<String>() {
+class BiometricConsentCompassApiHandlerActivity: CompassApiHandlerActivity<ConsentResponse>() {
     override suspend fun callCompassApi() {
         val programGuid: String = intent.getStringExtra(Key.PROGRAM_GUID)!!
+        val consumerConsentValue = intent.getBooleanExtra((Key.CONSUMER_CONSENT_VALUE), false)
 
-        val consent = Consent(ConsentValue.ACCEPT, programGuid)
+        val consent: Consent = if(consumerConsentValue){
+          Consent(ConsentValue.ACCEPT, programGuid)
+        } else {
+          Consent(ConsentValue.DECLINE, programGuid)
+        }
+
         val response = compassKernelServiceInstance.saveBiometricConsent(consent)
-        val consentId = response.consentId
 
-        getNonIntentCompassApiResults(consentId)
+        getNonIntentCompassApiResults(response)
     }
 }

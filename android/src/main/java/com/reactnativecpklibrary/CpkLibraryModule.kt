@@ -36,10 +36,24 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
   }
 
   @ReactMethod
+  fun saveBiometricConsent(reliantAppGuid: String, programGuid: String, consumerConsentValue: Boolean, promise: Promise){
+    this.promise = promise
+
+    biometricConsentAPIRoute.startBiometricConsentIntent(reliantAppGuid, programGuid, consumerConsentValue)
+  }
+
+  @ReactMethod
   fun getWritePasscode(reliantAppGuid: String, programGuid: String, rId: String, passcode: String, promise: Promise){
     this.promise = promise
 
     consumerDevicePasscodeAPIRoute.startWritePasscodeIntent(reliantAppGuid, programGuid, rId, passcode)
+  }
+
+  @ReactMethod
+  fun getWriteProfile(reliantAppGuid: String, programGuid: String, rId: String, overwriteCard: Boolean, promise: Promise){
+    this.promise = promise
+
+    consumerDeviceApiRoute.startWriteProfileIntent(reliantAppGuid, programGuid, rId, overwriteCard)
   }
 
   @ReactMethod
@@ -59,34 +73,6 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
       consentId
     );
   }
-
-
-//
-//  @ReactMethod
-//  fun blackListCard(programGuid: String, reliantAppGuid: String, rId: String, consumerDeviceId: String, promise: Promise){
-//    this.promise = promise
-//    val blackListIntent = Intent(reactApplicationContext, CpkBlacklistCardActivity::class.java)
-//    blackListIntent.let {
-//      it.putExtra("reliantAppGuid", reliantAppGuid);
-//      it.putExtra("programGuid", programGuid);
-//      it.putExtra("rId", rId);
-//      it.putExtra("consumerDeviceId", consumerDeviceId)
-//    }
-//    currentActivity?.startActivityForResult(blackListIntent, 9)
-//  }
-//
-//
-//  @ReactMethod
-//  fun authenticateWithPasscode(programGuid: String, reliantAppGuid: String, passCode: String, promise: Promise){
-//    this.promise = promise
-//    val authenticatePasscodeIntent = Intent(reactApplicationContext, CpkPasscodeAuthenticationActivity::class.java)
-//    authenticatePasscodeIntent.let {
-//      it.putExtra("reliantAppGuid", reliantAppGuid);
-//      it.putExtra("programGuid", programGuid);
-//      it.putExtra("passCode", passCode);
-//    }
-//    currentActivity?.startActivityForResult(authenticatePasscodeIntent, 3)
-//  }
 
 
   /**@ReactMethod

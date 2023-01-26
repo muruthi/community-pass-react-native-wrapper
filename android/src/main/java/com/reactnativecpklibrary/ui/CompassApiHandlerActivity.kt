@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
+import com.mastercard.compass.model.consent.ConsentResponse
 import com.reactnativecpklibrary.CompassKernelUIController
 import com.reactnativecpklibrary.R
 import com.reactnativecpklibrary.ui.util.CompassIntentResponse
@@ -31,8 +32,9 @@ abstract class CompassApiHandlerActivity<T : Any> : CompassKernelUIController.Co
 
     protected fun getNonIntentCompassApiResults(value: T) {
         when(value){
+            is ConsentResponse -> successFinishActivity(value)
             is String -> successFinishActivity(value)
-            else -> errorFoundFinishActivity(0, "Something went wrong")
+            else -> errorFoundFinishActivity(0, "Unknown error")
         }
     }
 
@@ -41,11 +43,11 @@ abstract class CompassApiHandlerActivity<T : Any> : CompassKernelUIController.Co
     abstract suspend fun callCompassApi()
 
     private fun successFinishActivity(data: T){
-      Log.d(TAG, data.toString())
         val intent = Intent().apply {
             when (data) {
-                is String -> putExtra(DATA, data)
-               is Parcelable -> putExtra(DATA, data)
+              is ConsentResponse -> putExtra(DATA, data)
+              is String -> putExtra(DATA, data)
+              is Parcelable -> putExtra(DATA, data)
             }
         }
         setResult(Activity.RESULT_OK, intent)
@@ -53,7 +55,6 @@ abstract class CompassApiHandlerActivity<T : Any> : CompassKernelUIController.Co
     }
 
     private fun errorFoundFinishActivity(errorCode: Int?, errorMessage: String?) {
-      Log.d(TAG, errorMessage!!)
         val intent = Intent().apply {
             putExtra(ERROR_CODE, errorCode ?: UNKNOWN)
             putExtra(ERROR_MESSAGE, errorMessage ?: "unknown error")
