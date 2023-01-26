@@ -38,24 +38,23 @@ class RegisterUserWithBiometricsAPIRoute(
         data: Intent?,
         promise: Promise
     ) {
-      val resultMap = Arguments.createMap()
 
       when (resultCode) {
             Activity.RESULT_OK -> {
+              val resultMap = Arguments.createMap()
               val jwt = data?.extras?.get(Key.DATA).toString()
-              Log.d(TAG, jwt)
               val response: RegisterUserForBioTokenResponse = helperObject.parseBioTokenJWT(jwt)
-              val rId =  response.rId;
-              Log.d(TAG, rId)
 
-              resultMap.putString("data", rId)
+              resultMap.putString("rId", response.rId)
+              resultMap.putString("enrolmentStatus", response.enrolmentStatus.toString())
+              resultMap.putString("bioToken", response.bioToken)
+              resultMap.putString("programGUID", response.programGUID)
               promise.resolve(resultMap);
             }
             Activity.RESULT_CANCELED -> {
-              resultMap.putString("code", data?.getIntExtra(Key.ERROR_CODE, ErrorCode.UNKNOWN).toString())
-              Log.d(TAG, "data?.getStringExtra(Key.ERROR_MESSAGE)!!")
-              resultMap.putString("message", "data?.getStringExtra(Key.ERROR_MESSAGE)!!")
-              promise.resolve(resultMap)
+              val code = data?.getIntExtra(Key.ERROR_CODE, ErrorCode.UNKNOWN).toString()
+              val message = data?.getStringExtra(Key.ERROR_MESSAGE)!!
+              promise.reject(code, Throwable(message))
             }
         }
     }

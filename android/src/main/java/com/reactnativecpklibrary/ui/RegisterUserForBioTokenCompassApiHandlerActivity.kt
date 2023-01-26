@@ -1,7 +1,9 @@
 package com.reactnativecpklibrary.ui
 
+import com.mastercard.compass.base.ConsentValue
 import com.mastercard.compass.base.OperationMode
 import com.mastercard.compass.model.biometrictoken.Modality
+import com.mastercard.compass.model.consent.Consent
 import com.reactnativecpklibrary.util.Key
 
 class RegisterUserForBioTokenCompassApiHandlerActivity: CompassApiHandlerActivity<String>() {

@@ -27,7 +27,7 @@ The Community Pass Platform provides technology that allows customers servicing 
 
 ## Prerequisites
 
-- [Flutter](https://docs.flutter.dev/get-started/install) installed and working.
+- [React Native](https://reactnative.dev/docs/environment-setup) installed and working.
 - Android Studio IDE or equivalent
 - Community Pass Approved Android Device with the CPK Installed and Activated
 - Reliant App GUID

@@ -17,31 +17,61 @@ const CpkLibrary = NativeModules.CpkLibrary
       }
     );
 
-export function connectKernelService(RELIANT_APP_GUID: string){
-  return CpkLibrary.connectKernelService(RELIANT_APP_GUID)
+export function saveBiometricConsent(
+  RELIANT_APP_GUID: string,
+  PROGRAM_GUID: string,
+  CONSUMER_CONSENT_VALUE: boolean
+) {
+  return CpkLibrary.saveBiometricConsent(
+    RELIANT_APP_GUID,
+    PROGRAM_GUID,
+    CONSUMER_CONSENT_VALUE
+  );
 }
 
-export function checkRegistrationStatus(PROGRAM_GUID : string, RELIANT_APP_GUID: string){
-  return CpkLibrary.checkRegistrationStatus(PROGRAM_GUID, RELIANT_APP_GUID)
+export function getWritePasscode(
+  RELIANT_APP_GUID: string,
+  PROGRAM_GUID: string,
+  RID: string,
+  PASSCODE: string
+) {
+  return CpkLibrary.getWritePasscode(
+    PROGRAM_GUID,
+    RELIANT_APP_GUID,
+    RID,
+    PASSCODE
+  );
 }
 
-export function resgisterWithBio(PROGRAM_GUID : string, RELIANT_APP_GUID: string, OVERWRITE: boolean){
-  return CpkLibrary.registerWithBio(PROGRAM_GUID, RELIANT_APP_GUID, OVERWRITE)
+export function getWriteProfile(
+  RELIANT_APP_GUID: string,
+  PROGRAM_GUID: string,
+  RID: string,
+  OVERWRITE_CARD: boolean
+) {
+  return CpkLibrary.getWriteProfile(
+    PROGRAM_GUID,
+    RELIANT_APP_GUID,
+    RID,
+    OVERWRITE_CARD
+  );
 }
 
-export function resgisterWithPasscode(PROGRAM_GUID : string, RELIANT_APP_GUID: string, PASSCODE: string, OVERWRITE: boolean){
-  return CpkLibrary.registerWithPassCode(PROGRAM_GUID, RELIANT_APP_GUID, PASSCODE, OVERWRITE)
+export function getRegisterBasicUser(
+  RELIANT_APP_GUID: string,
+  PROGRAM_GUID: string
+) {
+  return CpkLibrary.getRegisterBasicUser(PROGRAM_GUID, RELIANT_APP_GUID);
 }
 
-export function authenticateWithBio(PROGRAM_GUID : string, RELIANT_APP_GUID: string){
-  return CpkLibrary.authenticateWithPasscode(PROGRAM_GUID, RELIANT_APP_GUID)
+export function getRegisterUserWithBiometrics(
+  RELIANT_APP_GUID: string,
+  PROGRAM_GUID: string,
+  CONSENT_ID: string
+) {
+  return CpkLibrary.getRegisterUserWithBiometrics(
+    PROGRAM_GUID,
+    RELIANT_APP_GUID,
+    CONSENT_ID
+  );
 }
-
-export function authenticateWithPasscode(PROGRAM_GUID : string, RELIANT_APP_GUID: string, PASSCODE: string){
-  return CpkLibrary.authenticateWithPasscode(PROGRAM_GUID, RELIANT_APP_GUID, PASSCODE)
-}
-
-export function blackListCard(programGuid: string, reliantAppGuid: string, rId: string, consumerDeviceId: string){
-  return CpkLibrary.blackListCard(programGuid, reliantAppGuid, rId, consumerDeviceId)
-}
-

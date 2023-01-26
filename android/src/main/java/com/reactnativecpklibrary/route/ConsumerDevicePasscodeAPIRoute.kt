@@ -32,17 +32,17 @@ class ConsumerDevicePasscodeAPIRoute(private val context: ReactApplicationContex
         data: Intent?,
         promise: Promise
     ) {
-      val resultMap = Arguments.createMap()
 
       when (resultCode) {
         Activity.RESULT_OK -> {
+          val resultMap = Arguments.createMap()
           resultMap.putString("data", data?.extras?.get(Key.DATA).toString())
           promise.resolve(resultMap);
         }
         Activity.RESULT_CANCELED -> {
-          resultMap.putString("code", data?.getIntExtra(Key.ERROR_CODE, ErrorCode.UNKNOWN).toString())
-          resultMap.putString("message", data?.getStringExtra(Key.ERROR_MESSAGE)!!)
-          promise.resolve(resultMap)
+          val code = data?.getIntExtra(Key.ERROR_CODE, ErrorCode.UNKNOWN).toString()
+          val message = data?.getStringExtra(Key.ERROR_MESSAGE)!!
+          promise.reject(code, Throwable(message))
         }
       }
     }
