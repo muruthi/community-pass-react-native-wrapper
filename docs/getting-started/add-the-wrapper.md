@@ -12,7 +12,9 @@ At the end of this step you will have added the Community Pass React Native Wrap
 - The React Native library which can be accessed through [CP Assets](https://developer.mastercard.com/cp-kernel-integration-api/documentation/cp-assets/cp-assets-request/) Request. We will show you how to add the library to your project.
 
 ```
-NOTE: Please note that you will need to request access to the AAR through CP Assets Request. The approval may take 1-2 business days. Once you have access, proceed to download the AAR library for your development environment.
+NOTE: Please note that you will need to request access to the AAR through CP Assets Request.
+The approval may take 1-2 business days. Once you have access, proceed to download the AAR library for your
+development environment.
 ```
 
 ## 5.3 Adding the Community Pass React Native Wrapper
