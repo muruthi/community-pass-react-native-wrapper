@@ -39,13 +39,15 @@ npm install /path/react-native-cpk-library
 ### 5.3.2 Confirm installation
 
 1. Locate and open the `package.json` file from the root folder of your reliant application
-2. Under dependences you should see the following entry
+2. Under dependences you should see the library added to your list. See bthe example below:
 
 ```json
 "dependencies": {
-    ...
+    """"
+
     "react-native-cpk-library": "^x.y.z",
-    ...
+
+    """"
 }
 
 ```
