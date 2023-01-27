@@ -16,7 +16,7 @@ A performant Community Pass Service React Native library 🚀
 ## Overview <a name="overview"></a>
 
 The Community Pass Platform provides technology that allows customers servicing digitally excluded and remote communities to do so in a more efficient and effective manner. The lives of consumers and the variety of services needed across any community are not limited to commerce and payments – rather they include a broad range of “life transactions” such as verifying who you are, health visits, crop exchanges, and agricultural deliveries, to name a few.
-Before the creation of this wrapper, partners were expected to integrate the Community Pass Library, an Android Archive Resource (AAR) in their Reliant Applications. While AARs are supported in Flutter, it requires a considerable amount of code to appropriately add the functionality. This additional code would be replicated by all partners using Flutter.
+Before the creation of this wrapper, partners were expected to integrate the Community Pass Library, an Android Archive Resource (AAR) in their Reliant Applications. While AARs are supported in React Native, it requires a considerable amount of code to appropriately add the functionality. This additional code would be replicated by all partners using React Native.
 To address this problem, the [Community Pass Partnership Program](https://developer.mastercard.com/product/partnership-program/documentation/) created this wrapper and with the help of our partners, we actively maintain the shared resource.
 Read more on the [Community Pass Platform](https://developer.mastercard.com/product/community-pass-platform/documentation/).
 
