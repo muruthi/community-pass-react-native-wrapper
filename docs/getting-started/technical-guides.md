@@ -45,6 +45,6 @@ The steps on how to gain access to the Community Pass SDK’s are provided in th
 
 At the highest level, a CP solution consists of an Android client app (Reliant Application) on a CP POI device that has the CPK installed. The CPK manages communication between the device and a Multi-Wallet service (found on a card in the example below), and between the device and CP backend services.
 
-![Figure 1: Community Pass Devices interaction with Reliant Application](anatomy-of-cp-solution.png)
+![Figure 1: Community Pass Devices interaction with Reliant Application](/docs/assets/anatomy-of-cp-solution.png)
 
 [Next Section](pre-requisites.md)
