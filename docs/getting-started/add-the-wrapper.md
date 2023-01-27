@@ -92,4 +92,6 @@ saveBiometricConsent(RELIANT_APP_GUID, PROGRAM_GUID, CONSUMER_CONSENT_VALUE)
   });
 ```
 
+For updates regarding the Community Pass APIs that have been added to the library, refer to the [TODO file](/TODO.md)
+
 You are now ready to install the CPK onto your POI device and connect your Reliant Application to the Community Pass Kernel services.
