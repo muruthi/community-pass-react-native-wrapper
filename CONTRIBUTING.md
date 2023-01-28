@@ -86,9 +86,9 @@ npm run test
 
 To edit the Kotlin files, open `example/android` in Android studio and find the source files at `reactnativecpklibrary` under `Android`.
 
-### Add the Community Pass Kernel Library File to your Android Project
+### Add the Community Pass Kernel Library file to your Android Project
 
-To help you connect to the Community Pass Kernel, our team created the Community Pass Kernel Library (.AAR file) that bridges the gap between your application and the Community Pass Kernel. This library will enable you to develop an application using the CPK service’s APIs.
+To help you connect to the Community Pass Kernel, our team created the Community Pass Kernel Library (.AAR file) that bridges the gap between your application and the Community Pass Kernel. This library will enable you to use the CPK service’s APIs while working on this library.
 
 Please follow the section 5 instructions at Mastercard Developer Zone to complete this requirement:
 
