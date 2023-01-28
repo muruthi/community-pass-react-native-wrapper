@@ -37,14 +37,17 @@ def getExtOrIntegerDefault(name) {
 
 android {
   compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
+
   androidExtensions {
     experimental = true
   }
+
   defaultConfig {
     minSdkVersion getExtOrIntegerDefault('minSdkVersion')
     targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
     buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
   }
+
   buildTypes {
     release {
       minifyEnabled false
@@ -138,8 +141,10 @@ dependencies {
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation files('libs/community-pass-library-v2.4.0.aar')
   implementation 'com.android.support:appcompat-v7:28.0.0'
+
+  // compileOnly files('libs/community-pass-library-v2.4.0.aar') // Use this when packing library
+  implementation files('libs/community-pass-library-v2.4.0.aar') // Use this when working in the development environment 
 
   //CPK additional libraries
   implementation 'androidx.core:core-ktx:1.8.0'
