@@ -71,17 +71,7 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
       RegisterUserWithBiometricsParams
     );
   }
-
-
-  /**@ReactMethod
-  fun initBioRegistration(programGuid: String, reliantAppGuid: String, promise: Promise){
-    this.promise = promise
-    val connectIntent = Intent(reactApplicationContext, CpkBioRegistrationActivity::class.java)
-    connectIntent.putExtra("reliantAppGuid", reliantAppGuid);
-    connectIntent.putExtra("programGuid", programGuid);
-    currentActivity?.startActivityForResult(connectIntent, 2)
-  }**/
-
+  
   override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {
     when(requestCode){
       in BiometricConsentAPIRoute.REQUEST_CODE_RANGE -> handleApiRouteResponse(requestCode, resultCode, data)
