@@ -5,6 +5,7 @@ import android.content.Intent
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReadableMap
 import com.mastercard.compass.model.consent.ConsentResponse
 import com.reactnativecpklibrary.ui.BiometricConsentCompassApiHandlerActivity
 import com.reactnativecpklibrary.util.ErrorCode
@@ -18,12 +19,16 @@ class BiometricConsentAPIRoute(private val context: ReactApplicationContext, pri
         const val BIOMETRIC_CONSENT_REQUEST_CODE = 600
     }
 
-    fun startBiometricConsentIntent(reliantAppGuid: String, programGuid: String, consumerConsentValue: Boolean){
-        val intent = Intent(context, BiometricConsentCompassApiHandlerActivity::class.java).apply {
-            putExtra(Key.PROGRAM_GUID, programGuid)
-            putExtra(Key.RELIANT_APP_GUID, reliantAppGuid )
-            putExtra(Key.CONSUMER_CONSENT_VALUE, consumerConsentValue)
-        }
+    fun startBiometricConsentIntent(SaveBiometricConsentParams: ReadableMap){
+      val reliantAppGUID: String = SaveBiometricConsentParams.getString("reliantAppGUID")!!
+      val programGUID: String = SaveBiometricConsentParams.getString("programGUID")!!
+      val consumerConsentValue: Boolean = SaveBiometricConsentParams.getBoolean("consumerConsentValue")
+
+      val intent = Intent(context, BiometricConsentCompassApiHandlerActivity::class.java).apply {
+          putExtra(Key.PROGRAM_GUID, programGUID)
+          putExtra(Key.RELIANT_APP_GUID, reliantAppGUID )
+          putExtra(Key.CONSUMER_CONSENT_VALUE, consumerConsentValue)
+      }
 
         currentActivity?.startActivityForResult(intent, BIOMETRIC_CONSENT_REQUEST_CODE)
     }

@@ -13,6 +13,7 @@ import RegisterUserWithBiometrics from './screens/RegisterUserWithBiometrics';
 import RegisterBasicUser from './screens/RegisterBasicUser';
 import Home from './screens/Home';
 import PreTransactions from './screens/PreTransactions';
+import UserDataForm from './screens/UserDataForm';
 
 const Stack = createStackNavigator();
 
@@ -76,6 +77,13 @@ export default function App() {
             headerTitle: 'Pre Transactions',
           }}
           component={PreTransactions}
+        />
+        <Stack.Screen
+          name="UserDataForm"
+          options={{
+            headerTitle: 'Enter User Data',
+          }}
+          component={UserDataForm}
         />
       </Stack.Navigator>
     </NavigationContainer>

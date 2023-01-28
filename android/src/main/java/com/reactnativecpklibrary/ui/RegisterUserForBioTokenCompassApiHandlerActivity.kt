@@ -1,15 +1,13 @@
 package com.reactnativecpklibrary.ui
 
-import com.mastercard.compass.base.ConsentValue
 import com.mastercard.compass.base.OperationMode
 import com.mastercard.compass.model.biometrictoken.Modality
-import com.mastercard.compass.model.consent.Consent
 import com.reactnativecpklibrary.util.Key
 
 class RegisterUserForBioTokenCompassApiHandlerActivity: CompassApiHandlerActivity<String>() {
     override suspend fun callCompassApi() {
-        val programGuid: String = intent.getStringExtra(Key.PROGRAM_GUID)!!
         val reliantAppGuid: String = intent.getStringExtra(Key.RELIANT_APP_GUID)!!
+        val programGuid: String = intent.getStringExtra(Key.PROGRAM_GUID)!!
         val consentId: String = intent.getStringExtra(Key.CONSENT_ID)!!
 
         val jwt = helper.generateBioTokenJWT(

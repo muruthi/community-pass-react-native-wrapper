@@ -6,11 +6,8 @@ import {
   StyleSheet,
   ToastAndroid,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
-const Home = () => {
-  const navigation = useNavigation();
-
+const Home = ({ navigation }: any) => {
   const showToast = (message: string) => {
     ToastAndroid.show(
       `${message} have not yet been implemented.`,
