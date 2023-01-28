@@ -42,13 +42,31 @@ npm install /path/react-native-cpk-library
 2. Under dependences you should see the library added to your list. See bthe example below:
 
 ```json
-"dependencies": {
+dependencies : {
     """"
 
-    "react-native-cpk-library": "^x.y.z",
+    "react-native-cpk-library": "file:react-native-cpk-library-x.y.z.tgz",
 
     """"
 }
+```
+
+Add this to your app level build.gradle file
+
+```gradle
+dependencies {
+    ...
+}
+
+configurations {
+    implementation.exclude group: 'org.slf4j', module: 'slf4j-api'
+}
+```
+
+Add this to your git.ignore file
+
+```ignore
+*.tgz
 ```
 
 You are now ready to install the CPK onto your POI device and connect your Reliant Application to the Community Pass Kernel services.
