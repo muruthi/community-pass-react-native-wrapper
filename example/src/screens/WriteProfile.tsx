@@ -12,16 +12,21 @@ import { getWriteProfile } from 'react-native-cpk-library';
 const { width: WIDTH } = Dimensions.get('screen');
 const RELIANT_APP_GUID: string = '4559ce55-c9a4-40fc-b22a-051244c01ec1';
 const PROGRAM_GUID: string = '752a94d5-cf80-45e6-8d2c-305f1b841991';
-const RID: string = '';
-const OVERWRITE_CARD: boolean = false;
+const OVERWRITE_CARD: boolean = true;
 
-const WriteProfile = () => {
+const WriteProfile = ({ route }: any) => {
+  const rId = route?.params?.rId;
   const [writePasscodeError, setWritePasscodeError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleWritePasscode = () => {
     setIsLoading(true);
-    getWriteProfile(RELIANT_APP_GUID, PROGRAM_GUID, RID, OVERWRITE_CARD)
+    getWriteProfile({
+      reliantAppGUID: RELIANT_APP_GUID,
+      programGUID: PROGRAM_GUID,
+      rID: rId,
+      overwriteCard: OVERWRITE_CARD,
+    })
       .then((res: any) => {
         console.log(res);
         setIsLoading(false);

@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { saveBiometricConsent } from 'react-native-cpk-library';
+
+import CustomButton from './components/CustomButton';
+import { buttonLabels } from '../assets/strings';
+import { themeColors } from '../assets/colors';
 
 const { width: WIDTH } = Dimensions.get('screen');
 const RELIANT_APP_GUID: string = '4559ce55-c9a4-40fc-b22a-051244c01ec1';
@@ -20,8 +17,13 @@ const SaveBiometricConsent = ({ navigation }: any) => {
 
   const handleGrantBiometricConsent = () => {
     setIsGrantConsentLoading(true);
-    saveBiometricConsent(RELIANT_APP_GUID, PROGRAM_GUID, true)
+    saveBiometricConsent({
+      reliantAppGUID: RELIANT_APP_GUID,
+      programGUID: PROGRAM_GUID,
+      consumerConsentValue: true,
+    })
       .then((res: any) => {
+        console.log(res);
         setIsGrantConsentLoading(false);
         return res?.consentId;
       })
@@ -38,7 +40,11 @@ const SaveBiometricConsent = ({ navigation }: any) => {
 
   const handleDeclineBiometricConsent = () => {
     setIsDenyConsentLoading(true);
-    saveBiometricConsent(RELIANT_APP_GUID, PROGRAM_GUID, false)
+    saveBiometricConsent({
+      reliantAppGUID: RELIANT_APP_GUID,
+      programGUID: PROGRAM_GUID,
+      consumerConsentValue: true,
+    })
       .then((res: any) => {
         setIsDenyConsentLoading(false);
         return res?.consentId;
@@ -58,30 +64,20 @@ const SaveBiometricConsent = ({ navigation }: any) => {
     <View style={styles.container}>
       {!!registrationError && <Text>{registrationError}</Text>}
       <View style={styles.consentbuttonsWrapper}>
-        <TouchableOpacity
+        <CustomButton
+          isLoading={isDenyConsentLoading}
           onPress={handleDeclineBiometricConsent}
-          style={[styles.declineConsentButton, styles.button]}
-          disabled={isDenyConsentLoading || isGrantConsentLoading}
-        >
-          {isDenyConsentLoading ? (
-            <ActivityIndicator size="small" color="#000000" />
-          ) : (
-            <Text style={styles.declineConsentButtonLabel}>
-              Decline Consent
-            </Text>
-          )}
-        </TouchableOpacity>
-        <TouchableOpacity
+          label={buttonLabels.DENY_CONSENT}
+          customStyles={styles.declineConsentButton}
+          labelStyles={styles.declineConsentButtonLabel}
+        />
+        <CustomButton
+          isLoading={isGrantConsentLoading}
           onPress={handleGrantBiometricConsent}
-          style={[styles.grantConsentButton, styles.button]}
-          disabled={isGrantConsentLoading || isDenyConsentLoading}
-        >
-          {isGrantConsentLoading ? (
-            <ActivityIndicator size="small" color="#ffffff" />
-          ) : (
-            <Text style={styles.grantConsentButtonLabel}>Grant Consent</Text>
-          )}
-        </TouchableOpacity>
+          label={buttonLabels.GRANT_CONSENT}
+          customStyles={styles.grantConsentButton}
+          labelStyles={styles.grantConsentButtonLabel}
+        />
       </View>
     </View>
   );
@@ -100,25 +96,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   grantConsentButton: {
-    backgroundColor: '#000000',
+    minWidth: '48%',
   },
   declineConsentButton: {
-    backgroundColor: '#ffffff',
-  },
-  button: {
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 4,
+    backgroundColor: themeColors.white,
     minWidth: '48%',
     borderWidth: 2,
-    borderColor: '#000000',
+    borderColor: themeColors.mastercardYellow,
   },
   grantConsentButtonLabel: {
-    color: '#ffffff',
+    color: themeColors.white,
     textAlign: 'center',
   },
   declineConsentButtonLabel: {
-    color: '#000000',
+    color: themeColors.mastercardYellow,
     textAlign: 'center',
   },
 });

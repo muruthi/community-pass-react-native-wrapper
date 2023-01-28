@@ -13,7 +13,7 @@ const { width: WIDTH } = Dimensions.get('screen');
 const RELIANT_APP_GUID: string = '4559ce55-c9a4-40fc-b22a-051244c01ec1';
 const PROGRAM_GUID: string = '752a94d5-cf80-45e6-8d2c-305f1b841991';
 const RID: string = '';
-const PASSCODE: string = '';
+const PASSCODE: string = '123456';
 
 const WritePasscode = () => {
   const [writePasscodeError, setWritePasscodeError] = useState(null);
@@ -21,7 +21,12 @@ const WritePasscode = () => {
 
   const handleWritePasscode = () => {
     setIsLoading(true);
-    getWritePasscode(RELIANT_APP_GUID, PROGRAM_GUID, RID, PASSCODE)
+    getWritePasscode({
+      reliantAppGUID: RELIANT_APP_GUID,
+      programGUID: PROGRAM_GUID,
+      rID: RID,
+      passcode: PASSCODE,
+    })
       .then((res: any) => {
         console.log(res);
         setIsLoading(false);

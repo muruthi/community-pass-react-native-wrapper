@@ -14,18 +14,21 @@ const RELIANT_APP_GUID: string = '4559ce55-c9a4-40fc-b22a-051244c01ec1';
 const PROGRAM_GUID: string = '752a94d5-cf80-45e6-8d2c-305f1b841991';
 
 const RegisterUserWithBiometrics = ({ route, navigation }: any) => {
-  //   const [rId, setRid] = useState(null);
   const consentId = route?.params?.consentId;
   const [registrationError, setRegistrationError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleRegisterUserWithBiometrics = () => {
     setIsLoading(true);
-    getRegisterUserWithBiometrics(RELIANT_APP_GUID, PROGRAM_GUID, consentId)
+    getRegisterUserWithBiometrics({
+      reliantAppGUID: RELIANT_APP_GUID,
+      programGUID: PROGRAM_GUID,
+      consentID: consentId,
+    })
       .then((res: any) => {
         console.log(res);
-        navigation.navigate('WriteProfile');
         setIsLoading(false);
+        navigation.navigate('WriteProfile', { rId: res?.rId });
       })
       .catch((e: any) => {
         setRegistrationError(e?.message);
