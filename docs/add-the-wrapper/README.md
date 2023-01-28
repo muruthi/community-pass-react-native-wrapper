@@ -106,4 +106,4 @@ You should now have completed the process of adding the Community Pass React Nat
 
 You are now ready to engage with the CPK on your POI device and connect your Reliant Application to the Community Pass Kernel services.
 
-[Next Section: Usage Example](pre-requisites.md)
+[Next Section: Usage Example](usage-examples.md)
