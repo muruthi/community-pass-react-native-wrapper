@@ -90,7 +90,7 @@ To edit the Kotlin files, open `example/android` in Android studio and find the 
 
 To help you connect to the Community Pass Kernel, our team created the Community Pass Kernel Library (.AAR file) that bridges the gap between your application and the Community Pass Kernel. This library will enable you to use the CPK service’s APIs while working on this library.
 
-Please follow the section 5 instructions at Mastercard Developer Zone to complete this requirement:
+Please follow the instructions in section 5 at the Mastercard Developer Zone to complete this requirement:
 
 - [Section 5](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step5/): Add the Community Pass Kernel Library to your Android project
 
