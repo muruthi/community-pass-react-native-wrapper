@@ -80,8 +80,8 @@ Add the getRegisterUserWithBiometrics() compass API to your application
 
 ```typescript
 getRegisterUserWithBiometrics({
-  reliantAppGUID: RELIANT_APP_GUID, //string
-  programGUID: PROGRAM_GUID, //string
+  reliantAppGUID: process.env.RELIANT_APP_GUID, //string
+  programGUID: process.env.PROGRAM_GUID, //string
   consentID: consentId, //string
 })
   .then((response: any) => {
@@ -96,8 +96,8 @@ Add the getRegisterBasicUser() Commnity Pass API to your application
 
 ```typescript
 getRegisterBasicUser({
-  reliantAppGUID: RELIANT_APP_GUID, //string
-  programGUID: PROGRAM_GUID, //string
+  reliantAppGUID: process.env.RELIANT_APP_GUID, //string
+  programGUID: process.env.PROGRAM_GUID, //string
 })
   .then((response: any) => {
     console.log(response);
@@ -111,10 +111,10 @@ Add the getWritePasscode() Commnity Pass API to your application
 
 ```typescript
 getWritePasscode({
-  reliantAppGUID: RELIANT_APP_GUID, //string
-  programGUID: PROGRAM_GUID, //string
-  rID: RID, //tring
-  passcode: PASSCODE, //string
+  reliantAppGUID: process.env.RELIANT_APP_GUID, //string
+  programGUID: process.env.PROGRAM_GUID, //string
+  rID: rId, //tring
+  passcode: passcode, //string
 })
   .then((response: any) => {
     console.log(response);
@@ -128,10 +128,10 @@ Add the getWriteProfile() Commnity Pass API to your application
 
 ```typescript
 getWriteProfile({
-  reliantAppGUID: RELIANT_APP_GUID, //string
-  programGUID: PROGRAM_GUID, //string
+  reliantAppGUID: process.env.RELIANT_APP_GUID, //string
+  programGUID: process.env.PROGRAM_GUID, //string
   rID: rId, //string
-  overwriteCard: OVERWRITE_CARD, //boolean
+  overwriteCard: overwriteCard, //boolean
 })
   .then((response: any) => {
     console.log(response);
