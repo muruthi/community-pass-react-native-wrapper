@@ -6,10 +6,17 @@ We want this community to be friendly and respectful to each other. Please follo
 
 ## Development workflow
 
-To get started with the project, run `yarn` in the root directory to install the required dependencies for each package:
+To get started with the project, run `yarn` in the root directory of the plugin and the root folder of the [example app](/example/) to install the required dependencies for each package:
 
 ```sh
 yarn
+```
+
+or
+
+```sh
+npm install
+
 ```
 
 > While it's possible to use [`npm`](https://github.com/npm/cli), the tooling is built around [`yarn`](https://classic.yarnpkg.com/), so you'll have an easier time if you use `yarn` for development.
@@ -22,18 +29,25 @@ To start the packager:
 yarn example start
 ```
 
+or
+
+```
+cd example
+npx react-native start
+```
+
 To run the example app on Android:
 
 ```sh
 yarn example android
 ```
 
-To run the example app on iOS:
+or
 
 ```sh
-yarn example ios
+cd example
+npx react-native run-android
 ```
-
 
 Make sure your code passes TypeScript and ESLint. Run the following to verify:
 
@@ -42,10 +56,22 @@ yarn typescript
 yarn lint
 ```
 
+or
+
+```
+npm run lint
+```
+
 To fix formatting errors, run the following:
 
 ```sh
 yarn lint --fix
+```
+
+or
+
+```
+npm run lint --fix
 ```
 
 Remember to add tests for your change if possible. Run the unit tests by:
@@ -53,9 +79,27 @@ Remember to add tests for your change if possible. Run the unit tests by:
 ```sh
 yarn test
 ```
-To edit the Objective-C files, open `example/ios/CpkLibraryExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > react-native-cpk-library`.
+
+```sh
+npm run test
+```
 
 To edit the Kotlin files, open `example/android` in Android studio and find the source files at `reactnativecpklibrary` under `Android`.
+
+### Add the Community Pass Kernel Library File to your Android Project
+
+To help you connect to the Community Pass Kernel, our team created the Community Pass Kernel Library (.AAR file) that bridges the gap between your application and the Community Pass Kernel. This library will enable you to develop an application using the CPK service’s APIs.
+
+Please follow the section 5 instructions at Mastercard Developer Zone to complete this requirement:
+
+- [Section 5](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step5/): Add the Community Pass Kernel Library to your Android project
+
+At the end of this step you will have added the Community Pass Kernel Library to your local copy of tthis library.
+
+> Watch out for possible duplicates before adding new dependencies to the build.gradle files in the android folder.
+
+---
+
 ### Commit message convention
 
 We follow the [conventional commits specification](https://www.conventionalcommits.org/en) for our commit messages:
@@ -77,27 +121,29 @@ We use [TypeScript](https://www.typescriptlang.org/) for type checking, [ESLint]
 
 Our pre-commit hooks verify that the linter and tests pass when committing.
 
-### Publishing to npm
+### Publishing
 
-We use [release-it](https://github.com/release-it/release-it) to make it easier to publish new versions. It handles common tasks like bumping version based on semver, creating tags and releases etc.
+> Please note that the production version of the library is hosted at [CP Assets](https://developer.mastercard.com/cp-kernel-integration-api/documentation/cp-assets/cp-assets-request/) for easier versioning.
 
-To publish new versions, run the following:
-
-```sh
-yarn release
-```
+Please do not use these `yarn release` and `npm run release` commands with the library.
 
 ### Scripts
 
 The `package.json` file contains various scripts for common tasks:
 
-- `yarn bootstrap`: setup project by installing all dependencies and pods.
 - `yarn typescript`: type-check files with TypeScript.
 - `yarn lint`: lint files with ESLint.
 - `yarn test`: run unit tests with Jest.
 - `yarn example start`: start the Metro server for the example app.
 - `yarn example android`: run the example app on Android.
-- `yarn example ios`: run the example app on iOS.
+
+and
+
+- `npm run typescript`: type-check files with TypeScript.
+- `npm run lint`: lint files with ESLint.
+- `npm run test`: run unit tests with Jest.
+- `npm react-native start`: start the Metro server for the example app.
+- `npm react-native android`: run the example app on Android.
 
 ### Sending a pull request
 
