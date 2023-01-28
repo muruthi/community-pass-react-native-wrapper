@@ -26,9 +26,9 @@ To help you connect to the Community Pass Kernel, our team created the Community
 2.  The React Native library which can be accessed through [CP Assets](https://developer.mastercard.com/cp-kernel-integration-api/documentation/cp-assets/cp-assets-request/) Request. We will show you how to add the library to your project.
 
 ```
-NOTE: Please note that you will need to create a developer account and request access to the library file through CP Assets request.
-
-The approval may take 1-2 business days. Once you have access, proceed to download the library for your development environment.
+NOTE: Please note that you will need to create a developer account and request access to the library file
+through CP Assets request. The approval may take 1-2 business days. Once you have access, proceed to download
+the library for your development environment.
 ```
 
 ## Install the Community Pass React Native Wrapper
@@ -41,8 +41,6 @@ The following are the steps required to set up your project with the Community P
 2. Open a terminal/command prompt and navigate to the root folder of your reliant application project. See example below:
 
 ```sh
-// replace
-
 cd /path/TestApp
 ```
 
