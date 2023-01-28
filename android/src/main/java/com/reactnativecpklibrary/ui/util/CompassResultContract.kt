@@ -25,7 +25,6 @@ class CompassResultContract<T> : ActivityResultContract<Intent, CompassIntentRes
         val message = data?.extras?.getString(Constants.EXTRA_ERROR_MESSAGE) ?: ""
         return CompassIntentResponse.Error(code, message)
     }
-
 }
 
 sealed class CompassIntentResponse<out T : Any?>{

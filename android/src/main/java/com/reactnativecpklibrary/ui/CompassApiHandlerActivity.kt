@@ -30,7 +30,7 @@ abstract class CompassApiHandlerActivity<T : Any> : CompassKernelUIController.Co
         }
     }
 
-    protected fun getNonIntentCompassApiResults(value: T) {
+    protected fun getNonIntentCompassApiResults(value: T?) {
         when(value){
             is ConsentResponse -> successFinishActivity(value)
             is String -> successFinishActivity(value)

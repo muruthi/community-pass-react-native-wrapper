@@ -1,17 +1,22 @@
 package com.reactnativecpklibrary.ui
 
+import android.util.Log
 import com.mastercard.compass.model.biometrictoken.FormFactor
-import com.mastercard.compass.model.passcode.RegisterBasicUserRequestV2
+import com.mastercard.compass.model.passcode.RegisterBasicUserRequest
 import com.reactnativecpklibrary.util.Key
 
 class RegisterBasicUserCompassApiHandlerActivity: CompassApiHandlerActivity<String>() {
     override suspend fun callCompassApi() {
-        val programGuid: String = intent.getStringExtra(Key.PROGRAM_GUID)!!
+        val programGUID: String = intent.getStringExtra(Key.PROGRAM_GUID)!!
 
         val intent = compassKernelServiceInstance.getRegisterBasicUserActivityIntent(
-            RegisterBasicUserRequestV2(programGuid, FormFactor.NONE)
+          RegisterBasicUserRequest(programGUID, FormFactor.CARD)
         )
 
-        compassApiActivityResult.launch(intent)
+        if(intent != null) {
+          compassApiActivityResult.launch(intent)
+        } else {
+          getNonIntentCompassApiResults(null)
+        }
     }
 }

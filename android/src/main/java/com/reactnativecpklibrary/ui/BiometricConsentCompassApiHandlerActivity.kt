@@ -7,17 +7,17 @@ import com.reactnativecpklibrary.util.Key
 
 class BiometricConsentCompassApiHandlerActivity: CompassApiHandlerActivity<ConsentResponse>() {
     override suspend fun callCompassApi() {
-        val programGuid: String = intent.getStringExtra(Key.PROGRAM_GUID)!!
-        val consumerConsentValue = intent.getBooleanExtra((Key.CONSUMER_CONSENT_VALUE), false)
+      val programGUID: String = intent.getStringExtra(Key.PROGRAM_GUID)!!
+      val consumerConsentValue = intent.getBooleanExtra((Key.CONSUMER_CONSENT_VALUE), false)
 
-        val consent: Consent = if(consumerConsentValue){
-          Consent(ConsentValue.ACCEPT, programGuid)
-        } else {
-          Consent(ConsentValue.DECLINE, programGuid)
-        }
+      val consent: Consent = if(consumerConsentValue){
+        Consent(ConsentValue.ACCEPT, programGUID)
+      } else {
+        Consent(ConsentValue.DECLINE, programGUID)
+      }
 
-        val response = compassKernelServiceInstance.saveBiometricConsent(consent)
+      val response = compassKernelServiceInstance.saveBiometricConsent(consent)
 
-        getNonIntentCompassApiResults(response)
+      getNonIntentCompassApiResults(response)
     }
 }

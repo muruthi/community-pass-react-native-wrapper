@@ -5,6 +5,7 @@ import android.content.Intent
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReadableMap
 import com.reactnativecpklibrary.ui.RegisterBasicUserCompassApiHandlerActivity
 import com.reactnativecpklibrary.util.ErrorCode
 import com.reactnativecpklibrary.util.Key
@@ -17,15 +18,17 @@ class RegisterBasicUserAPIRoute(private val context: ReactApplicationContext, pr
     }
 
     fun startRegisterBasicUserIntent(
-      reliantAppGuid: String,
-      programGuid: String,
+      RegisterBasicUserParams: ReadableMap
     ){
-        val intent = Intent(context, RegisterBasicUserCompassApiHandlerActivity::class.java).apply {
-            putExtra(Key.RELIANT_APP_GUID, reliantAppGuid)
-            putExtra(Key.PROGRAM_GUID, programGuid)
-        }
+      val reliantAppGUID: String = RegisterBasicUserParams.getString("reliantAppGUID")!!
+      val programGUID: String = RegisterBasicUserParams.getString("programGUID")!!
 
-        currentActivity?.startActivityForResult(intent, REGISTER_BASIC_USER_REQUEST_CODE)
+      val intent = Intent(context, RegisterBasicUserCompassApiHandlerActivity::class.java).apply {
+          putExtra(Key.RELIANT_APP_GUID, reliantAppGUID)
+          putExtra(Key.PROGRAM_GUID, programGUID)
+      }
+
+      currentActivity?.startActivityForResult(intent, REGISTER_BASIC_USER_REQUEST_CODE)
     }
 
     fun handleRegisterBasicUserIntentResponse(

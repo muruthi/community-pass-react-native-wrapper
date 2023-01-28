@@ -36,41 +36,39 @@ class CpkLibraryModule(reactContext: ReactApplicationContext) : ReactContextBase
   }
 
   @ReactMethod
-  fun saveBiometricConsent(reliantAppGuid: String, programGuid: String, consumerConsentValue: Boolean, promise: Promise){
+  fun saveBiometricConsent(SaveBiometricConsentParams: ReadableMap, promise: Promise){
     this.promise = promise
 
-    biometricConsentAPIRoute.startBiometricConsentIntent(reliantAppGuid, programGuid, consumerConsentValue)
+    biometricConsentAPIRoute.startBiometricConsentIntent(SaveBiometricConsentParams)
   }
 
   @ReactMethod
-  fun getWritePasscode(reliantAppGuid: String, programGuid: String, rId: String, passcode: String, promise: Promise){
+  fun getWritePasscode(WritePasscodeParams: ReadableMap, promise: Promise){
     this.promise = promise
 
-    consumerDevicePasscodeAPIRoute.startWritePasscodeIntent(reliantAppGuid, programGuid, rId, passcode)
+    consumerDevicePasscodeAPIRoute.startWritePasscodeIntent(WritePasscodeParams)
   }
 
   @ReactMethod
-  fun getWriteProfile(reliantAppGuid: String, programGuid: String, rId: String, overwriteCard: Boolean, promise: Promise){
+  fun getWriteProfile(WriteProfileParams: ReadableMap, promise: Promise){
     this.promise = promise
 
-    consumerDeviceApiRoute.startWriteProfileIntent(reliantAppGuid, programGuid, rId, overwriteCard)
+    consumerDeviceApiRoute.startWriteProfileIntent(WriteProfileParams)
   }
 
   @ReactMethod
-  fun getRegisterBasicUser(reliantAppGuid: String, programGuid: String, promise: Promise){
+  fun getRegisterBasicUser(RegisterBasicUserParams: ReadableMap, promise: Promise){
     this.promise = promise
 
-  registerBasicUserAPIRoute.startRegisterBasicUserIntent(reliantAppGuid, programGuid);
+  registerBasicUserAPIRoute.startRegisterBasicUserIntent(RegisterBasicUserParams);
   }
 
   @ReactMethod
-  fun getRegisterUserWithBiometrics(reliantAppGuid: String, programGuid: String, consentId: String, promise: Promise) {
+  fun getRegisterUserWithBiometrics(RegisterUserWithBiometricsParams: ReadableMap, promise: Promise) {
     this.promise = promise
 
     registerUserWithBiometricsAPIRoute.startRegisterUserWithBiometricsIntent(
-      reliantAppGuid,
-      programGuid,
-      consentId
+      RegisterUserWithBiometricsParams
     );
   }
 

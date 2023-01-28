@@ -5,6 +5,7 @@ import android.content.Intent
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReadableMap
 import com.reactnativecpklibrary.ui.WritePasscodeCompassApiHandlerActivity
 import com.reactnativecpklibrary.util.ErrorCode
 import com.reactnativecpklibrary.util.Key
@@ -16,13 +17,18 @@ class ConsumerDevicePasscodeAPIRoute(private val context: ReactApplicationContex
         const val WRITE_PASSCODE_REQUEST_CODE = 500
     }
 
-    fun startWritePasscodeIntent(reliantAppGuid: String, programGuid: String, rId: String, passcode: String){
-        val intent = Intent(context, WritePasscodeCompassApiHandlerActivity::class.java).apply {
-            putExtra(Key.RELIANT_APP_GUID, reliantAppGuid)
-            putExtra(Key.PROGRAM_GUID, programGuid)
-            putExtra(Key.RID, rId)
-            putExtra(Key.PASSCODE, passcode)
-        }
+    fun startWritePasscodeIntent(WritePasscodeParams: ReadableMap){
+      val reliantAppGUID: String = WritePasscodeParams.getString("reliantAppGUID")!!
+      val programGUID: String = WritePasscodeParams.getString("programGUID")!!
+      val rID: String = WritePasscodeParams.getString("rID")!!
+      val passcode: String = WritePasscodeParams.getString("passcode")!!
+
+      val intent = Intent(context, WritePasscodeCompassApiHandlerActivity::class.java).apply {
+          putExtra(Key.RELIANT_APP_GUID, reliantAppGUID)
+          putExtra(Key.PROGRAM_GUID, programGUID)
+          putExtra(Key.RID, rID)
+          putExtra(Key.PASSCODE, passcode)
+      }
 
       currentActivity?.startActivityForResult(intent, WRITE_PASSCODE_REQUEST_CODE)
     }

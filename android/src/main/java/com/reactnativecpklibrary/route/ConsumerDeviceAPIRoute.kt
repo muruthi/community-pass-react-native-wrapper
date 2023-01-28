@@ -5,6 +5,7 @@ import android.content.Intent
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReadableMap
 import com.reactnativecpklibrary.ui.WriteProfileCompassApiHandlerActivity
 import com.reactnativecpklibrary.util.ErrorCode
 import com.reactnativecpklibrary.util.Key
@@ -16,15 +17,20 @@ class ConsumerDeviceAPIRoute(private val context: ReactApplicationContext, priva
         const val WRITE_PROFILE_REQUEST_CODE = 200
     }
 
-    fun startWriteProfileIntent(reliantAppGuid: String, programGuid: String, rId: String, overwriteCard: Boolean){
-        val intent = Intent(context, WriteProfileCompassApiHandlerActivity::class.java).apply {
-            putExtra(Key.RELIANT_APP_GUID, reliantAppGuid)
-            putExtra(Key.PROGRAM_GUID, programGuid)
-            putExtra(Key.RID, rId)
-            putExtra(Key.OVERWRITE_CARD, overwriteCard)
-        }
+    fun startWriteProfileIntent(WriteProfileParams: ReadableMap){
+      val reliantAppGUID: String = WriteProfileParams.getString("reliantAppGUID")!!
+      val programGUID: String = WriteProfileParams.getString("programGUID")!!
+      val rID: String = WriteProfileParams.getString("rID")!!
+      val overwriteCard = WriteProfileParams.getBoolean("overwriteCard")
 
-        currentActivity?.startActivityForResult(intent, WRITE_PROFILE_REQUEST_CODE)
+      val intent = Intent(context, WriteProfileCompassApiHandlerActivity::class.java).apply {
+          putExtra(Key.RELIANT_APP_GUID, reliantAppGUID)
+          putExtra(Key.PROGRAM_GUID, programGUID)
+          putExtra(Key.RID, rID)
+          putExtra(Key.OVERWRITE_CARD, overwriteCard)
+      }
+
+      currentActivity?.startActivityForResult(intent, WRITE_PROFILE_REQUEST_CODE)
     }
 
     fun handleWriteProfileIntentResponse(
