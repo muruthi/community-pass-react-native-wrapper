@@ -58,7 +58,7 @@ yarn android
 
 ## Usage Examples
 
-> By default, if you are able to receive a response from one of these APIs as shown below, you have successfully connected your reliant application to the community pass kernel.
+> By default, your reliant application is connected to the community pass kernel if you can get a response from one of these APIs, as shown below.
 
 Add the saveBiometricConsent() Commnity Pass API to your application
 
