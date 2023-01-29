@@ -42,7 +42,7 @@ class ConsumerDevicePasscodeAPIRoute(private val context: ReactApplicationContex
       when (resultCode) {
         Activity.RESULT_OK -> {
           val resultMap = Arguments.createMap()
-          resultMap.putString("data", data?.extras?.get(Key.DATA).toString())
+          resultMap.putString("responseStatus", data?.extras?.get(Key.DATA).toString())
           promise.resolve(resultMap);
         }
         Activity.RESULT_CANCELED -> {
