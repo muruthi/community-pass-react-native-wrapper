@@ -13,7 +13,7 @@ At the end of this section you will have done the following:
 - Connect the React Native CLI to your device
 - Run a simple “Hello world” application to test your setup
 
-> To configure an existing project for Community Pass integration, please see the [Install the Community Pass React Native Wrapper](README.md) instructions.
+> To configure an existing project for Community Pass integration, please see the [Install the Community Pass React Native Wrapper](add-the-wrapper.md) instructions.
 
 ## 3.2 Installing dependencies on macOS
 
