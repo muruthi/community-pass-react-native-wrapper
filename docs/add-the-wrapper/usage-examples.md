@@ -2,7 +2,7 @@
 
 ## Objectives
 
-Now that you have successfully set up your device, you should be ready to start using the Community Pass Kernel Services. At the end of this segment, you will have completed the following:
+Now that you have successfully set up your device and installed the Community Pass React Native Wrapper on your project, you should be ready to start using the Community Pass Kernel Services. At the end of this segment, you will have completed the following:
 
 - Connect your Reliant App and test your connection to the Community Pass Kernel
 
@@ -11,7 +11,7 @@ Now that you have successfully set up your device, you should be ready to start 
 Before you get started on this section, ensure you have completed the following:
 
 - You have received a Reliant App and Program GUID: This is your reliant application identifier shared with you on email as part of our onboarding process.
-- You will need to have completed all the steps in [Adding the Community Pass React Native Wrapper Guide](README.md)
+- You will need to have completed all the steps in the [Adding the Community Pass React Native Wrapper Guide](README.md)
 
 ## Use the Community Pass APIs in your React Native Reliant Application
 
