@@ -23,3 +23,7 @@ This Getting Started Guide Tutorial on the [Mastercard Developer Zone](https://d
 - Section 7: Register and connect your reliant app with the Community Pass Kernel Library
 
   > The section 7 information available on the [Mastercard Developer Zone](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step7/) is currently applicable to registering and connecting Kotlin and Java native applications to the Community Pass Kernel. To complete this section in the context of a React Native application, please see the [Register and connect your React Native application with the Community Pass Service](register-connect-cpk.md) segment of this guide.
+
+<br/>
+
+[Return to overview](/README.md)
