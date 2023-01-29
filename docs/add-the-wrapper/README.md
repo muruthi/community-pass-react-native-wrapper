@@ -2,13 +2,13 @@
 
 ## Objectives
 
-To help you connect to the Community Pass Kernel, our team created the Community Pass React Native Wrapper that bridges the gap between your application and the Community Pass Kernel. This library will enable you to develop an application using the CPK service’s APIs.
+To help you connect to the Community Pass Kernel, our team created the Community Pass React Native Wrapper which bridges the gap between your application and the Community Pass Kernel. This library will enable you to develop an application using the CPK service’s APIs.
 
-- At the end of this step you will have added the Community Pass React Native Wrapper to your Reliant application.
+- At the end of this step, you will have added the Community Pass React Native Wrapper to your React Native reliant application.
 
 ## Pre-requisites
 
-1.  Complete the following sections of the technical integration guide tutorial at [Mastercard Developer Zone](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/)
+1.  Complete the following sections of the technical integration guide tutorial available on the [Mastercard Developer Zone](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/):
 
     - [Section 1](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step1): Community Pass Pre-requisites required to get you starting
     - [Section 2](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step2): Setting up your Community Pass Approved Device
@@ -23,7 +23,7 @@ To help you connect to the Community Pass Kernel, our team created the Community
 
       > The section 7 information available at the [Mastercard Developer Zone](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step7/) is currently applicable to registering and connecting Kotlin and Java native applications to the Community Pass Kernel. To complete this section in the context of a React Native application, please see the [Usage Examples](usage-examples.md) segment of this guide.
 
-2.  The React Native library which can be accessed through [CP Assets](https://developer.mastercard.com/cp-kernel-integration-api/documentation/cp-assets/cp-assets-request/) Request. We will show you how to add the library to your project.
+2.  The React Native library, which is accessible via the [CP Assets](https://developer.mastercard.com/cp-kernel-integration-api/documentation/cp-assets/cp-assets-request/) Request. We will show you how to add the library to your project.
 
 ```
 NOTE: Please note that you will need to create a developer account and request access to the library file
