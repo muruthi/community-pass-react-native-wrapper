@@ -10,8 +10,8 @@ Now that you have successfully set up your device and installed the Community Pa
 
 Before you get started on this section, ensure you have completed the following:
 
+- You will need to have completed sections 1, 2, 3, 4, 5 and 6 in the [Getting Started](README.md) guide.
 - You have received a Reliant App and Program GUID: This is your reliant application identifier shared with you on email as part of our onboarding process.
-- You will need to have completed all the steps in the [Adding the Community Pass React Native Wrapper Guide](README.md)
 
 ## 7.3 Use the Community Pass APIs in your React Native Reliant Application
 
