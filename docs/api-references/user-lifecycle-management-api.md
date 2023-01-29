@@ -34,6 +34,8 @@ In addition to the [general error codes](https://developer.mastercard.com/cp-ker
 | ERROR_CODE_PROGRAM_NOT_SUPPORTED              | Specified Program ID is not supported by CPK            |
 | ERROR_CODE_PROGRAM_DOES_NOT_SUPPORT_BIOMETRIC | Specified Program ID does not support biometric capture |
 
+---
+
 ### getWritePasscode
 
 This API is used to write the Passcode to the card. This is initiated by the Reliant Application to CPK after a successful user registration.
@@ -69,6 +71,8 @@ In addition to the [general error codes](https://developer.mastercard.com/cp-ker
 | ERROR_CODE_CARD_INVALID_PASSCODE  | Card passcode length is incorrect. Should be 6 digit long.                        |
 | ERROR_CODE_CARD_CONNECTION_ERROR  | Card was moved or removed during read/write operation                             |
 | ERROR_CODE_CARD_OPERATION_ABORTED | Card operation terminated before card transaction started by pressing Back button |
+
+---
 
 ### getWriteProfile
 
@@ -107,9 +111,9 @@ In addition to the [general error codes](https://developer.mastercard.com/cp-ker
 | ERROR_CODE_AUTH_METHOD_BIOMETRIC_BUT_NO_HASHES  | User found, insufficient data cannot write profile on the card – missing modalities (if any LP, RP, Face configured to the program) |
 | ERROR_CODE_INSUFFICIENT_HASHES_TO_WRITE_ON_CARD | Insufficient data cannot write hashes on the card– missing modalities (if any LP, RP, Face configured to the program)               |
 
-<br/>
+---
 
-### getRegisterUser
+### getRegisterBasicUser
 
 This API is used to register an existing user with their card/CP Consumer Device present.
 
@@ -131,7 +135,7 @@ This API is used to register an existing user with their card/CP Consumer Device
 **Error codes**
 In addition to the [general error codes](https://developer.mastercard.com/cp-kernel-integration-api/documentation/reference-pages/code-and-formats/), below are the error codes that CPK can send as part of the response:
 
-<br/>
+---
 
 ### getRegisterUserWithBiometrics
 
