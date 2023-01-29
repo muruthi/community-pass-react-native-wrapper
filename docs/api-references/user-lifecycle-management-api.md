@@ -1,8 +1,6 @@
 # User Lifecycle Management API
 
-## User Registration APIs
-
-### saveBiometricConsent
+## saveBiometricConsent
 
 This API is used to save the user consent prior to collecting the biometric(s) and generating a unique digital identity. This is a blocking call, therefore it is advised to perform on a non-UI thread.
 
@@ -34,9 +32,7 @@ In addition to the [general error codes](https://developer.mastercard.com/cp-ker
 | ERROR_CODE_PROGRAM_NOT_SUPPORTED              | Specified Program ID is not supported by CPK            |
 | ERROR_CODE_PROGRAM_DOES_NOT_SUPPORT_BIOMETRIC | Specified Program ID does not support biometric capture |
 
----
-
-### getWritePasscode
+## getWritePasscode
 
 This API is used to write the Passcode to the card. This is initiated by the Reliant Application to CPK after a successful user registration.
 
@@ -72,9 +68,7 @@ In addition to the [general error codes](https://developer.mastercard.com/cp-ker
 | ERROR_CODE_CARD_CONNECTION_ERROR  | Card was moved or removed during read/write operation                             |
 | ERROR_CODE_CARD_OPERATION_ABORTED | Card operation terminated before card transaction started by pressing Back button |
 
----
-
-### getWriteProfile
+## getWriteProfile
 
 This API is used for card issuance to write the user’s basic profile data to the card once the user has been successfully registered, either by biometric flow or passcode flow. This operation is initiated by the Reliant Application after a successful user registration, and the Reliant Application receives the R-ID.
 
@@ -111,9 +105,7 @@ In addition to the [general error codes](https://developer.mastercard.com/cp-ker
 | ERROR_CODE_AUTH_METHOD_BIOMETRIC_BUT_NO_HASHES  | User found, insufficient data cannot write profile on the card – missing modalities (if any LP, RP, Face configured to the program) |
 | ERROR_CODE_INSUFFICIENT_HASHES_TO_WRITE_ON_CARD | Insufficient data cannot write hashes on the card– missing modalities (if any LP, RP, Face configured to the program)               |
 
----
-
-### getRegisterBasicUser
+## getRegisterBasicUser
 
 This API is used to register an existing user with their card/CP Consumer Device present.
 
@@ -135,9 +127,7 @@ This API is used to register an existing user with their card/CP Consumer Device
 **Error codes**
 In addition to the [general error codes](https://developer.mastercard.com/cp-kernel-integration-api/documentation/reference-pages/code-and-formats/), below are the error codes that CPK can send as part of the response:
 
----
-
-### getRegisterUserWithBiometrics
+## getRegisterUserWithBiometrics
 
 This API is used by the Reliant Application to initiate the user registration flow. It returns the Intent object which can be used by the Reliant Application to start the user registration using the user’s biometric data. Following a successful user registration, a user profile is created and associated with a CP Program. If the user’s profile already exists, e.g., the user is already registered in another program, the user’s profile is updated with the new association. Moreover, it enables you to select a formfactor during the registration process i.e. Card, QR or None.
 
