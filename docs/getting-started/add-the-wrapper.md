@@ -8,7 +8,7 @@ To help you connect to the Community Pass Kernel, our team created the Community
 
 ## 5.2 Pre-requisites
 
-1. Completed the getting started guide
+1. Completed the sections 1, 2, 3 and 4 of this guide
 2. The React Native library, which is accessible via the [CP Assets](https://developer.mastercard.com/cp-kernel-integration-api/documentation/cp-assets/cp-assets-request/) Request. We will show you how to add the library to your project.
 
 ```
