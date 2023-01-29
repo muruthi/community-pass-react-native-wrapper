@@ -14,7 +14,7 @@ To help you connect to the Community Pass Kernel, our team created the Community
     - [Section 2](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step2): Setting up your Community Pass Approved Device
     - Section 3: Setting up your development environment
 
-      > The section 3 information available on the [Mastercard Developer Zone](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step3/) is currently applicable to setting up a development environment for Kotlin and Java native applications. To complete this section in the context of a React Native application, please see the [Setting Up Your React Native Development Environment](dev-environment-setup.md) segment.
+      > The section 3 information available on the [Mastercard Developer Zone](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step3/) is currently applicable to setting up a development environment for Kotlin and Java native applications. To complete this section in the context of a React Native application, please see the [Setting Up Your React Native Development Environment](dev-environment-setup.md) segment of this guide.
 
     - [Section 4](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step4): Submit your Reliant App details to Community Pass
     - Section 5: Install the Community Pass React Native Wrapper
