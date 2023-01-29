@@ -42,7 +42,7 @@ class ConsumerDeviceAPIRoute(private val context: ReactApplicationContext, priva
       when (resultCode) {
         Activity.RESULT_OK -> {
           val resultMap = Arguments.createMap()
-          resultMap.putString("data", data?.extras?.get(Key.DATA).toString())
+          resultMap.putString("consumerDeviceNumber", data?.extras?.get(Key.DATA).toString())
           promise.resolve(resultMap);
         }
         Activity.RESULT_CANCELED -> {
