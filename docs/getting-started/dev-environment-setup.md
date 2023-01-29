@@ -27,7 +27,7 @@ You will need the following:
 
 While you can use any editor of your choice to develop your app, you will need to install Android Studio in order to set up the necessary tooling to build your React Native app for Android.
 
-### 3.2.1 Node & Watchman\*\*
+### 3.2.1 Node & Watchman
 
 We recommend installing Node and Watchman using [Homebrew](http://brew.sh/). Run the following commands in a Terminal after installing Homebrew:
 
@@ -40,7 +40,7 @@ If you have already installed Node on your system, make sure it is Node 14 or ne
 
 [Watchman](https://facebook.github.io/watchman) is a tool by Facebook for watching changes in the filesystem. It is highly recommended you install it for better performance.
 
-### 3.2.2 Java Development Kit\*\*
+### 3.2.2 Java Development Kit
 
 We recommend installing the OpenJDK distribution called Azul **Zulu** using Homebrew. Run the following commands in a Terminal after installing Homebrew:
 
@@ -155,7 +155,7 @@ You can find the actual location of the SDK in the Android Studio "Settings" dia
 Open a new Command Prompt window to ensure the new environment variable is loaded before proceeding to the next step.
 
 - Open powershell
-- Copy and paste \*\*Get-ChildItem -Path Env:\*\* into powershell
+- Copy and paste `Get-ChildItem -Path Env:\` into powershell
 - Verify `ANDROID_HOME` has been added
 
 ### 3.4.5 Add platform-tools to Path (Windows)
@@ -199,11 +199,11 @@ npx react-native init AwesomeProject
 
 This is not necessary if you are integrating React Native into an existing application, if you "ejected" from Expo, or if you're adding Android support to an existing React Native project (see [Integration with Existing Apps](https://reactnative.dev/docs/integration-with-existing-apps)). You can also use a third-party CLI to init your React Native app, such as [Ignite CLI](https://github.com/infinitered/ignite).
 
-\*\*Connect your device via USB cable to your development computer
+### 3.5.2 Connect your device via USB cable to your development computer
 
 Connect your POI device to your development computer’s USB port With USB debugging turned on, the device should ask for approval (at least the first time).
 
-### 3.5.2 Running your React Native application
+### 3.5.3 Running your React Native application
 
 **Step 1: Start Metro**
 
