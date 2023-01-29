@@ -31,7 +31,7 @@ yarn example start
 
 or
 
-```
+```sh
 cd example
 npx react-native start
 ```
@@ -58,7 +58,7 @@ yarn lint
 
 or
 
-```
+```sh
 npm run lint
 ```
 
@@ -70,7 +70,7 @@ yarn lint --fix
 
 or
 
-```
+```sh
 npm run lint --fix
 ```
 
@@ -79,6 +79,8 @@ Remember to add tests for your change if possible. Run the unit tests by:
 ```sh
 yarn test
 ```
+
+or
 
 ```sh
 npm run test
@@ -90,7 +92,7 @@ To edit the Kotlin files, open `example/android` in Android studio and find the 
 
 To help you connect to the Community Pass Kernel, our team created the Community Pass Kernel Library (.AAR file) that bridges the gap between your application and the Community Pass Kernel. This library will enable you to use the CPK service’s APIs while working on this library.
 
-Please follow the instructions in section 5 at the Mastercard Developer Zone to complete this requirement:
+Please follow the instructions in section 5 on the Mastercard Developer Zone to complete this requirement:
 
 - [Section 5](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step5/): Add the Community Pass Kernel Library to your Android project
 
