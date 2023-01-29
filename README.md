@@ -30,7 +30,7 @@ Read more on the [Community Pass Platform](https://developer.mastercard.com/prod
 
 ## Technical Guides <a name="technical-guides"></a>
 
-1. [Adding the Library Guide](docs/add-the-wrapper/README.md): This guide will walk you through setup from recieving your tablet to being ready to issue your first command on the community Pass Platform
+1. [Getting Started Guide](docs/getting-started/README.md): This guide will walk you through setup from recieving your tablet to being ready to issue your first command on the community Pass Platform
 2. [API Reference Page](docs/api-references/README.md): Contains all information required to consume the supported Community Pass Action APIs
 
 ## Support <a name="support"></a>

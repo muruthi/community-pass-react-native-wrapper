@@ -1,19 +1,19 @@
-# Register and connect your React Native application with the Community Pass Service
+# Section 7: Register and connect your React Native application with the Community Pass Service
 
-## Objectives
+## 7.1 Objectives
 
 Now that you have successfully set up your device and installed the Community Pass React Native Wrapper on your project, you should be ready to start using the Community Pass Kernel Services. At the end of this segment, you will have completed the following:
 
 - Connect your Reliant App and test your connection to the Community Pass Kernel
 
-## Prerequisites
+## 7.2 Prerequisites
 
 Before you get started on this section, ensure you have completed the following:
 
 - You have received a Reliant App and Program GUID: This is your reliant application identifier shared with you on email as part of our onboarding process.
 - You will need to have completed all the steps in the [Adding the Community Pass React Native Wrapper Guide](README.md)
 
-## Use the Community Pass APIs in your React Native Reliant Application
+## 7.3 Use the Community Pass APIs in your React Native Reliant Application
 
 1. Open a terminal/command prompt and navigate to the root folder of your reliant application project
 
@@ -56,7 +56,7 @@ or
 yarn android
 ```
 
-## Usage Examples
+## 7.4 Usage Examples
 
 > By default, your reliant application is connected to the community pass kernel if you can get a response from one of these APIs, as shown below.
 
@@ -144,3 +144,5 @@ getWriteProfile({
 ```
 
 For updates regarding the Community Pass APIs that have been added to the library, refer to the [TODO file](/TODO.md)
+
+[Return to Getting Started](README.md)

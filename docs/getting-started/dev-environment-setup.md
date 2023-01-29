@@ -1,6 +1,6 @@
-# Setting Up Your React Native Development Environment
+# Section 3: Setting Up Your React Native Development Environment
 
-## Objectives
+## 3.1 Objectives
 
 Once your device has been set-up, you will now need to prepare your development environment. This will allow you to create your React Native and connect your device to your Reliant Application that will be used in later sections.
 
@@ -15,7 +15,7 @@ At the end of this section you will have done the following:
 
 > To configure an existing project for Community Pass integration, please see the [Install the Community Pass React Native Wrapper](README.md) instructions.
 
-## Installing dependencies on macOS
+## 3.2 Installing dependencies on macOS
 
 You will need the following:
 
@@ -27,7 +27,7 @@ You will need the following:
 
 While you can use any editor of your choice to develop your app, you will need to install Android Studio in order to set up the necessary tooling to build your React Native app for Android.
 
-**Node & Watchman**
+### 3.2.1 Node & Watchman\*\*
 
 We recommend installing Node and Watchman using [Homebrew](http://brew.sh/). Run the following commands in a Terminal after installing Homebrew:
 
@@ -40,7 +40,7 @@ If you have already installed Node on your system, make sure it is Node 14 or ne
 
 [Watchman](https://facebook.github.io/watchman) is a tool by Facebook for watching changes in the filesystem. It is highly recommended you install it for better performance.
 
-**Java Development Kit**
+### 3.2.2 Java Development Kit\*\*
 
 We recommend installing the OpenJDK distribution called Azul **Zulu** using Homebrew. Run the following commands in a Terminal after installing Homebrew:
 
@@ -53,7 +53,7 @@ The Zulu OpenJDK distribution offers JDKs for both Intel and M1 Macs. This will 
 
 If you have already installed JDK on your system, we recommend JDK 11. You may encounter problems using higher JDK versions.
 
-## Installing dependencies on Windows
+## 3.3 Installing dependencies on Windows
 
 You will need the following:
 
@@ -65,7 +65,7 @@ You will need the following:
 
 While you can use any editor of your choice to develop your app, you will need to install Android Studio in order to set up the necessary tooling to build your React Native app for Android.
 
-**Node, JDK**
+### 3.3.1 Node, JDK
 
 We recommend installing Node via [Chocolatey](https://chocolatey.org/), a popular package manager for Windows.
 
@@ -85,9 +85,9 @@ If you have already installed Node on your system, make sure it is Node 14 or ne
 
 > If you're using the latest version of Java Development Kit, you'll need to change the Gradle version of your project so it can recognize the JDK. You can do that by going to {project root folder}\android\gradle\wrapper\gradle-wrapper.properties and changing the distributionUrl value to upgrade the Gradle version. You can check out [here the latest releases of Gradle](https://gradle.org/releases/).
 
-## Android development environment
+## 3.4 Android development environment
 
-1. **Install Android Studio**
+### 3.4.1 Install Android Studio
 
 [Download and install Android Studio](https://developer.android.com/studio/index.html). While on Android Studio installation wizard, make sure the boxes next to all of the following items are checked:
 
@@ -102,7 +102,7 @@ Then, click "Next" to install all of these components.
 
 Once setup has finalized and you're presented with the Welcome screen, proceed to the next step.
 
-2. **Install the Android SDK**
+### 3.4.2 Install the Android SDK
 
 Android Studio installs the latest Android SDK by default. Building a React Native app with native code, however, requires the `Android 12 (S)` SDK in particular. Additional Android SDKs can be installed through the SDK Manager in Android Studio.
 
@@ -119,9 +119,9 @@ Next, select the "SDK Tools" tab and check the box next to "Show Package Details
 
 Finally, click "Apply" to download and install the Android SDK and related build tools.
 
-3. **Configure the ANDROID_HOME environment variable (macOS)**
+### 3.4.3 Configure the ANDROID_HOME environment variable (macOS)
 
-   The React Native tools require some environment variables to be set up in order to build apps with native code.
+The React Native tools require some environment variables to be set up in order to build apps with native code.
 
 Add the following lines to your `~/.zprofile` or `~/.zshrc` (if you are using bash, then `~/.bash_profile` or `~/.bashrc`) config file:
 
@@ -135,7 +135,7 @@ Run source `~/.zprofile` (or `source ~/.bash_profile` for `bash`) to load the co
 
 > Please make sure you use the correct Android SDK path. You can find the actual location of the SDK in the Android Studio "Preferences" dialog, under **Appearance & Behavior → System Settings → Android SDK**.
 
-4. **Configure the ANDROID_HOME environment variable (Windows)**
+### 3.4.4 Configure the ANDROID_HOME environment variable (Windows)
 
 The React Native tools require some environment variables to be set up in order to build apps with native code.
 
@@ -158,7 +158,8 @@ Open a new Command Prompt window to ensure the new environment variable is loade
 - Copy and paste \*\*Get-ChildItem -Path Env:\*\* into powershell
 - Verify `ANDROID_HOME` has been added
 
-5. **Add platform-tools to Path (Windows)**
+### 3.4.5 Add platform-tools to Path (Windows)
+
    <br/>
 
 - Open the **Windows Control Panel**.
@@ -174,11 +175,11 @@ The default location for this folder is:
 %LOCALAPPDATA%\Android\Sdk\platform-tools
 ```
 
-## React Native Command Line Interface
+## 3.5 React Native Command Line Interface
 
 React Native has a built-in command line interface. Rather than install and manage a specific version of the CLI globally, we recommend you access the current version at runtime using `npx`, which ships with Node.js. With `npx react-native <command>`, the current stable version of the CLI will be downloaded and executed at the time the command is run.
 
-**Creating a new application**
+### 3.5.1 Creating a new application
 
 > If you previously installed a global react-native-cli package, please remove it as it may cause unexpected issues:
 >
@@ -198,13 +199,13 @@ npx react-native init AwesomeProject
 
 This is not necessary if you are integrating React Native into an existing application, if you "ejected" from Expo, or if you're adding Android support to an existing React Native project (see [Integration with Existing Apps](https://reactnative.dev/docs/integration-with-existing-apps)). You can also use a third-party CLI to init your React Native app, such as [Ignite CLI](https://github.com/infinitered/ignite).
 
-**Connect your device via USB cable to your development computer**
+\*\*Connect your device via USB cable to your development computer
 
 Connect your POI device to your development computer’s USB port With USB debugging turned on, the device should ask for approval (at least the first time).
 
-**Running your React Native application**
+### 3.5.2 Running your React Native application
 
-- **Step 1: Start Metro**
+**Step 1: Start Metro**
 
 First, you will need to start Metro, the JavaScript bundler that ships with React Native. Metro "takes in an entry file and various options, and returns a single JavaScript file that includes all your code and its dependencies."—[Metro Docs](https://facebook.github.io/metro/docs/concepts)
 
@@ -218,7 +219,7 @@ npx react-native start
 
 > If you use the `Yarn` package manager, you can use `yarn` instead of `npx` when running React Native commands inside an existing project.
 
-- **Step 2: Start your application**
+**Step 2: Start your application**
 
 Let Metro Bundler run in its own terminal. Open a new terminal inside your React Native project folder. Run the following:
 
@@ -229,3 +230,5 @@ npx react-native run-android
 If everything is set up correctly, you should see your new app running in your POI device shortly.
 
 `npx react-native run-android` is one way to run your app - you can also run it directly from within Android Studio.
+
+[Return to Getting Started](README.md)
