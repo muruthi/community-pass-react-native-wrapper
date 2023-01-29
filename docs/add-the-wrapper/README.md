@@ -19,7 +19,7 @@ To help you connect to the Community Pass Kernel, our team created the Community
       > The information at [Mastercard Developer Zone](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step5/) is currently applicable to adding the Community Pass Kernel Library to Kotlin and Java native applications. To complete this section in the context of a React Native application, please follow the steps below.
 
     - [Section 6](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step6): Install and Activate the CPK
-    - Section 7: Register and connect your Flutter Reliant App with the Community Pass Flutter Wrapper
+    - Section 7: Register and connect your React Native Reliant App with the Community Pass React Native Wrapper
 
       > The information at [Mastercard Developer Zone](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step7/) is currently applicable Registering and Connecting your Reliant Application to the Community Pass Kernel to Kotlin and Java native applications. To complete this section in the context of a React Native application, please see the [Usage Examples](usage-examples.md) segment of this guide.
 
