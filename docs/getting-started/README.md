@@ -1,4 +1,4 @@
-# Adding the Community Pass React Native Wrapper Guide
+# Getting Started Guide
 
 ## Introduction
 
