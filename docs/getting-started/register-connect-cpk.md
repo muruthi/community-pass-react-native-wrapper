@@ -145,4 +145,6 @@ getWriteProfile({
 
 For updates regarding the Community Pass APIs that have been added to the library, refer to the [TODO file](/TODO.md)
 
+You are now ready to start building your React Native Reliant Application using the Community Pass Kernel assets.
+
 [Return to Getting Started](README.md)
