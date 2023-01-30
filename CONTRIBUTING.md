@@ -171,38 +171,36 @@ You are now ready to install the CPK onto your POI device and connect your Relia
 1. Open your command line and navigate to the root folder of your project. See example below:
 
 ```sh
-cd /path/community-pass-react-native-wrapper
+cd /path/community-pass-react-native-wrapper/example
 ```
 
 2. To start the packager run the following command on your command line:
 
 ```sh
-yarn example start
+yarn start
 ```
 
 or
 
 ```sh
-cd example
 npx react-native start
 ```
 
 3. Open another command line and navigate to the root folder of your project. See example below:
 
 ```sh
-cd /path/community-pass-react-native-wrapper
+cd /path/community-pass-react-native-wrapper/example
 ```
 
 4. Run the following command to build, install and start the example application on your POI device.:
 
 ```sh
-yarn example android
+yarn android
 ```
 
 or
 
 ```sh
-cd example
 npx react-native run-android
 ```
 
