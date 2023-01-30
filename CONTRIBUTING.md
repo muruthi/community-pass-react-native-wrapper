@@ -13,7 +13,11 @@ To get started please complete the following steps:
 
 ## 1.2 Install dependencies
 
-> While it's possible to use [`npm`](https://github.com/npm/cli), the tooling is built around [`yarn`](https://classic.yarnpkg.com/), so you'll have an easier time if you use `yarn` for development.
+> While it's possible to use [`npm`](https://github.com/npm/cli), the tooling is built around [`yarn`](https://classic.yarnpkg.com/), so you'll have an easier time if you use `yarn` for development for the following reasons:
+>
+> - `yarn` is faster because it installs dependency packages in parallel while `npm` installs them sequentially.
+> - `yarn` automatically runs security checks in the background and uses the built-in license checker to avoid downloading dangerous scripts.
+> - `yarn` prevents dependency issues (incompatibility).
 
 1. Open your command line and navigate to the root folder of your project. See example below:
 
