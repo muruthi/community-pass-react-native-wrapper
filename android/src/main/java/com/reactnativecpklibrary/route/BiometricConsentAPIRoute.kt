@@ -2,11 +2,13 @@ package com.reactnativecpklibrary.route
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReadableMap
 import com.mastercard.compass.model.consent.ConsentResponse
+import com.reactnativecpklibrary.R
 import com.reactnativecpklibrary.ui.BiometricConsentCompassApiHandlerActivity
 import com.reactnativecpklibrary.util.ErrorCode
 import com.reactnativecpklibrary.util.Key
@@ -17,6 +19,7 @@ class BiometricConsentAPIRoute(private val context: ReactApplicationContext, pri
         val REQUEST_CODE_RANGE = 600 until 700
 
         const val BIOMETRIC_CONSENT_REQUEST_CODE = 600
+        private const val TAG = "BiometricConsentAPIRoute"
     }
 
     fun startBiometricConsentIntent(SaveBiometricConsentParams: ReadableMap){
@@ -49,7 +52,8 @@ class BiometricConsentAPIRoute(private val context: ReactApplicationContext, pri
         }
         Activity.RESULT_CANCELED -> {
           val code = data?.getIntExtra(Key.ERROR_CODE, ErrorCode.UNKNOWN).toString()
-          val message = data?.getStringExtra(Key.ERROR_MESSAGE)!!
+          val message = data?.getStringExtra(Key.ERROR_MESSAGE) ?: context.getString(R.string.error_unknown)
+          Log.e(TAG, "Error $code Message $message")
           promise.reject(code, Throwable(message))
         }
       }
