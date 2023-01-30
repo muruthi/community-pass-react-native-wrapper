@@ -57,13 +57,110 @@ npm install
 
 To help you connect to the Community Pass Kernel, our team created the Community Pass Kernel Library (.AAR file) that bridges the gap between your application and the Community Pass Kernel. This library will enable you to use the CPK service’s APIs while working on this library.
 
-Please follow the instructions in section 5 on the Mastercard Developer Zone to complete this requirement:
+### 1.3.1 Pre-Requisites
 
-- [Section 5](https://developer.mastercard.com/cp-kernel-integration-api/tutorial/getting-started-guide/step5/): Add the Community Pass Kernel Library to your Android project
+- You will need to use the Android Studio
+- Download the Commmunity Pass Kernel AAR library which can be accessed through [CP Assets Request](https://developer.mastercard.com/cp-kernel-integration-api/documentation/cp-assets/cp-assets-request/). We will show you how to add the AAR to your project.
 
-At the end of this step you will have added the Community Pass Kernel Library to your local copy of tthis library.
+```
 
-> Watch out for possible duplicates before adding new dependencies to the build.gradle files in the android folder.
+NOTE: Please note that you will need to request access to the AAR through CP Assets Request. The approval may take 1-2 business days. Once you have access, proceed to download the AAR library for your development environment.
+
+```
+
+### 1.3.2 Adding the Community Pass Kernel Library File
+
+The following are the steps required to set up your project with the Community Pass Client SDK:
+
+#### **1.3.2.1 Locate and Move the Community Pass Kernel Library File to your Android Studio Project**
+
+1. Locate the folder where you downloaded the AAR library to. The library will have a name similar to the following example: `community-pass-library-2.4.0.aar`
+2. Start your Android Studio and click on the open button at the top right corner.
+
+3. Navigate to the location of the `community-pass-react-native-wrapper` folder and select the android folder at the root level of the project. Click open.
+
+```
+Please note that there are two android folders in the project.
+
+- In the root level of the library files (Open this)
+- Inside the example folder
+
+```
+
+![](/docs/assets/open-project-2.png)
+
+4. The project will take some time to build. After the build process is completed, click on the Project Tab in the top left corner and then click on the Project dropdown to open `community-pass-react-native-wrapper`.
+
+5. Navigate through `community-pass-react-native-wrapper` from the dropdown > app > libs
+6. Copy your AAR file into the libs folder in your Android Studio as shown in the figure below:
+
+![](/docs/assets/add-aar-android-studio.png)
+
+**Figure 1** Move the Community Pass Kernel Library file to your Android Studio project
+
+#### **1.3.2.2 Add the CP Kernel client dependency to your project**
+
+1. Click on **File > Project Structure > Dependencies**
+2. Select “All Modules” from the Modules Tab and click on the “+” sign under All Dependencies (highlighted in red in Figure 16 below)
+3. Select JAR/AAR Dependency (Note: Some Android Studio Versions will only show JAR Dependency. Select this)
+4. Enter the following path in step 1 of the navigation window:
+   - `libs/community-pass-library-sandbox-2.1.6.aar`
+5. Leave the selection of “implementation” on step 2 and click OK. The window will close. Click Apply.
+6. The project will take some time to build. Then click OK to close the Project Structure window.
+
+**Expand for step by step screenshots**
+
+<details closed>
+<summary>Expand</summary>
+
+![](/docs/assets/add-aar-1.png)
+
+![](/docs/assets/add-cpl-aar-as-dependency.png)
+
+**Figure 2** Add the CP Kernel client dependency to your project
+
+</details>
+
+<br/>
+
+#### **1.3.2.3 Confirm Community Pass Kernel Library file (AAR file) has been added to your project**
+
+To confirm that the AAR file has been added, navigate to **Project > MyApp > app > build.gradle**. You should see the following under dependencies:
+
+```gradle
+implementation files('libs/community-pass-library-2.4.0.aar')
+```
+
+![](/docs/assets/check-aar-installation.png)
+
+**Figure 3** Check Community Pass Kernel Library file (AAR file) has been added to Android Project
+
+#### **1.3.2.4 Add JJWT required libraries to your Android Studio project**
+
+In the same build.gradle file as above, add the following additional libraries under dependencies using the code provided below:
+
+> Note: If you have an existing solution or Reliant Application, you can choose to modify the minor or patch versions of these dependencies depending on your use case, but the major versions should remain consistent. For example:
+>
+> - implementation 'com.google.code.gson:gson:2.9.0' is compatible with the CPK library
+> - implementation 'com.google.code.gson:gson:1.7.2' is not compatible
+
+```gradle
+{
+    implementation 'com.google.code.gson:gson:2.8.6' //Required for object serialization and deserialization while performing CPK communication
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2' //Required for JWT encoding and decoding in some of the biometric use cases
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.2' //Required for JWT encoding and decoding in some of the biometric use cases
+    implementation 'io.jsonwebtoken:jjwt-orgjson:0.11.2' //Required for JWT encoding and decoding in some of the biometric use cases
+    implementation 'org.apache.commons:commons-lang3:3.1' //Helper utilities required by the CPK library
+}
+```
+
+A pop up notification will appear as given in the below image informing you that the Gradle files have changed. Click on Sync Now to synchronize the project with the Gradle files.
+
+![](/docs/assets/android-studio-popup.png)
+
+You should now have completed the process of adding the Community Pass AAR Library into your Android Studio Project.
+
+You are now ready to install the CPK onto your POI device and connect your Reliant Application to the Community Pass Kernel services.
 
 ## 1.4 Start Metro Bundler and Run the Example Application
 
