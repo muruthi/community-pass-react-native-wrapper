@@ -6,11 +6,18 @@ import {
   TouchableOpacity,
   ToastAndroid,
 } from 'react-native';
+import {
+  genericErrorMessages,
+  preTransactionsScreenStrings,
+  screenTitles,
+  screens,
+} from '../assets/strings';
+import { themeColors } from '../assets/colors';
 
 const PreTransactions = ({ navigation }: any) => {
   const showToast = (message: string) => {
     ToastAndroid.show(
-      `${message} has not yet been implemented.`,
+      `${message} ${genericErrorMessages.TOAST_MESSAGE_SINGULAR}`,
       ToastAndroid.SHORT
     );
   };
@@ -19,22 +26,30 @@ const PreTransactions = ({ navigation }: any) => {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.card}
-        onPress={() => navigation.navigate('SaveBiometricConsent')}
+        onPress={() => navigation.navigate(screens.SAVE_BIOMETRIC_CONSENT)}
       >
-        <Text style={styles.sectionLabel}>Action</Text>
-        <Text style={styles.cardTitle}>Enroll a New User</Text>
+        <Text style={styles.sectionLabel}>
+          {preTransactionsScreenStrings.ACTION}
+        </Text>
+        <Text style={styles.cardTitle}>
+          {preTransactionsScreenStrings.ENROLL_A_NEW_USER_TITLE}
+        </Text>
         <Text style={styles.cardDescription}>
-          enroll a user using either biometrics or passcode
+          {preTransactionsScreenStrings.ENROLL_A_NEW_USER_DESCRIPTION}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.card}
-        onPress={() => showToast('Shared Space')}
+        onPress={() => showToast(screenTitles.SHARED_SPACE)}
       >
-        <Text style={styles.sectionLabel}>Action</Text>
-        <Text style={styles.cardTitle}>Use the Shared Space</Text>
+        <Text style={styles.sectionLabel}>
+          {preTransactionsScreenStrings.ACTION}
+        </Text>
+        <Text style={styles.cardTitle}>
+          {preTransactionsScreenStrings.USE_SHARED_SPACE_TITLE}
+        </Text>
         <Text style={styles.cardDescription}>
-          Sync data between the POI and the Card
+          {preTransactionsScreenStrings.USE_SHARED_SPACE_DESCRIPTION}
         </Text>
       </TouchableOpacity>
     </View>
@@ -47,25 +62,25 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   card: {
-    backgroundColor: '#ffffff',
+    backgroundColor: themeColors.white,
     borderRadius: 5,
     padding: 30,
     marginBottom: 30,
   },
   cardTitle: {
-    color: '#000000',
+    color: themeColors.black,
     marginBottom: 10,
     fontWeight: '600',
     fontSize: 16,
   },
   sectionLabel: {
-    color: '#000000',
+    color: themeColors.black,
     marginBottom: 10,
     fontWeight: '400',
     fontSize: 14,
   },
   cardDescription: {
-    color: '#999999',
+    color: themeColors.darkGray,
     marginBottom: 10,
     fontSize: 14,
   },

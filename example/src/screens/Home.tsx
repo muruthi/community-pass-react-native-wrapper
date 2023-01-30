@@ -6,11 +6,18 @@ import {
   StyleSheet,
   ToastAndroid,
 } from 'react-native';
+import {
+  genericErrorMessages,
+  homeScreenStrings,
+  screenTitles,
+  screens,
+} from '../assets/strings';
+import { themeColors } from '../assets/colors';
 
 const Home = ({ navigation }: any) => {
   const showToast = (message: string) => {
     ToastAndroid.show(
-      `${message} have not yet been implemented.`,
+      `${message} ${genericErrorMessages.TOAST_MESSAGE_PLURAL}`,
       ToastAndroid.SHORT
     );
   };
@@ -19,32 +26,36 @@ const Home = ({ navigation }: any) => {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.card}
-        onPress={() => navigation.navigate('PreTransactions')}
+        onPress={() => navigation.navigate(screens.PRE_TRANSACTIONS)}
       >
-        <Text style={styles.sectionLabel}>Section</Text>
-        <Text style={styles.cardTitle}>Pre-Transactions</Text>
+        <Text style={styles.sectionLabel}>{homeScreenStrings.SECTION}</Text>
+        <Text style={styles.cardTitle}>
+          {homeScreenStrings.PRE_TRANSACTIONS}
+        </Text>
         <Text style={styles.cardDescription}>
-          You will complete user setup and on-boarding in this phase
+          {homeScreenStrings.PRE_TRANSACTTIONS_DESCRIPTION}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.card}
-        onPress={() => showToast('Transactions')}
+        onPress={() => showToast(screenTitles.TRANSACTIONS)}
       >
-        <Text style={styles.sectionLabel}>Section</Text>
-        <Text style={styles.cardTitle}>Transactions</Text>
+        <Text style={styles.sectionLabel}>{homeScreenStrings.SECTION}</Text>
+        <Text style={styles.cardTitle}>{homeScreenStrings.TRANSACTIONS}</Text>
         <Text style={styles.cardDescription}>
-          You will conduct a life transaction during this phase
+          {homeScreenStrings.TRANSACTTIONS_DESCRIPTION}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.card}
-        onPress={() => showToast('Admin Transactions')}
+        onPress={() => showToast(screenTitles.ADMIN_TRANSACTIONS)}
       >
-        <Text style={styles.sectionLabel}>Section</Text>
-        <Text style={styles.cardTitle}>Admin-Transactions</Text>
+        <Text style={styles.sectionLabel}>{homeScreenStrings.SECTION}</Text>
+        <Text style={styles.cardTitle}>
+          {homeScreenStrings.ADMIN_TRANSACTIONS}
+        </Text>
         <Text style={styles.cardDescription}>
-          You can make changes to a user profile in this phase
+          {homeScreenStrings.ADMIN_TRANSACTTIONS_DESCRIPTION}
         </Text>
       </TouchableOpacity>
     </View>
@@ -57,25 +68,25 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   card: {
-    backgroundColor: '#ffffff',
+    backgroundColor: themeColors.white,
     borderRadius: 5,
     padding: 30,
     marginBottom: 30,
   },
   cardTitle: {
-    color: '#000000',
+    color: themeColors.black,
     marginBottom: 10,
     fontWeight: '600',
     fontSize: 16,
   },
   sectionLabel: {
-    color: '#000000',
+    color: themeColors.black,
     marginBottom: 10,
     fontWeight: '400',
     fontSize: 14,
   },
   cardDescription: {
-    color: '#999999',
+    color: themeColors.darkGray,
     marginBottom: 10,
     fontSize: 14,
   },

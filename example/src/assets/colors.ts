@@ -4,4 +4,6 @@ export const themeColors = {
   mastercardYellow: '#F79E1B',
   black: '#000000',
   white: '#ffffff',
+  gray: '#eaeaea',
+  darkGray: '#999999',
 };

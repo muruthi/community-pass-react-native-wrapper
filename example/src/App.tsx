@@ -14,6 +14,10 @@ import RegisterBasicUser from './screens/RegisterBasicUser';
 import Home from './screens/Home';
 import PreTransactions from './screens/PreTransactions';
 import UserDataForm from './screens/UserDataForm';
+import EnterIdentificationNumber from './screens/EnterIdentificationNumber';
+import WriteSuccessful from './screens/WriteSuccessful';
+import { screens, screenTitles } from './assets/strings';
+import { themeColors } from './assets/colors';
 
 const Stack = createStackNavigator();
 
@@ -21,69 +25,83 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName={screens.HOME}
         screenOptions={{
           headerMode: 'screen',
-          headerTintColor: 'white',
-          headerStyle: { backgroundColor: '#F79E1B' },
+          headerTintColor: themeColors.white,
+          headerStyle: { backgroundColor: themeColors.mastercardYellow },
           ...TransitionPresets.SlideFromRightIOS,
         }}
       >
         <Stack.Screen
-          name="Home"
+          name={screens.HOME}
           options={{
-            headerTitle: 'Community Pass React Native App',
+            headerTitle: screenTitles.HOME,
           }}
           component={Home}
         />
         <Stack.Screen
-          name="SaveBiometricConsent"
+          name={screens.SAVE_BIOMETRIC_CONSENT}
           options={{
-            headerTitle: 'Save Biometric Consent',
+            headerTitle: screenTitles.SAVE_BIOMETRIC_CONSENT,
           }}
           component={SaveBiometricConsent}
         />
         <Stack.Screen
-          name="RegisterUserWithBiometrics"
+          name={screens.REGISTER_USER_WITH_BIOMETRICS}
           options={{
-            headerTitle: 'Register User With Biometrics',
+            headerTitle: screenTitles.REGISTER_USER_WITH_BIOMETRICS,
           }}
           component={RegisterUserWithBiometrics}
         />
         <Stack.Screen
-          name="RegisterBasicUser"
+          name={screens.REGISTER_BASIC_USER}
           options={{
-            headerTitle: 'Register basic User',
+            headerTitle: screenTitles.REGISTER_BASIC_USER,
           }}
           component={RegisterBasicUser}
         />
         <Stack.Screen
-          name="WritePasscode"
+          name={screens.WRITE_PASSCODE}
           options={{
-            headerTitle: 'Write Passcode',
+            headerTitle: screenTitles.WRITE_PASSCODE,
           }}
           component={WritePasscode}
         />
         <Stack.Screen
-          name="WriteProfile"
+          name={screens.WRITE_PROFILE}
           options={{
-            headerTitle: 'Write Profile',
+            headerTitle: screenTitles.WRITE_PROFILE,
           }}
           component={WriteProfile}
         />
         <Stack.Screen
-          name="PreTransactions"
+          name={screens.PRE_TRANSACTIONS}
           options={{
-            headerTitle: 'Pre Transactions',
+            headerTitle: screenTitles.PRE_TRANSACTIONS,
           }}
           component={PreTransactions}
         />
         <Stack.Screen
-          name="UserDataForm"
+          name={screens.USER_DATA_FORM}
           options={{
-            headerTitle: 'Enter User Data',
+            headerTitle: screenTitles.USER_DATA_FORM,
           }}
           component={UserDataForm}
+        />
+        <Stack.Screen
+          name={screens.ENTER_IDENTIFICATION_NUMBER}
+          options={{
+            headerTitle: screenTitles.ENTER_IDENTIFICATION_NUMBER,
+          }}
+          component={EnterIdentificationNumber}
+        />
+        <Stack.Screen
+          name={screens.WRITE_SUCCESSFUL}
+          options={{
+            headerTitle: screenTitles.WRITE_SUCCESSFUL,
+          }}
+          component={WriteSuccessful}
         />
       </Stack.Navigator>
     </NavigationContainer>

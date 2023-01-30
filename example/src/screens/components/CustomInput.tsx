@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 
+import { themeColors } from '../../assets/colors';
+
 const CustomInput = ({ config, value, onChange }: any) => {
   return (
     <>
@@ -10,7 +12,7 @@ const CustomInput = ({ config, value, onChange }: any) => {
           autoCorrect={false}
           autoCapitalize="none"
           value={value}
-          selectionColor={'#000000'}
+          selectionColor={themeColors.black}
           placeholder={config.placeholderText}
           keyboardType={config.keyboadType}
           onChangeText={onChange}
@@ -22,14 +24,16 @@ const CustomInput = ({ config, value, onChange }: any) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: '#eaeaea',
+    borderColor: themeColors.gray,
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 5,
-    backgroundColor: '#eaeaea',
+    backgroundColor: themeColors.gray,
     marginBottom: 15,
+    width: '100%',
   },
   textInput: {
     paddingHorizontal: 10,
+    width: '100%',
   },
   errorText: {
     fontSize: 9,

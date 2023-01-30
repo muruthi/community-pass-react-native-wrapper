@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Alert } from 'react-native';
 import { getRegisterUserWithBiometrics } from 'react-native-cpk-library';
+
+import CustomButton from './components/CustomButton';
+
+import { themeColors } from '../assets/colors';
+import {
+  buttonLabels,
+  registerUserWithBiometricsScreenStrings,
+  registrationTypes,
+  screens,
+} from '../assets/strings';
 
 const { width: WIDTH } = Dimensions.get('screen');
 const RELIANT_APP_GUID: string = '4559ce55-c9a4-40fc-b22a-051244c01ec1';
@@ -15,8 +18,24 @@ const PROGRAM_GUID: string = '752a94d5-cf80-45e6-8d2c-305f1b841991';
 
 const RegisterUserWithBiometrics = ({ route, navigation }: any) => {
   const consentId = route?.params?.consentId;
-  const [registrationError, setRegistrationError] = useState(null);
+  const [registrationError, setRegistrationError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleCancel = (res: any) => {
+    setIsLoading(false);
+    navigation.navigate(screens.HOME, {
+      rId: res?.rId,
+    });
+  };
+
+  const handleProceed = (res: any) => {
+    setRegistrationError('');
+    setIsLoading(false);
+    navigation.navigate(screens.WRITE_PROFILE, {
+      rId: res?.rId,
+      registrationType: registrationTypes.BIOMETRIC_USER,
+    });
+  };
 
   const handleRegisterUserWithBiometrics = () => {
     setIsLoading(true);
@@ -28,7 +47,28 @@ const RegisterUserWithBiometrics = ({ route, navigation }: any) => {
       .then((res: any) => {
         console.log(res);
         setIsLoading(false);
-        navigation.navigate('WriteProfile', { rId: res?.rId });
+        res?.enrolmentStatus === 'EXISTING'
+          ? Alert.alert(
+              registerUserWithBiometricsScreenStrings.ALERT_TITLE,
+              registerUserWithBiometricsScreenStrings.ALERT_DESCRIPTION,
+              [
+                {
+                  text: registerUserWithBiometricsScreenStrings.ALERT_CANCEL_BUTTON,
+                  onPress: () => handleCancel(res),
+                  style: 'cancel',
+                },
+                {
+                  text: registerUserWithBiometricsScreenStrings.ALERT_ACCEPT_BUTTON,
+                  onPress: () => handleProceed(res),
+                  style: 'default',
+                },
+              ],
+              {
+                cancelable: true,
+                onDismiss: () => null,
+              }
+            )
+          : handleProceed(res);
       })
       .catch((e: any) => {
         setRegistrationError(e?.message);
@@ -38,22 +78,24 @@ const RegisterUserWithBiometrics = ({ route, navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      {!!registrationError && <Text>{registrationError}</Text>}
-      {!!consentId && <Text>consent ID: {consentId}</Text>}
-      <View style={styles.consentbuttonsWrapper}>
-        <TouchableOpacity
+      <View style={styles.innerContainer}>
+        <View style={styles.infoWrapper}>
+          <Text style={styles.title}>
+            {registerUserWithBiometricsScreenStrings.SCREEN_TITLE}
+          </Text>
+          <Text style={styles.description}>
+            {registerUserWithBiometricsScreenStrings.SCREEN_DESCRIPTION}
+          </Text>
+        </View>
+        <Text style={styles.error}>{registrationError}</Text>
+        <CustomButton
+          isLoading={isLoading}
           onPress={handleRegisterUserWithBiometrics}
-          style={[styles.declineConsentButton, styles.button]}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <ActivityIndicator size="small" color="#000000" />
-          ) : (
-            <Text style={styles.declineConsentButtonLabel}>
-              Register User With Biometrics
-            </Text>
-          )}
-        </TouchableOpacity>
+          label={buttonLabels.REGISTER_USER}
+          customStyles={styles.button}
+          labelStyles={styles.buttonLabel}
+          indicatorColor={themeColors.white}
+        />
       </View>
     </View>
   );
@@ -64,34 +106,42 @@ const styles = StyleSheet.create({
     flex: 1,
     width: WIDTH,
     padding: 20,
+    backgroundColor: themeColors.white,
   },
-  consentbuttonsWrapper: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  grantConsentButton: {
-    backgroundColor: '#000000',
-  },
-  declineConsentButton: {
-    backgroundColor: '#ffffff',
-  },
+
   button: {
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 4,
     width: '100%',
     borderWidth: 2,
-    borderColor: '#000000',
   },
-  grantConsentButtonLabel: {
-    color: '#ffffff',
+  buttonLabel: {
+    color: themeColors.white,
     textAlign: 'center',
   },
-  declineConsentButtonLabel: {
-    color: '#000000',
-    textAlign: 'center',
+  title: {
+    fontSize: 20,
+    color: themeColors.black,
+    marginBottom: 20,
+  },
+  description: {
+    fontSize: 14,
+    color: themeColors.black,
+  },
+  infoWrapper: {
+    width: '100%',
+  },
+  error: {
+    color: themeColors.mastercardRed,
+    marginVertical: 10,
+    textAlign: 'left',
+    width: '100%',
+  },
+  innerContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

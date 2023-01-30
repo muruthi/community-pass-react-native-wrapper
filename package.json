@@ -150,5 +150,8 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "react-native-bouncy-checkbox": "^3.0.6"
   }
 }

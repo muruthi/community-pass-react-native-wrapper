@@ -1,8 +1,7 @@
 package com.reactnativecpklibrary.ui
 
-import android.util.Log
 import com.mastercard.compass.model.biometrictoken.FormFactor
-import com.mastercard.compass.model.passcode.RegisterBasicUserRequest
+import com.mastercard.compass.model.passcode.RegisterBasicUserRequestV2
 import com.reactnativecpklibrary.util.Key
 
 class RegisterBasicUserCompassApiHandlerActivity: CompassApiHandlerActivity<String>() {
@@ -10,7 +9,7 @@ class RegisterBasicUserCompassApiHandlerActivity: CompassApiHandlerActivity<Stri
         val programGUID: String = intent.getStringExtra(Key.PROGRAM_GUID)!!
 
         val intent = compassKernelServiceInstance.getRegisterBasicUserActivityIntent(
-          RegisterBasicUserRequest(programGUID, FormFactor.CARD)
+          RegisterBasicUserRequestV2(programGUID, FormFactor.NONE)
         )
 
         if(intent != null) {

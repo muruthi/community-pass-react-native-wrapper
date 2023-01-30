@@ -1,35 +1,56 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-  ActivityIndicator,
-} from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { getWritePasscode } from 'react-native-cpk-library';
+
+import CustomButton from './components/CustomButton';
+import CustomInput from './components/CustomInput';
+import { themeColors } from '../assets/colors';
+import {
+  buttonLabels,
+  genericErrorMessages,
+  keyboardTypes,
+  screens,
+  writePasscodeScreenStrings,
+} from '../assets/strings';
 
 const { width: WIDTH } = Dimensions.get('screen');
 const RELIANT_APP_GUID: string = '4559ce55-c9a4-40fc-b22a-051244c01ec1';
 const PROGRAM_GUID: string = '752a94d5-cf80-45e6-8d2c-305f1b841991';
-const RID: string = '';
-const PASSCODE: string = '123456';
 
-const WritePasscode = () => {
-  const [writePasscodeError, setWritePasscodeError] = useState(null);
+var REG = /^[0-9]{6}$/;
+
+const WritePasscode = ({ route, navigation }: any) => {
+  const rId = route?.params?.rId;
+  const consumerDeviceNumber = route?.params?.consumerDeviceNumber;
+  const [writePasscodeError, setWritePasscodeError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [passcode, setPasscode] = useState('');
 
   const handleWritePasscode = () => {
+    if (passcode?.length === 0) {
+      setWritePasscodeError(genericErrorMessages.INVALID_PASSCODE);
+      return;
+    } else {
+      if (!REG.test(passcode)) {
+        setWritePasscodeError(genericErrorMessages.INVALID_PASSCODE);
+        return;
+      }
+    }
+
     setIsLoading(true);
     getWritePasscode({
       reliantAppGUID: RELIANT_APP_GUID,
       programGUID: PROGRAM_GUID,
-      rID: RID,
-      passcode: PASSCODE,
+      rID: rId,
+      passcode: passcode.toString(),
     })
       .then((res: any) => {
         console.log(res);
         setIsLoading(false);
+        navigation.navigate(screens.WRITE_SUCCESSFUL, {
+          consumerDeviceNumber: consumerDeviceNumber,
+          rId: rId,
+        });
       })
       .catch((e: any) => {
         setWritePasscodeError(e?.message);
@@ -39,22 +60,33 @@ const WritePasscode = () => {
 
   return (
     <View style={styles.container}>
-      {!!writePasscodeError && <Text>{writePasscodeError}</Text>}
-      {/* {consentId && <Text>{consentId}</Text>} */}
-      <View style={styles.consentbuttonsWrapper}>
-        <TouchableOpacity
+      <View style={styles.innerContainer}>
+        <View style={styles.infoWrapper}>
+          <Text style={styles.title}>
+            {writePasscodeScreenStrings.SCREEN_TITLE}
+          </Text>
+          <Text style={styles.description}>
+            {writePasscodeScreenStrings.SCREEN_DESCRIPTION}
+          </Text>
+        </View>
+        <Text style={styles.error}>{writePasscodeError}</Text>
+        <CustomInput
+          config={{
+            placeholderText: writePasscodeScreenStrings.INPUT_PLACEHOLDER,
+            keyboadType: keyboardTypes.NUMERIC,
+            hasError: false,
+          }}
+          value={passcode}
+          onChange={setPasscode}
+        />
+        <CustomButton
+          isLoading={isLoading}
           onPress={handleWritePasscode}
-          style={[styles.declineConsentButton, styles.button]}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <ActivityIndicator size="small" color="#000000" />
-          ) : (
-            <Text style={styles.declineConsentButtonLabel}>
-              Write Passcode to Card
-            </Text>
-          )}
-        </TouchableOpacity>
+          label={buttonLabels.WRITE_PASSCODE}
+          customStyles={styles.button}
+          labelStyles={styles.buttonLabel}
+          indicatorColor={themeColors.white}
+        />
       </View>
     </View>
   );
@@ -65,18 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: WIDTH,
     padding: 20,
-  },
-  consentbuttonsWrapper: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  grantConsentButton: {
-    backgroundColor: '#000000',
-  },
-  declineConsentButton: {
-    backgroundColor: '#ffffff',
+    backgroundColor: themeColors.white,
   },
   button: {
     paddingHorizontal: 15,
@@ -84,15 +105,33 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     width: '100%',
     borderWidth: 2,
-    borderColor: '#000000',
   },
-  grantConsentButtonLabel: {
-    color: '#ffffff',
+  buttonLabel: {
+    color: themeColors.white,
     textAlign: 'center',
   },
-  declineConsentButtonLabel: {
-    color: '#000000',
-    textAlign: 'center',
+  title: {
+    fontSize: 20,
+    color: themeColors.black,
+    marginBottom: 20,
+  },
+  description: {
+    fontSize: 14,
+    color: themeColors.black,
+  },
+  infoWrapper: {
+    width: '100%',
+  },
+  error: {
+    color: themeColors.mastercardRed,
+    marginVertical: 10,
+    textAlign: 'left',
+    width: '100%',
+  },
+  innerContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

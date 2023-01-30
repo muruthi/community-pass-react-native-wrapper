@@ -3,7 +3,11 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { saveBiometricConsent } from 'react-native-cpk-library';
 
 import CustomButton from './components/CustomButton';
-import { buttonLabels } from '../assets/strings';
+import {
+  buttonLabels,
+  saveBiometricConsentScreenStrings,
+  screens,
+} from '../assets/strings';
 import { themeColors } from '../assets/colors';
 
 const { width: WIDTH } = Dimensions.get('screen');
@@ -11,7 +15,7 @@ const RELIANT_APP_GUID: string = '4559ce55-c9a4-40fc-b22a-051244c01ec1';
 const PROGRAM_GUID: string = '752a94d5-cf80-45e6-8d2c-305f1b841991';
 
 const SaveBiometricConsent = ({ navigation }: any) => {
-  const [registrationError, setRegistrationError] = useState(null);
+  const [registrationError, setRegistrationError] = useState('');
   const [isGrantConsentLoading, setIsGrantConsentLoading] = useState(false);
   const [isDenyConsentLoading, setIsDenyConsentLoading] = useState(false);
 
@@ -25,10 +29,11 @@ const SaveBiometricConsent = ({ navigation }: any) => {
       .then((res: any) => {
         console.log(res);
         setIsGrantConsentLoading(false);
+        setRegistrationError('');
         return res?.consentId;
       })
       .then((id: string) => {
-        navigation.navigate('RegisterUserWithBiometrics', {
+        navigation.navigate(screens.REGISTER_USER_WITH_BIOMETRICS, {
           consentId: id,
         });
       })
@@ -50,7 +55,7 @@ const SaveBiometricConsent = ({ navigation }: any) => {
         return res?.consentId;
       })
       .then((id: string) => {
-        navigation.navigate('RegisterBasicUser', {
+        navigation.navigate(screens.REGISTER_BASIC_USER, {
           consentId: id,
         });
       })
@@ -62,22 +67,34 @@ const SaveBiometricConsent = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      {!!registrationError && <Text>{registrationError}</Text>}
-      <View style={styles.consentbuttonsWrapper}>
-        <CustomButton
-          isLoading={isDenyConsentLoading}
-          onPress={handleDeclineBiometricConsent}
-          label={buttonLabels.DENY_CONSENT}
-          customStyles={styles.declineConsentButton}
-          labelStyles={styles.declineConsentButtonLabel}
-        />
-        <CustomButton
-          isLoading={isGrantConsentLoading}
-          onPress={handleGrantBiometricConsent}
-          label={buttonLabels.GRANT_CONSENT}
-          customStyles={styles.grantConsentButton}
-          labelStyles={styles.grantConsentButtonLabel}
-        />
+      <View style={styles.innerContainer}>
+        <View style={styles.infoWrapper}>
+          <Text style={styles.title}>
+            {saveBiometricConsentScreenStrings.SCREEN_TITLE}
+          </Text>
+          <Text style={styles.description}>
+            {saveBiometricConsentScreenStrings.SCREEN_DESCRIPTION}
+          </Text>
+        </View>
+        <Text style={styles.error}>{registrationError}</Text>
+        <View style={styles.consentbuttonsWrapper}>
+          <CustomButton
+            isLoading={isDenyConsentLoading}
+            onPress={handleDeclineBiometricConsent}
+            label={buttonLabels.DENY_CONSENT}
+            customStyles={styles.declineConsentButton}
+            labelStyles={styles.declineConsentButtonLabel}
+            indicatorColor={themeColors.mastercardYellow}
+          />
+          <CustomButton
+            isLoading={isGrantConsentLoading}
+            onPress={handleGrantBiometricConsent}
+            label={buttonLabels.GRANT_CONSENT}
+            customStyles={styles.grantConsentButton}
+            labelStyles={styles.grantConsentButtonLabel}
+            indicatorColor={themeColors.white}
+          />
+        </View>
       </View>
     </View>
   );
@@ -88,6 +105,18 @@ const styles = StyleSheet.create({
     flex: 1,
     width: WIDTH,
     padding: 20,
+    backgroundColor: themeColors.white,
+  },
+  error: {
+    color: themeColors.mastercardRed,
+    marginVertical: 10,
+    textAlign: 'left',
+    width: '100%',
+  },
+  innerContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   consentbuttonsWrapper: {
     width: '100%',
@@ -111,6 +140,18 @@ const styles = StyleSheet.create({
   declineConsentButtonLabel: {
     color: themeColors.mastercardYellow,
     textAlign: 'center',
+  },
+  title: {
+    fontSize: 20,
+    color: themeColors.black,
+    marginBottom: 20,
+  },
+  description: {
+    fontSize: 14,
+    color: themeColors.black,
+  },
+  infoWrapper: {
+    width: '100%',
   },
 });
 

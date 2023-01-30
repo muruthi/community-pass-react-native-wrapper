@@ -3,7 +3,12 @@ import { StyleSheet, View } from 'react-native';
 
 import CustomInput from './components/CustomInput';
 import CustomButton from './components/CustomButton';
-import { buttonLabels } from '../assets/strings';
+import {
+  buttonLabels,
+  keyboardTypes,
+  userDataScreenStrings,
+} from '../assets/strings';
+import { themeColors } from '../assets/colors';
 
 const UserDataForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,8 +27,8 @@ const UserDataForm = () => {
     <View style={styles.container}>
       <CustomInput
         config={{
-          placeholderText: 'First Name',
-          keyboadType: 'default',
+          placeholderText: userDataScreenStrings.FIRST_NAME_PLACEHOLDER,
+          keyboadType: keyboardTypes.DEFAULT,
           hasError: false,
         }}
         value={firstName}
@@ -31,8 +36,8 @@ const UserDataForm = () => {
       />
       <CustomInput
         config={{
-          placeholderText: 'Last Name',
-          keyboadType: 'default',
+          placeholderText: userDataScreenStrings.LAST_NAME_PLACEHOLDER,
+          keyboadType: keyboardTypes.DEFAULT,
           hasError: false,
         }}
         value={lastName}
@@ -40,8 +45,8 @@ const UserDataForm = () => {
       />
       <CustomInput
         config={{
-          placeholderText: 'Address',
-          keyboadType: 'default',
+          placeholderText: userDataScreenStrings.ADDRESS_PLACEHOLDER,
+          keyboadType: keyboardTypes.DEFAULT,
           hasError: false,
         }}
         value={address}
@@ -49,8 +54,8 @@ const UserDataForm = () => {
       />
       <CustomInput
         config={{
-          placeholderText: 'Email Address',
-          keyboadType: 'email-address',
+          placeholderText: userDataScreenStrings.EMAIL_ADDRESS_PLACEHOLDER,
+          keyboadType: keyboardTypes.EMAIL_ADDRESS,
           hasError: false,
         }}
         value={emailAddress}
@@ -58,8 +63,8 @@ const UserDataForm = () => {
       />
       <CustomInput
         config={{
-          placeholderText: 'Phone Number',
-          keyboadType: 'phone-pad',
+          placeholderText: userDataScreenStrings.PHONE_NUMBER_PLACEHOLDER,
+          keyboadType: keyboardTypes.PHONE_PAD,
           hasError: false,
         }}
         value={phoneNumber}
@@ -67,8 +72,8 @@ const UserDataForm = () => {
       />
       <CustomInput
         config={{
-          placeholderText: 'Age',
-          keyboadType: 'numeric',
+          placeholderText: userDataScreenStrings.AGE_PLACEHOLDERL,
+          keyboadType: keyboardTypes.NUMERIC,
           hasError: false,
         }}
         value={age}
@@ -81,6 +86,7 @@ const UserDataForm = () => {
         label={buttonLabels.ADD_USER_DATA}
         customStyles=""
         labelStyles=""
+        indicatorColor={themeColors.white}
       />
     </View>
   );
@@ -90,22 +96,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: themeColors.white,
   },
-
   button: {
     borderRadius: 4,
     width: '100%',
     borderWidth: 2,
-    borderColor: '#000000',
-    backgroundColor: '#fff',
+    borderColor: themeColors.black,
+    backgroundColor: themeColors.white,
     height: 50,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 15,
   },
   buttonLabel: {
-    color: '#000',
+    color: themeColors.black,
     textAlign: 'center',
   },
 });

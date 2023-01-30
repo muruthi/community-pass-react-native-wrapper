@@ -14,6 +14,7 @@ interface PropTypes {
   label: string;
   customStyles: any;
   labelStyles: any;
+  indicatorColor: string;
 }
 
 const CustomButton = ({
@@ -22,6 +23,7 @@ const CustomButton = ({
   label,
   customStyles = '',
   labelStyles = '',
+  indicatorColor = themeColors.white,
 }: PropTypes) => {
   return (
     <TouchableOpacity
@@ -30,7 +32,7 @@ const CustomButton = ({
       disabled={isLoading}
     >
       {isLoading ? (
-        <ActivityIndicator size="small" color={themeColors.white} />
+        <ActivityIndicator size="small" color={indicatorColor} />
       ) : (
         <Text style={[styles.buttonLabel, labelStyles]}>{label}</Text>
       )}
