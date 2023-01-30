@@ -168,7 +168,7 @@ You are now ready to install the CPK onto your POI device and connect your Relia
 
 ## 1.4 Start Metro Bundler and Run the Example Application
 
-1. Open your command line and navigate to the root folder of your project. See example below:
+1. Open your command line and navigate to the example app folder of your project. See example below:
 
 ```sh
 cd /path/community-pass-react-native-wrapper/example
@@ -186,7 +186,7 @@ or
 npx react-native start
 ```
 
-3. Open another command line and navigate to the root folder of your project. See example below:
+3. Open another command line and navigate to the example app folder of your project. See example below:
 
 ```sh
 cd /path/community-pass-react-native-wrapper/example
