@@ -6,7 +6,7 @@ export const buttonLabels = {
   VALIDATE_IDENTIFICATION_NUMBER: 'Validate Identification Number',
   WRITE_PROFILE: 'Write profile on Card',
   WRITE_PASSCODE: 'Write Passcode on Card',
-  GO_HOME: 'Go Back Home',
+  GO_HOME: 'Go Home',
 };
 
 export const screens = {
