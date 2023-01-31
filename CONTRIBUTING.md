@@ -1,4 +1,4 @@
-# 1.0 Contributing
+# Contributing
 
 Contributions are always welcome, no matter how large or small!
 
@@ -6,12 +6,12 @@ We want this community to be friendly and respectful to each other. Please follo
 
 To get started please complete the following steps:
 
-## 1.1 Fork the library
+## 1 Fork the library
 
 1. Fork the community-pass-react-native-wrapper repository
 2. Create your feature branch (git checkout -b my-new-feature)
 
-## 1.2 Install dependencies
+## 2 Install dependencies
 
 > While it's possible to use [`npm`](https://github.com/npm/cli), the tooling is built around [`yarn`](https://classic.yarnpkg.com/), so you'll have an easier time if you use `yarn` for development for the following reasons:
 >
@@ -57,11 +57,11 @@ npm install
 
 ```
 
-## 1.3 Add the Community Pass Kernel Library file to your Android Project
+## 3 Add the Community Pass Kernel Library file to your Android Project
 
 To help you connect to the Community Pass Kernel, our team created the Community Pass Kernel Library (.AAR file) that bridges the gap between your application and the Community Pass Kernel. This library will enable you to use the CPK service’s APIs while working on this library.
 
-### 1.3.1 Pre-Requisites
+### 3.1 Pre-Requisites
 
 - You will need to use the Android Studio
 - Download the Commmunity Pass Kernel AAR library which can be accessed through [CP Assets Request](https://developer.mastercard.com/cp-kernel-integration-api/documentation/cp-assets/cp-assets-request/). We will show you how to add the AAR to your project.
@@ -72,11 +72,11 @@ NOTE: Please note that you will need to request access to the AAR through CP Ass
 
 ```
 
-### 1.3.2 Adding the Community Pass Kernel Library File
+### 3.2 Adding the Community Pass Kernel Library File
 
 The following are the steps required to set up your project with the Community Pass Client SDK:
 
-#### **1.3.2.1 Locate and Move the Community Pass Kernel Library File to your Android Studio Project**
+#### **3.2.1 Locate and Move the Community Pass Kernel Library File to your Android Studio Project**
 
 1. Locate the folder where you downloaded the AAR library to. The library will have a name similar to the following example: `community-pass-library-2.4.0.aar`
 2. Start your Android Studio and click on the open button at the top right corner.
@@ -102,13 +102,13 @@ Please note that there are two android folders in the project.
 
 **Figure 1** Move the Community Pass Kernel Library file to your Android Studio project
 
-#### **1.3.2.2 Add the CP Kernel client dependency to your project**
+#### **3.2.2 Add the CP Kernel client dependency to your project**
 
 1. Click on **File > Project Structure > Dependencies**
 2. Select “All Modules” from the Modules Tab and click on the “+” sign under All Dependencies (highlighted in red in Figure 16 below)
 3. Select JAR/AAR Dependency (Note: Some Android Studio Versions will only show JAR Dependency. Select this)
 4. Enter the following path in step 1 of the navigation window:
-   - `libs/community-pass-library-sandbox-2.1.6.aar`
+   - `libs/community-pass-library-v2.4.0.aar`
 5. Leave the selection of “implementation” on step 2 and click OK. The window will close. Click Apply.
 6. The project will take some time to build. Then click OK to close the Project Structure window.
 
@@ -127,7 +127,7 @@ Please note that there are two android folders in the project.
 
 <br/>
 
-#### **1.3.2.3 Confirm Community Pass Kernel Library file (AAR file) has been added to your project**
+#### **3.2.3 Confirm Community Pass Kernel Library file (AAR file) has been added to your project**
 
 To confirm that the AAR file has been added, navigate to **Project > MyApp > app > build.gradle**. You should see the following under dependencies:
 
@@ -139,7 +139,7 @@ implementation files('libs/community-pass-library-2.4.0.aar')
 
 **Figure 3** Check Community Pass Kernel Library file (AAR file) has been added to Android Project
 
-#### **1.3.2.4 Add JJWT required libraries to your Android Studio project**
+#### **3.2.4 Add JJWT required libraries to your Android Studio project**
 
 In the same build.gradle file as above, add the following additional libraries under dependencies using the code provided below:
 
@@ -166,7 +166,7 @@ You should now have completed the process of adding the Community Pass AAR Libra
 
 You are now ready to install the CPK onto your POI device and connect your Reliant Application to the Community Pass Kernel services.
 
-## 1.4 Start Metro Bundler and Run the Example Application
+## 4 Start Metro Bundler and Run the Example Application
 
 1. Open your command line and navigate to the example app folder of your project. See example below:
 
@@ -208,11 +208,11 @@ npx react-native run-android
 
 > While developing, you can run the [example app](/example/) to test your changes. Any changes you make in your library's JavaScript code will be reflected in the example app without a rebuild. If you change any native code, then you'll need to rebuild the example app.
 
-## 1.5 Quality Expectations
+## 5 Quality Expectations
 
 Please ensure any contributions include unit tests. The project maintains a high level of test coverage for its functionality. Submissions are expected to maintain a similar level of coverage.
 
-### 1.5.1 Run Type-Safety Checks, Code Tests and Lint
+### 5.1 Run Type-Safety Checks, Code Tests and Lint
 
 We use [TypeScript](https://www.typescriptlang.org/) for type checking, [ESLint](https://eslint.org/) with [Prettier](https://prettier.io/) for linting and formatting the code, and [Jest](https://jestjs.io/) for testing.
 
@@ -257,7 +257,7 @@ or
 npm run test
 ```
 
-### 1.5.2 Commit message convention
+### 5.2 Commit message convention
 
 We follow the [conventional commits specification](https://www.conventionalcommits.org/en) for our commit messages:
 
@@ -270,11 +270,11 @@ We follow the [conventional commits specification](https://www.conventionalcommi
 
 Our pre-commit hooks verify that your commit message matches this format when committing.
 
-## 1.6 Publishing
+## 6 Publishing
 
 Note that the production version of the library is hosted at [CP Assets](https://developer.mastercard.com/cp-kernel-integration-api/documentation/cp-assets/cp-assets-request/) for easier versioning. Please do not use `yarn release` and `npm run release` commands with the library.
 
-## 1.7 Scripts
+## 7 Scripts
 
 The `package.json` file contains various scripts for common tasks:
 
@@ -292,7 +292,7 @@ and
 - `npm react-native start`: start the Metro server for the example app.
 - `npm react-native android`: run the example app on Android.
 
-## 1.8 Sending a pull request
+## 8 Sending a pull request
 
 > **Working on your first pull request?** You can learn how from this _free_ series: [How to Contribute to an Open Source Project on GitHub](https://app.egghead.io/playlists/how-to-contribute-to-an-open-source-project-on-github).
 
