@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-cpk-library": ["./src/index"]
+      "community-pass-react-native-wrapper": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

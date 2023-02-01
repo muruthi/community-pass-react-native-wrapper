@@ -8,28 +8,29 @@ import type {
 } from './types';
 
 const LINKING_ERROR =
-  `The package 'react-native-cpk-library' doesn't seem to be linked. Make sure: \n\n` +
+  `The package 'community-pass-react-native-wrapper' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo Go\n';
 
-const CpkLibrary = NativeModules.CpkLibrary
-  ? NativeModules.CpkLibrary
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+const CompassLibraryReactNativeWrapper =
+  NativeModules.CompassLibraryReactNativeWrapper
+    ? NativeModules.CompassLibraryReactNativeWrapper
+    : new Proxy(
+        {},
+        {
+          get() {
+            throw new Error(LINKING_ERROR);
+          },
+        }
+      );
 
 export function saveBiometricConsent({
   reliantAppGUID,
   programGUID,
   consumerConsentValue,
 }: SaveBiometricsParamTypes) {
-  return CpkLibrary.saveBiometricConsent({
+  return CompassLibraryReactNativeWrapper.saveBiometricConsent({
     reliantAppGUID,
     programGUID,
     consumerConsentValue,
@@ -42,7 +43,7 @@ export function getWritePasscode({
   rID,
   passcode,
 }: GetWritePasscodeParamTypes) {
-  return CpkLibrary.getWritePasscode({
+  return CompassLibraryReactNativeWrapper.getWritePasscode({
     reliantAppGUID,
     programGUID,
     rID,
@@ -56,7 +57,7 @@ export function getWriteProfile({
   rID,
   overwriteCard,
 }: GetWriteProfileParamTypes) {
-  return CpkLibrary.getWriteProfile({
+  return CompassLibraryReactNativeWrapper.getWriteProfile({
     reliantAppGUID,
     programGUID,
     rID,
@@ -68,7 +69,7 @@ export function getRegisterBasicUser({
   reliantAppGUID,
   programGUID,
 }: GetRegisterBasicUser) {
-  return CpkLibrary.getRegisterBasicUser({
+  return CompassLibraryReactNativeWrapper.getRegisterBasicUser({
     reliantAppGUID,
     programGUID,
   });
@@ -79,7 +80,7 @@ export function getRegisterUserWithBiometrics({
   programGUID,
   consentID,
 }: GetRegisterUserWithBiometrics) {
-  return CpkLibrary.getRegisterUserWithBiometrics({
+  return CompassLibraryReactNativeWrapper.getRegisterUserWithBiometrics({
     reliantAppGUID,
     programGUID,
     consentID,

@@ -204,7 +204,7 @@ or
 npx react-native run-android
 ```
 
-> To edit the Kotlin files, open `example/android` in Android studio and find the source files at `reactnativecpklibrary` under `Android`.
+> To edit the Kotlin files, open `example/android` in Android studio and find the source files at `community-pass-react-native-wrapper` under `Android`.
 
 > While developing, you can run the [example app](/example/) to test your changes. Any changes you make in your library's JavaScript code will be reflected in the example app without a rebuild. If you change any native code, then you'll need to rebuild the example app.
 

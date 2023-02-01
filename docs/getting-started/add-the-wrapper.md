@@ -21,7 +21,7 @@ The following are the steps required to set up your project with the Community P
 
 ## 5.3 Installation
 
-1. Locate the folder where you downloaded the library to. The library will have a name similar to the following example: `react-native-cpk-library-x.y.z.tgz`
+1. Locate the folder where you downloaded the library to. The library will have a name similar to the following example: `community-pass-react-native-wrapper-x.y.z.tgz`
 2. Open a terminal/command prompt and navigate to the root folder of your reliant application project. See example below:
 
 ```sh
@@ -31,7 +31,7 @@ cd /path/TestApp
 3. From the root folder of your reliant applciation , run the following command to install the Community Pass React Native Wrapper
 
 ```sh
-npm install /path/react-native-cpk-library-x.y.z.tgz
+npm install /path/community-pass-react-native-wrapper-x.y.z.tgz
 ```
 
 4. Open `android/app/build.gradle` file of your reliant application and add the following line to your dependencies
@@ -41,7 +41,7 @@ dependencies {
     ...
 
     // add this to your list of dependencies
-    implementation files("../../node_modules/react-native-cpk-library/android/libs/community-pass-library-v2.4.0.aar");
+    implementation files("../../node_modules/community-pass-react-native-wrapper/android/libs/community-pass-library-v2.4.0.aar");
 
     ...
 }
@@ -75,7 +75,7 @@ configurations {
 "dependencies": {
     ...
 
-    "react-native-cpk-library": "file:react-native-cpk-library-x.y.z.tgz",
+    "community-pass-react-native-wrapper": "file:community-pass-react-native-wrapper-x.y.z.tgz",
 
     ...
 }

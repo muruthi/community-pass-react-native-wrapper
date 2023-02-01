@@ -67,5 +67,8 @@ android/keystores/debug.keystore
 lib/
 
 
-# React Native CPK library
+# Commnity Pass React Native Library
 *.tgz
+
+# remove signing keys
+*.keystore
