@@ -1,5 +1,5 @@
 {
-  "name": "react-native-cpk-library",
+  "name": "community-pass-react-native-wrapper",
   "version": "0.1.0",
   "description": "test",
   "main": "lib/commonjs/index",
@@ -14,7 +14,7 @@
     "ios",
     "cpp",
     "*.podspec",
-    "!lib/typescript/example",
+    "!lib/typescript/CompassRNSampleApp",
     "!ios/build",
     "!android/build",
     "!android/gradle",
@@ -32,21 +32,21 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
     "release": "release-it",
-    "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn install && yarn example pods"
+    "CompassRNSampleApp": "yarn --cwd CompassRNSampleApp",
+    "bootstrap": "yarn CompassRNSampleApp && yarn install && yarn CompassRNSampleApp pods"
   },
   "keywords": [
     "react-native",
     "ios",
     "android"
   ],
-  "repository": "https://github.com/mudulo/react-native-cpk-library",
+  "repository": "https://github.com/mudulo/community-pass-react-native-wrapper",
   "author": "mudulo <duncanmududlo@gmail.com> (https://github.com/mudulo)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mudulo/react-native-cpk-library/issues"
+    "url": "https://github.com/mudulo/community-pass-react-native-wrapper/issues"
   },
-  "homepage": "https://github.com/mudulo/react-native-cpk-library#readme",
+  "homepage": "https://github.com/mudulo/community-pass-react-native-wrapper#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -81,7 +81,7 @@
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
-      "<rootDir>/example/node_modules",
+      "<rootDir>/CompassRNSampleApp/node_modules",
       "<rootDir>/lib/"
     ]
   },
@@ -150,5 +150,8 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "react-native-bouncy-checkbox": "^3.0.6"
   }
 }
