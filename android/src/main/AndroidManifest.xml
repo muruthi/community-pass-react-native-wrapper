@@ -8,7 +8,7 @@
 
   <uses-feature android:name="android.hardware.camera" />
 
-  <application>
+  <application android:name="CompassLibraryReactNativeBaseApplication">
     <activity android:name=".ui.BiometricConsentCompassApiHandlerActivity" android:theme="@style/Theme.Transparent"/>
     <activity android:name=".ui.RegisterBasicUserCompassApiHandlerActivity" android:theme="@style/Theme.Transparent"/>
     <activity android:name=".ui.RegisterUserForBioTokenCompassApiHandlerActivity" android:theme="@style/Theme.Transparent"/>
