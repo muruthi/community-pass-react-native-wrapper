@@ -25,6 +25,7 @@ class BiometricConsentAPIRoute(private val context: ReactApplicationContext, pri
 
     fun startBiometricConsentIntent(SaveBiometricConsentParams: ReadableMap){
       val reliantAppGUID: String = SaveBiometricConsentParams.getString("reliantAppGUID")!!
+      Timber.d(reliantAppGUID)
       val programGUID: String = SaveBiometricConsentParams.getString("programGUID")!!
       val consumerConsentValue: Boolean = SaveBiometricConsentParams.getBoolean("consumerConsentValue")
 
