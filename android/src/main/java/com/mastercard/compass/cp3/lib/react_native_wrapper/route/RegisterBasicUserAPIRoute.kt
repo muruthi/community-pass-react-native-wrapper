@@ -9,6 +9,7 @@ import com.facebook.react.bridge.ReadableMap
 import com.mastercard.compass.cp3.lib.react_native_wrapper.ui.RegisterBasicUserCompassApiHandlerActivity
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.ErrorCode
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.Key
+import timber.log.Timber
 
 class RegisterBasicUserAPIRoute(private val context: ReactApplicationContext, private val currentActivity: Activity?) {
     companion object {
@@ -46,6 +47,7 @@ class RegisterBasicUserAPIRoute(private val context: ReactApplicationContext, pr
         Activity.RESULT_CANCELED -> {
           val code = data?.getIntExtra(Key.ERROR_CODE, ErrorCode.UNKNOWN).toString()
           val message = data?.getStringExtra(Key.ERROR_MESSAGE)!!
+          Timber.e("Error $code Message $message")
           promise.reject(code, Throwable(message))
         }
       }

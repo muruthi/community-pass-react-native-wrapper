@@ -12,6 +12,7 @@ import com.mastercard.compass.cp3.lib.react_native_wrapper.R
 import com.mastercard.compass.cp3.lib.react_native_wrapper.ui.BiometricConsentCompassApiHandlerActivity
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.ErrorCode
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.Key
+import timber.log.Timber
 
 
 class BiometricConsentAPIRoute(private val context: ReactApplicationContext, private val currentActivity: Activity?) {
@@ -53,7 +54,7 @@ class BiometricConsentAPIRoute(private val context: ReactApplicationContext, pri
         Activity.RESULT_CANCELED -> {
           val code = data?.getIntExtra(Key.ERROR_CODE, ErrorCode.UNKNOWN).toString()
           val message = data?.getStringExtra(Key.ERROR_MESSAGE) ?: context.getString(R.string.error_unknown)
-          Log.e(TAG, "Error $code Message $message")
+          Timber.e("Error $code Message $message")
           promise.reject(code, Throwable(message))
         }
       }

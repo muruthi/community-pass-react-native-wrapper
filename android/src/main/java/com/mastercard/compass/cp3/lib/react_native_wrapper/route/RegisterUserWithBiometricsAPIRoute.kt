@@ -12,6 +12,7 @@ import com.mastercard.compass.cp3.lib.react_native_wrapper.CompassKernelUIContro
 import com.mastercard.compass.cp3.lib.react_native_wrapper.ui.RegisterUserForBioTokenCompassApiHandlerActivity
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.ErrorCode
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.Key
+import timber.log.Timber
 
 class RegisterUserWithBiometricsAPIRoute(
   private val context: ReactApplicationContext,
@@ -65,6 +66,7 @@ class RegisterUserWithBiometricsAPIRoute(
             Activity.RESULT_CANCELED -> {
               val code = data?.getIntExtra(Key.ERROR_CODE, ErrorCode.UNKNOWN).toString()
               val message = data?.getStringExtra(Key.ERROR_MESSAGE)!!
+              Timber.e("Error $code Message $message")
               promise.reject(code, Throwable(message))
             }
         }
