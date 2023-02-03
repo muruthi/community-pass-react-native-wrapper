@@ -28,7 +28,9 @@ class BiometricConsentAPIRoute(private val context: ReactApplicationContext, pri
       Timber.d(reliantAppGUID)
       val programGUID: String = SaveBiometricConsentParams.getString("programGUID")!!
       val consumerConsentValue: Boolean = SaveBiometricConsentParams.getBoolean("consumerConsentValue")
-
+      Timber.d("reliantAppGuid: {$reliantAppGUID}")
+      Timber.d("programGuid: {$programGUID}")
+      Timber.d("consumerValue: {$consumerConsentValue}")
       val intent = Intent(context, BiometricConsentCompassApiHandlerActivity::class.java).apply {
           putExtra(Key.PROGRAM_GUID, programGUID)
           putExtra(Key.RELIANT_APP_GUID, reliantAppGUID )
@@ -50,6 +52,8 @@ class BiometricConsentAPIRoute(private val context: ReactApplicationContext, pri
           val response: ConsentResponse = data?.extras?.get(Key.DATA) as ConsentResponse
           resultMap.putString("consentId", response.consentId)
           resultMap.putString("responseStatus", response.responseStatus.toString())
+          Timber.d("consentId: {${response.consentId}}")
+          Timber.d("responseStatus: {${response.responseStatus}}")
           promise.resolve(resultMap);
         }
         Activity.RESULT_CANCELED -> {

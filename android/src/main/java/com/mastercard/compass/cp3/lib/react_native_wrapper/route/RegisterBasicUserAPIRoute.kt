@@ -23,6 +23,8 @@ class RegisterBasicUserAPIRoute(private val context: ReactApplicationContext, pr
     ){
       val reliantAppGUID: String = RegisterBasicUserParams.getString("reliantAppGUID")!!
       val programGUID: String = RegisterBasicUserParams.getString("programGUID")!!
+      Timber.d("reliantAppGuid: {$reliantAppGUID}")
+      Timber.d("programGuid: {$programGUID}")
 
       val intent = Intent(context, RegisterBasicUserCompassApiHandlerActivity::class.java).apply {
           putExtra(Key.RELIANT_APP_GUID, reliantAppGUID)
@@ -42,6 +44,7 @@ class RegisterBasicUserAPIRoute(private val context: ReactApplicationContext, pr
         Activity.RESULT_OK -> {
           val resultMap = Arguments.createMap()
           resultMap.putString("rId", data?.extras?.get(Key.DATA).toString())
+          Timber.d("rId: {$data?.extras?.get(Key.DATA).toString()}")
           promise.resolve(resultMap);
         }
         Activity.RESULT_CANCELED -> {

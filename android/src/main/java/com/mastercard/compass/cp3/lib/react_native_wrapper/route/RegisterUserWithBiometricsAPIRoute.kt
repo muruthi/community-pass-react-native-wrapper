@@ -29,7 +29,9 @@ class RegisterUserWithBiometricsAPIRoute(
       val reliantAppGUID: String = RegisterUserWithBiometricsParams.getString("reliantAppGUID")!!;
       val programGUID: String = RegisterUserWithBiometricsParams.getString("programGUID")!!
       val consentID: String = RegisterUserWithBiometricsParams.getString("consentID")!!
-
+      Timber.d("reliantAppGuid: {$reliantAppGUID}")
+      Timber.d("programGuid: {$programGUID}")
+      Timber.d("consentID: {$consentID}")
         val intent = Intent(context, RegisterUserForBioTokenCompassApiHandlerActivity::class.java).apply {
             putExtra(Key.RELIANT_APP_GUID, reliantAppGUID)
             putExtra(Key.PROGRAM_GUID, programGUID)
@@ -60,6 +62,7 @@ class RegisterUserWithBiometricsAPIRoute(
                 resultMap.putString("enrolmentStatus", response.enrolmentStatus.toString())
                 resultMap.putString("bioToken", response.bioToken)
                 resultMap.putString("programGUID", response.programGUID)
+                Timber.d("resultMap: {${resultMap}}")
                 promise.resolve(resultMap);
               }
             }

@@ -23,7 +23,10 @@ class ConsumerDeviceAPIRoute(private val context: ReactApplicationContext, priva
       val programGUID: String = WriteProfileParams.getString("programGUID")!!
       val rID: String = WriteProfileParams.getString("rID")!!
       val overwriteCard = WriteProfileParams.getBoolean("overwriteCard")
-
+      Timber.d("reliantAppGuid: {$reliantAppGUID}")
+      Timber.d("programGuid: {$programGUID}")
+      Timber.d("rID: {$rID}")
+      Timber.d("overWriteCard: {$overwriteCard}")
       val intent = Intent(context, WriteProfileCompassApiHandlerActivity::class.java).apply {
           putExtra(Key.RELIANT_APP_GUID, reliantAppGUID)
           putExtra(Key.PROGRAM_GUID, programGUID)
@@ -44,6 +47,7 @@ class ConsumerDeviceAPIRoute(private val context: ReactApplicationContext, priva
         Activity.RESULT_OK -> {
           val resultMap = Arguments.createMap()
           resultMap.putString("consumerDeviceNumber", data?.extras?.get(Key.DATA).toString())
+          Timber.d("consumerDeviceNumber: {$data?.extras?.get(Key.DATA).toString()}")
           promise.resolve(resultMap);
         }
         Activity.RESULT_CANCELED -> {
