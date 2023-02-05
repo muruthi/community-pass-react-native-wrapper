@@ -1,10 +1,10 @@
 import { NativeModules, Platform } from 'react-native';
 import type {
-  SaveBiometricsParamTypes,
-  GetWritePasscodeParamTypes,
-  GetWriteProfileParamTypes,
-  GetRegisterBasicUser,
-  GetRegisterUserWithBiometrics,
+  SaveBiometricsParamType,
+  GetWritePasscodeParamType,
+  GetWriteProfileParamType,
+  GetRegisterBasicUserParamType,
+  GetRegisterUserWithBiometricsParamType,
 } from './types';
 
 const LINKING_ERROR =
@@ -29,7 +29,7 @@ export function saveBiometricConsent({
   reliantAppGUID,
   programGUID,
   consumerConsentValue,
-}: SaveBiometricsParamTypes) {
+}: SaveBiometricsParamType) {
   return CompassLibraryReactNativeWrapper.saveBiometricConsent({
     reliantAppGUID,
     programGUID,
@@ -42,7 +42,7 @@ export function getWritePasscode({
   programGUID,
   rID,
   passcode,
-}: GetWritePasscodeParamTypes) {
+}: GetWritePasscodeParamType) {
   return CompassLibraryReactNativeWrapper.getWritePasscode({
     reliantAppGUID,
     programGUID,
@@ -56,7 +56,7 @@ export function getWriteProfile({
   programGUID,
   rID,
   overwriteCard,
-}: GetWriteProfileParamTypes) {
+}: GetWriteProfileParamType) {
   return CompassLibraryReactNativeWrapper.getWriteProfile({
     reliantAppGUID,
     programGUID,
@@ -68,7 +68,7 @@ export function getWriteProfile({
 export function getRegisterBasicUser({
   reliantAppGUID,
   programGUID,
-}: GetRegisterBasicUser) {
+}: GetRegisterBasicUserParamType) {
   return CompassLibraryReactNativeWrapper.getRegisterBasicUser({
     reliantAppGUID,
     programGUID,
@@ -79,7 +79,7 @@ export function getRegisterUserWithBiometrics({
   reliantAppGUID,
   programGUID,
   consentID,
-}: GetRegisterUserWithBiometrics) {
+}: GetRegisterUserWithBiometricsParamType) {
   return CompassLibraryReactNativeWrapper.getRegisterUserWithBiometrics({
     reliantAppGUID,
     programGUID,

@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { saveBiometricConsent } from 'community-pass-react-native-wrapper';
 import { PROGRAM_GUID, RELIANT_APP_GUID } from '@env';
+import type {
+  GetErrorResultType,
+  GetSaveBiometricConsentResultType,
+} from 'src/types';
 
 import CustomButton from './components/CustomButton';
 import {
@@ -25,20 +29,20 @@ const SaveBiometricConsent = ({ navigation }: any) => {
       programGUID: PROGRAM_GUID,
       consumerConsentValue: true,
     })
-      .then((res: any) => {
+      .then((res: GetSaveBiometricConsentResultType) => {
         console.log(res);
         setIsGrantConsentLoading(false);
         setRegistrationError('');
-        return res?.consentId;
+        return res.consentId;
       })
       .then((id: string) => {
         navigation.navigate(screens.REGISTER_USER_WITH_BIOMETRICS, {
           consentId: id,
         });
       })
-      .catch((e: any) => {
-        console.log(e);
-        setRegistrationError(e?.message);
+      .catch((e: GetErrorResultType) => {
+        console.log(JSON.stringify(e, null, 2));
+        setRegistrationError(e.message);
         setIsGrantConsentLoading(false);
       });
   };
@@ -50,17 +54,18 @@ const SaveBiometricConsent = ({ navigation }: any) => {
       programGUID: PROGRAM_GUID,
       consumerConsentValue: false,
     })
-      .then((res: any) => {
+      .then((res: GetSaveBiometricConsentResultType) => {
         setIsDenyConsentLoading(false);
-        return res?.consentId;
+        return res.consentId;
       })
       .then((id: string) => {
         navigation.navigate(screens.REGISTER_BASIC_USER, {
           consentId: id,
         });
       })
-      .catch((e: any) => {
-        setRegistrationError(e?.message);
+      .catch((e: GetErrorResultType) => {
+        console.log(JSON.stringify(e, null, 2));
+        setRegistrationError(e.message);
         setIsDenyConsentLoading(false);
       });
   };

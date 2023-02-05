@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { getWriteProfile } from 'community-pass-react-native-wrapper';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { PROGRAM_GUID, RELIANT_APP_GUID } from '@env';
+import type { GetErrorResultType, GetWriteProfileResultType } from 'src/types';
 
 import CustomButton from './components/CustomButton';
 import { themeColors } from '../assets/colors';
@@ -30,21 +31,22 @@ const WriteProfile = ({ route, navigation }: any) => {
       rID: rId,
       overwriteCard: overwriteCard,
     })
-      .then((res: any) => {
+      .then((res: GetWriteProfileResultType) => {
+        console.log(res);
         setIsLoading(false);
         setWriteProfileError('');
         registrationType === registrationTypes.BASIC_USER
           ? navigation.navigate(screens.WRITE_PASSCODE, {
-              consumerDeviceNumber: res?.consumerDeviceNumber,
+              consumerDeviceNumber: res.consumerDeviceNumber,
               rId: rId,
             })
           : navigation.navigate(screens.WRITE_SUCCESSFUL, {
-              consumerDeviceNumber: res?.consumerDeviceNumber,
+              consumerDeviceNumber: res.consumerDeviceNumber,
               rId: rId,
             });
       })
-      .catch((e: any) => {
-        console.log(e);
+      .catch((e: GetErrorResultType) => {
+        console.log(JSON.stringify(e, null, 2));
         setWriteProfileError(e?.message);
         setIsLoading(false);
       });
