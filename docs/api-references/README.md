@@ -4,7 +4,7 @@
 
 The Community Pass Kernel (CPK) API Reference contains all the information needed to consume the CPK APIs.
 
-The following table summarizes the CPK React Native APIs using a logical grouping.
+The following table summarizes the Community Pass React Native Wrapper APIs using a logical grouping.
 
 | **API Group**                                                      | **Description**                                                                                    |
 | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |

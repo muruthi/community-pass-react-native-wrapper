@@ -4,7 +4,7 @@ import { saveBiometricConsent } from 'community-pass-react-native-wrapper';
 import { PROGRAM_GUID, RELIANT_APP_GUID } from '@env';
 import type {
   GetErrorResultType,
-  GetSaveBiometricConsentResultType,
+  SaveBiometricConsentResultType,
 } from 'src/types';
 
 import CustomButton from './components/CustomButton';
@@ -29,7 +29,7 @@ const SaveBiometricConsent = ({ navigation }: any) => {
       programGUID: PROGRAM_GUID,
       consumerConsentValue: true,
     })
-      .then((res: GetSaveBiometricConsentResultType) => {
+      .then((res: SaveBiometricConsentResultType) => {
         console.log(res);
         setIsGrantConsentLoading(false);
         setRegistrationError('');
@@ -54,7 +54,7 @@ const SaveBiometricConsent = ({ navigation }: any) => {
       programGUID: PROGRAM_GUID,
       consumerConsentValue: false,
     })
-      .then((res: GetSaveBiometricConsentResultType) => {
+      .then((res: SaveBiometricConsentResultType) => {
         setIsDenyConsentLoading(false);
         return res.consentId;
       })
