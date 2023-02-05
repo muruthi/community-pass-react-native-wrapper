@@ -9,6 +9,7 @@ import com.facebook.react.bridge.ReadableMap
 import com.mastercard.compass.cp3.lib.react_native_wrapper.ui.WritePasscodeCompassApiHandlerActivity
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.ErrorCode
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.Key
+import timber.log.Timber
 
 class ConsumerDevicePasscodeAPIRoute(private val context: ReactApplicationContext, private val currentActivity: Activity?) {
     companion object {
@@ -22,7 +23,10 @@ class ConsumerDevicePasscodeAPIRoute(private val context: ReactApplicationContex
       val programGUID: String = WritePasscodeParams.getString("programGUID")!!
       val rID: String = WritePasscodeParams.getString("rID")!!
       val passcode: String = WritePasscodeParams.getString("passcode")!!
-
+      Timber.d("reliantAppGuid: {$reliantAppGUID}")
+      Timber.d("programGuid: {$programGUID}")
+      Timber.d("rID: {$rID}")
+      Timber.d("passCode: {$passcode}")
       val intent = Intent(context, WritePasscodeCompassApiHandlerActivity::class.java).apply {
           putExtra(Key.RELIANT_APP_GUID, reliantAppGUID)
           putExtra(Key.PROGRAM_GUID, programGUID)
@@ -43,11 +47,13 @@ class ConsumerDevicePasscodeAPIRoute(private val context: ReactApplicationContex
         Activity.RESULT_OK -> {
           val resultMap = Arguments.createMap()
           resultMap.putString("responseStatus", data?.extras?.get(Key.DATA).toString())
+          Timber.d("responseStatus: {$data?.extras?.get(Key.DATA).toString()}")
           promise.resolve(resultMap);
         }
         Activity.RESULT_CANCELED -> {
           val code = data?.getIntExtra(Key.ERROR_CODE, ErrorCode.UNKNOWN).toString()
           val message = data?.getStringExtra(Key.ERROR_MESSAGE)!!
+          Timber.e("Error $code Message $message")
           promise.reject(code, Throwable(message))
         }
       }

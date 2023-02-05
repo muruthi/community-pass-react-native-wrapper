@@ -12,6 +12,7 @@ import com.mastercard.compass.cp3.lib.react_native_wrapper.R
 import com.mastercard.compass.cp3.lib.react_native_wrapper.ui.BiometricConsentCompassApiHandlerActivity
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.ErrorCode
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.Key
+import timber.log.Timber
 
 
 class BiometricConsentAPIRoute(private val context: ReactApplicationContext, private val currentActivity: Activity?) {
@@ -24,9 +25,12 @@ class BiometricConsentAPIRoute(private val context: ReactApplicationContext, pri
 
     fun startBiometricConsentIntent(SaveBiometricConsentParams: ReadableMap){
       val reliantAppGUID: String = SaveBiometricConsentParams.getString("reliantAppGUID")!!
+      Timber.d(reliantAppGUID)
       val programGUID: String = SaveBiometricConsentParams.getString("programGUID")!!
       val consumerConsentValue: Boolean = SaveBiometricConsentParams.getBoolean("consumerConsentValue")
-
+      Timber.d("reliantAppGuid: {$reliantAppGUID}")
+      Timber.d("programGuid: {$programGUID}")
+      Timber.d("consumerValue: {$consumerConsentValue}")
       val intent = Intent(context, BiometricConsentCompassApiHandlerActivity::class.java).apply {
           putExtra(Key.PROGRAM_GUID, programGUID)
           putExtra(Key.RELIANT_APP_GUID, reliantAppGUID )
@@ -48,12 +52,14 @@ class BiometricConsentAPIRoute(private val context: ReactApplicationContext, pri
           val response: ConsentResponse = data?.extras?.get(Key.DATA) as ConsentResponse
           resultMap.putString("consentId", response.consentId)
           resultMap.putString("responseStatus", response.responseStatus.toString())
+          Timber.d("consentId: {${response.consentId}}")
+          Timber.d("responseStatus: {${response.responseStatus}}")
           promise.resolve(resultMap);
         }
         Activity.RESULT_CANCELED -> {
           val code = data?.getIntExtra(Key.ERROR_CODE, ErrorCode.UNKNOWN).toString()
           val message = data?.getStringExtra(Key.ERROR_MESSAGE) ?: context.getString(R.string.error_unknown)
-          Log.e(TAG, "Error $code Message $message")
+          Timber.e("Error $code Message $message")
           promise.reject(code, Throwable(message))
         }
       }
