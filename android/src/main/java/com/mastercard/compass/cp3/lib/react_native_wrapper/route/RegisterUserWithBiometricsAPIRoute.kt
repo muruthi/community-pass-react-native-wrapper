@@ -12,6 +12,7 @@ import com.mastercard.compass.cp3.lib.react_native_wrapper.CompassKernelUIContro
 import com.mastercard.compass.cp3.lib.react_native_wrapper.ui.RegisterUserForBioTokenCompassApiHandlerActivity
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.ErrorCode
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.Key
+import timber.log.Timber
 
 class RegisterUserWithBiometricsAPIRoute(
   private val context: ReactApplicationContext,
@@ -28,7 +29,9 @@ class RegisterUserWithBiometricsAPIRoute(
       val reliantAppGUID: String = RegisterUserWithBiometricsParams.getString("reliantAppGUID")!!;
       val programGUID: String = RegisterUserWithBiometricsParams.getString("programGUID")!!
       val consentID: String = RegisterUserWithBiometricsParams.getString("consentID")!!
-
+      Timber.d("reliantAppGuid: {$reliantAppGUID}")
+      Timber.d("programGuid: {$programGUID}")
+      Timber.d("consentID: {$consentID}")
         val intent = Intent(context, RegisterUserForBioTokenCompassApiHandlerActivity::class.java).apply {
             putExtra(Key.RELIANT_APP_GUID, reliantAppGUID)
             putExtra(Key.PROGRAM_GUID, programGUID)
@@ -59,12 +62,14 @@ class RegisterUserWithBiometricsAPIRoute(
                 resultMap.putString("enrolmentStatus", response.enrolmentStatus.toString())
                 resultMap.putString("bioToken", response.bioToken)
                 resultMap.putString("programGUID", response.programGUID)
+                Timber.d("resultMap: {${resultMap}}")
                 promise.resolve(resultMap);
               }
             }
             Activity.RESULT_CANCELED -> {
               val code = data?.getIntExtra(Key.ERROR_CODE, ErrorCode.UNKNOWN).toString()
               val message = data?.getStringExtra(Key.ERROR_MESSAGE)!!
+              Timber.e("Error $code Message $message")
               promise.reject(code, Throwable(message))
             }
         }

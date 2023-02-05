@@ -146,6 +146,9 @@ dependencies {
   debugImplementation files('libs/community-pass-library-v2.4.0.aar')
   releaseCompileOnly files('libs/community-pass-library-v2.4.0.aar')
 
+  //Logging
+  implementation 'com.jakewharton.timber:timber:5.0.1'
+
   //CPK additional libraries
   implementation 'androidx.core:core-ktx:1.8.0'
   implementation 'androidx.appcompat:appcompat:1.5.0'

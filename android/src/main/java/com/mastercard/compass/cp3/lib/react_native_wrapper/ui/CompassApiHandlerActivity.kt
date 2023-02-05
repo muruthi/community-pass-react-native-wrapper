@@ -16,6 +16,7 @@ import com.mastercard.compass.cp3.lib.react_native_wrapper.util.Key.DATA
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.Key.ERROR_CODE
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.Key.ERROR_MESSAGE
 import com.mastercard.compass.cp3.lib.react_native_wrapper.util.Key.RELIANT_APP_GUID
+import timber.log.Timber
 
 abstract class CompassApiHandlerActivity<T : Any> : CompassKernelUIController.CompassKernelActivity() {
 
@@ -75,14 +76,16 @@ abstract class CompassApiHandlerActivity<T : Any> : CompassKernelUIController.Co
         connectKernelService(reliantAppGuid) { isSuccess, errorCode, errorMessage ->
             when (isSuccess) {
                 true -> {
-                    Log.d(TAG, "Connected to Kernel successfully")
+                    //Log.d(TAG, "Connected to Kernel successfully")
+                    Timber.d("Connected to Kernel successfully")
                     startCompassCoroutine()
                 }
                 false -> {
-                    Log.e(
+                    Timber.e("Could not connect to Kernel. Code: $errorCode. Message: $errorMessage")
+                    /**Log.e(
                         TAG,
                         "Could not connect to Kernel. Code: $errorCode. Message: $errorMessage"
-                    )
+                    )**/
                     errorFoundFinishActivity(errorCode, errorMessage)
                 }
             }

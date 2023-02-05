@@ -2,8 +2,10 @@ package com.mastercard.compass.cp3.lib.react_native_wrapper
 
 import android.app.Activity
 import android.content.Intent
+import com.facebook.react.BuildConfig
 import com.facebook.react.bridge.*
 import com.mastercard.compass.cp3.lib.react_native_wrapper.route.*
+import timber.log.Timber
 
 class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext),
   ActivityEventListener {
@@ -32,6 +34,9 @@ class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationConte
 
   init {
     super.initialize()
+    if(BuildConfig.DEBUG){
+        Timber.plant(Timber.DebugTree())
+    }
     reactApplicationContext.addActivityEventListener(this)
   }
 
@@ -83,7 +88,7 @@ class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationConte
   }
 
   override fun onNewIntent(p0: Intent?) {
-    TODO("Not yet implemented")
+
   }
 
 
