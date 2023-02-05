@@ -29,7 +29,7 @@ export interface GetRegisterUserWithBiometricsParamType {
   consentID: string;
 }
 
-export interface GetSaveBiometricConsentResultType {
+export interface SaveBiometricConsentResultType {
   consentId: string;
   responseStatus: string;
 }
