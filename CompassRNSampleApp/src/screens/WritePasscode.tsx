@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { getWritePasscode } from 'community-pass-react-native-wrapper';
 import { PROGRAM_GUID, RELIANT_APP_GUID } from '@env';
+import type { GetErrorResultType, GetWritePasscodeResultType } from 'src/types';
 
 import CustomButton from './components/CustomButton';
 import CustomInput from './components/CustomInput';
@@ -43,15 +44,18 @@ const WritePasscode = ({ route, navigation }: any) => {
       rID: rId,
       passcode: passcode.toString(),
     })
-      .then((res: any) => {
+      .then((res: GetWritePasscodeResultType) => {
         console.log(res);
-        setIsLoading(false);
-        navigation.navigate(screens.WRITE_SUCCESSFUL, {
-          consumerDeviceNumber: consumerDeviceNumber,
-          rId: rId,
-        });
+        if (res.responseStatus === 'SUCCESS') {
+          setIsLoading(false);
+          navigation.navigate(screens.WRITE_SUCCESSFUL, {
+            consumerDeviceNumber: consumerDeviceNumber,
+            rId: rId,
+          });
+        }
       })
-      .catch((e: any) => {
+      .catch((e: GetErrorResultType) => {
+        console.log(JSON.stringify(e, null, 2));
         setWritePasscodeError(e?.message);
         setIsLoading(false);
       });

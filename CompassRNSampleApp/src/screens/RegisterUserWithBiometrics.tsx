@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, Alert } from 'react-native';
 import { getRegisterUserWithBiometrics } from 'community-pass-react-native-wrapper';
 import { PROGRAM_GUID, RELIANT_APP_GUID } from '@env';
+import type {
+  GetErrorResultType,
+  GetRegisterUserWithBiometricsResultType,
+} from 'src/types';
 
 import CustomButton from './components/CustomButton';
-
 import { themeColors } from '../assets/colors';
 import {
   buttonLabels,
@@ -20,18 +23,18 @@ const RegisterUserWithBiometrics = ({ route, navigation }: any) => {
   const [registrationError, setRegistrationError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleCancel = (res: any) => {
+  const handleCancel = (res: GetRegisterUserWithBiometricsResultType) => {
     setIsLoading(false);
     navigation.navigate(screens.HOME, {
-      rId: res?.rId,
+      rId: res.rId,
     });
   };
 
-  const handleProceed = (res: any) => {
+  const handleProceed = (res: GetRegisterUserWithBiometricsResultType) => {
     setRegistrationError('');
     setIsLoading(false);
     navigation.navigate(screens.WRITE_PROFILE, {
-      rId: res?.rId,
+      rId: res.rId,
       registrationType: registrationTypes.BIOMETRIC_USER,
     });
   };
@@ -43,7 +46,7 @@ const RegisterUserWithBiometrics = ({ route, navigation }: any) => {
       programGUID: PROGRAM_GUID,
       consentID: consentId,
     })
-      .then((res: any) => {
+      .then((res: GetRegisterUserWithBiometricsResultType) => {
         console.log(res);
         setIsLoading(false);
         res?.enrolmentStatus === 'EXISTING'
@@ -69,7 +72,8 @@ const RegisterUserWithBiometrics = ({ route, navigation }: any) => {
             )
           : handleProceed(res);
       })
-      .catch((e: any) => {
+      .catch((e: GetErrorResultType) => {
+        console.log(JSON.stringify(e, null, 2));
         setRegistrationError(e?.message);
         setIsLoading(false);
       });
