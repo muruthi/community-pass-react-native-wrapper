@@ -19,16 +19,18 @@ class ConsumerDevicePasscodeAPIRoute(private val context: ReactApplicationContex
     }
 
     fun startWritePasscodeIntent(WritePasscodeParams: ReadableMap){
-      val reliantAppGUID: String = WritePasscodeParams.getString("reliantAppGUID")!!
+      val reliantGUID: String = WritePasscodeParams.getString("reliantGUID")!!
       val programGUID: String = WritePasscodeParams.getString("programGUID")!!
       val rID: String = WritePasscodeParams.getString("rID")!!
       val passcode: String = WritePasscodeParams.getString("passcode")!!
-      Timber.d("reliantAppGuid: {$reliantAppGUID}")
-      Timber.d("programGuid: {$programGUID}")
+
+      // Log
+      Timber.d("reliantGUID: {$reliantGUID}")
+      Timber.d("programGUID: {$programGUID}")
       Timber.d("rID: {$rID}")
-      Timber.d("passCode: {$passcode}")
+      Timber.d("passcode: {$passcode}")
       val intent = Intent(context, WritePasscodeCompassApiHandlerActivity::class.java).apply {
-          putExtra(Key.RELIANT_APP_GUID, reliantAppGUID)
+          putExtra(Key.RELIANT_APP_GUID, reliantGUID)
           putExtra(Key.PROGRAM_GUID, programGUID)
           putExtra(Key.RID, rID)
           putExtra(Key.PASSCODE, passcode)
@@ -47,6 +49,8 @@ class ConsumerDevicePasscodeAPIRoute(private val context: ReactApplicationContex
         Activity.RESULT_OK -> {
           val resultMap = Arguments.createMap()
           resultMap.putString("responseStatus", data?.extras?.get(Key.DATA).toString())
+
+          // Log
           Timber.d("responseStatus: {$data?.extras?.get(Key.DATA).toString()}")
           promise.resolve(resultMap);
         }

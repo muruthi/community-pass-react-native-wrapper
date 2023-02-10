@@ -39,7 +39,7 @@ abstract class CompassApiHandlerActivity<T : Any> : CompassKernelUIController.Co
         }
     }
 
-    lateinit var reliantAppGuid: String
+    lateinit var reliantGUID: String
 
     abstract suspend fun callCompassApi()
 
@@ -68,12 +68,12 @@ abstract class CompassApiHandlerActivity<T : Any> : CompassKernelUIController.Co
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_Transparent)
 
-        reliantAppGuid = intent.getStringExtra(RELIANT_APP_GUID)!!
+        reliantGUID = intent.getStringExtra(RELIANT_APP_GUID)!!
         connectKernelService()
     }
 
     private fun connectKernelService() {
-        connectKernelService(reliantAppGuid) { isSuccess, errorCode, errorMessage ->
+        connectKernelService(reliantGUID) { isSuccess, errorCode, errorMessage ->
             when (isSuccess) {
                 true -> {
                     //Log.d(TAG, "Connected to Kernel successfully")

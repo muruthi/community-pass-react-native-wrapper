@@ -64,15 +64,15 @@ Add the saveBiometricConsent() Commnity Pass API to your application
 
 ```typescript
 saveBiometricConsent({
-  reliantAppGUID: process.env.RELIANT_APP_GUID, //string
-  programGUID: process.env.PROGRAM_GUID, //string
-  consumerConsentValue: consentValue, //boolean
+  reliantGUID: '120a2c48-461e-4312-91c8-c3ba586ad29a', //string
+  programGUID: '6d498a97-fb8c-42b3-89a4-0fe13372f557', //string
+  consumerConsentValue: true, //boolean
 })
-  .then((response: any) => {
-    console.log(response);
+  .then((response: SaveBiometricConsentResultType) => {
+    console.log(response); //{ "consentID": "c6873db3-3975-4773-ab49-3b6c3e5e03b9" , "responseStatus": "SUCCESS" }
   })
-  .catch((e: any) => {
-    console.log(e);
+  .catch((error: ErrorResultType) => {
+    console.log(error); //{ "code": "600", "message": "Instance registration failed" }
   });
 ```
 
@@ -80,15 +80,15 @@ Add the getRegisterUserWithBiometrics() compass API to your application
 
 ```typescript
 getRegisterUserWithBiometrics({
-  reliantAppGUID: process.env.RELIANT_APP_GUID, //string
-  programGUID: process.env.PROGRAM_GUID, //string
-  consentID: consentId, //string
+  reliantGUID: '120a2c48-461e-4312-91c8-c3ba586ad29a', //string
+  programGUID: '6d498a97-fb8c-42b3-89a4-0fe13372f557', //string
+  consentID: 'c6873db3-3975-4773-ab49-3b6c3e5e03b9', //string
 })
-  .then((response: any) => {
-    console.log(response);
+  .then((response: RegisterUserWithBiometricsResultType) => {
+    console.log(response); //{"bioToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", "enrolmentStatus": "NEW", "programGUID": "6d498a97-fb8c-42b3-89a4-0fe13372f557", "rID": "bc54738d3056638532982df19f5a9441509099ea"}
   })
-  .catch((e: any) => {
-    console.log(e);
+  .catch((error: ErrorResultType) => {
+    console.log(error); //{ "code": "500", "message": "Biometric capture failed" }
   });
 ```
 
@@ -96,14 +96,14 @@ Add the getRegisterBasicUser() Commnity Pass API to your application
 
 ```typescript
 getRegisterBasicUser({
-  reliantAppGUID: process.env.RELIANT_APP_GUID, //string
-  programGUID: process.env.PROGRAM_GUID, //string
+  reliantGUID: '120a2c48-461e-4312-91c8-c3ba586ad29a', //string
+  programGUID: '6d498a97-fb8c-42b3-89a4-0fe13372f557', //string
 })
-  .then((response: any) => {
-    console.log(response);
+  .then((response: RegisterBasicUserResultType) => {
+    console.log(response); //{ "rID": "bc54738d3056638532982df19f5a9441509099ea" }
   })
-  .catch((e: any) => {
-    console.log(e);
+  .catch((error: ErrorResultType) => {
+    console.log(error); //{ "code": "200", "message": "Specified argument failed the validation" }
   });
 ```
 
@@ -111,16 +111,16 @@ Add the getWritePasscode() Commnity Pass API to your application
 
 ```typescript
 getWritePasscode({
-  reliantAppGUID: process.env.RELIANT_APP_GUID, //string
-  programGUID: process.env.PROGRAM_GUID, //string
-  rID: rId, //tring
-  passcode: passcode, //string
+  reliantGUID: '120a2c48-461e-4312-91c8-c3ba586ad29a', //string
+  programGUID: '6d498a97-fb8c-42b3-89a4-0fe13372f557', //string
+  rID: 'bc54738d3056638532982df19f5a9441509099ea', //string
+  passcode: '123456', //string
 })
-  .then((response: any) => {
-    console.log(response);
+  .then((response: WritePasscodeResultType) => {
+    console.log(response); //{ "responseStatus": "Success" }
   })
-  .catch((e: any) => {
-    console.log(e);
+  .catch((error: ErrorResultType) => {
+    console.log(error); //{ "code": "705", "message": "Invalid passcode used" }
   });
 ```
 
@@ -128,18 +128,16 @@ Add the getWriteProfile() Commnity Pass API to your application
 
 ```typescript
 getWriteProfile({
-  reliantAppGUID: process.env.RELIANT_APP_GUID, //string
-  programGUID: process.env.PROGRAM_GUID, //string
-  rID: rId, //string
-  overwriteCard: overwriteCard, //boolean
+  reliantGUID: '120a2c48-461e-4312-91c8-c3ba586ad29a', //string
+  programGUID: '6d498a97-fb8c-42b3-89a4-0fe13372f557', //string
+  rID: 'bc54738d3056638532982df19f5a9441509099ea', //string
+  overwriteCard: false, //boolean
 })
-  .then((response: any) => {
-    console.log(response);
-    // {"consumerDeviceNumber": "1234564665"}
+  .then((response: WriteProfileResultType) => {
+    console.log(response); //{ "consumerDeviceNumber": "9085674530845673" }
   })
-  .catch((e: any) => {
-    console.log(e);
-    // {"code": "errorCode", message: "errorMessage"}
+  .catch((error: ErrorResultType) => {
+    console.log(error); //{ "code": "721", "message": "Card was removed during read/write operation" }
   });
 ```
 

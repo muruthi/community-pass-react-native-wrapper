@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, Alert } from 'react-native';
-import { getRegisterUserWithBiometrics } from 'community-pass-react-native-wrapper';
+import {
+  getRegisterUserWithBiometrics,
+  ErrorResultType,
+  RegisterUserWithBiometricsResultType,
+} from 'community-pass-react-native-wrapper';
 import { PROGRAM_GUID, RELIANT_APP_GUID } from '@env';
 
 import CustomButton from './components/CustomButton';
-
 import { themeColors } from '../assets/colors';
 import {
   buttonLabels,
@@ -16,22 +19,22 @@ import {
 const { width: WIDTH } = Dimensions.get('screen');
 
 const RegisterUserWithBiometrics = ({ route, navigation }: any) => {
-  const consentId = route?.params?.consentId;
+  const { consentID } = route?.params;
   const [registrationError, setRegistrationError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleCancel = (res: any) => {
+  const handleCancel = (res: RegisterUserWithBiometricsResultType) => {
     setIsLoading(false);
     navigation.navigate(screens.HOME, {
-      rId: res?.rId,
+      rID: res.rID,
     });
   };
 
-  const handleProceed = (res: any) => {
+  const handleProceed = (res: RegisterUserWithBiometricsResultType) => {
     setRegistrationError('');
     setIsLoading(false);
     navigation.navigate(screens.WRITE_PROFILE, {
-      rId: res?.rId,
+      rID: res.rID,
       registrationType: registrationTypes.BIOMETRIC_USER,
     });
   };
@@ -39,11 +42,11 @@ const RegisterUserWithBiometrics = ({ route, navigation }: any) => {
   const handleRegisterUserWithBiometrics = () => {
     setIsLoading(true);
     getRegisterUserWithBiometrics({
-      reliantAppGUID: RELIANT_APP_GUID,
+      reliantGUID: RELIANT_APP_GUID,
       programGUID: PROGRAM_GUID,
-      consentID: consentId,
+      consentID: consentID,
     })
-      .then((res: any) => {
+      .then((res: RegisterUserWithBiometricsResultType) => {
         console.log(res);
         setIsLoading(false);
         res?.enrolmentStatus === 'EXISTING'
@@ -69,7 +72,8 @@ const RegisterUserWithBiometrics = ({ route, navigation }: any) => {
             )
           : handleProceed(res);
       })
-      .catch((e: any) => {
+      .catch((e: ErrorResultType) => {
+        console.log(JSON.stringify(e, null, 2));
         setRegistrationError(e?.message);
         setIsLoading(false);
       });

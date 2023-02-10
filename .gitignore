@@ -70,3 +70,4 @@ lib/typescript
 
 # Commnity Pass React Native Library
 *.tgz
+*.aar

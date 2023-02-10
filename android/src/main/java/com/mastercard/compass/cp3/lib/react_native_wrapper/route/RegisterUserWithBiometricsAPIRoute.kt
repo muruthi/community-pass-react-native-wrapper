@@ -26,14 +26,16 @@ class RegisterUserWithBiometricsAPIRoute(
     }
 
     fun startRegisterUserWithBiometricsIntent(RegisterUserWithBiometricsParams: ReadableMap){
-      val reliantAppGUID: String = RegisterUserWithBiometricsParams.getString("reliantAppGUID")!!;
+      val reliantGUID: String = RegisterUserWithBiometricsParams.getString("reliantGUID")!!;
       val programGUID: String = RegisterUserWithBiometricsParams.getString("programGUID")!!
       val consentID: String = RegisterUserWithBiometricsParams.getString("consentID")!!
-      Timber.d("reliantAppGuid: {$reliantAppGUID}")
-      Timber.d("programGuid: {$programGUID}")
+
+      // Log
+      Timber.d("reliantGUID: {$reliantGUID}")
+      Timber.d("programGUID: {$programGUID}")
       Timber.d("consentID: {$consentID}")
         val intent = Intent(context, RegisterUserForBioTokenCompassApiHandlerActivity::class.java).apply {
-            putExtra(Key.RELIANT_APP_GUID, reliantAppGUID)
+            putExtra(Key.RELIANT_APP_GUID, reliantGUID)
             putExtra(Key.PROGRAM_GUID, programGUID)
             putExtra(Key.CONSENT_ID, consentID)
         }
@@ -58,10 +60,12 @@ class RegisterUserWithBiometricsAPIRoute(
                 val jwt = data.extras?.get(Key.DATA).toString()
                 val response: RegisterUserForBioTokenResponse = helperObject.parseBioTokenJWT(jwt)
 
-                resultMap.putString("rId", response.rId)
+                resultMap.putString("rID", response.rId)
                 resultMap.putString("enrolmentStatus", response.enrolmentStatus.toString())
                 resultMap.putString("bioToken", response.bioToken)
                 resultMap.putString("programGUID", response.programGUID)
+
+                // Log
                 Timber.d("resultMap: {${resultMap}}")
                 promise.resolve(resultMap);
               }
