@@ -19,16 +19,18 @@ class ConsumerDeviceAPIRoute(private val context: ReactApplicationContext, priva
     }
 
     fun startWriteProfileIntent(WriteProfileParams: ReadableMap){
-      val reliantAppGUID: String = WriteProfileParams.getString("reliantAppGUID")!!
+      val reliantGUID: String = WriteProfileParams.getString("reliantGUID")!!
       val programGUID: String = WriteProfileParams.getString("programGUID")!!
       val rID: String = WriteProfileParams.getString("rID")!!
       val overwriteCard = WriteProfileParams.getBoolean("overwriteCard")
-      Timber.d("reliantAppGuid: {$reliantAppGUID}")
-      Timber.d("programGuid: {$programGUID}")
+
+      // Log
+      Timber.d("reliantGUID: {$reliantGUID}")
+      Timber.d("programGUID: {$programGUID}")
       Timber.d("rID: {$rID}")
-      Timber.d("overWriteCard: {$overwriteCard}")
+      Timber.d("overwriteCard: {$overwriteCard}")
       val intent = Intent(context, WriteProfileCompassApiHandlerActivity::class.java).apply {
-          putExtra(Key.RELIANT_APP_GUID, reliantAppGUID)
+          putExtra(Key.RELIANT_APP_GUID, reliantGUID)
           putExtra(Key.PROGRAM_GUID, programGUID)
           putExtra(Key.RID, rID)
           putExtra(Key.OVERWRITE_CARD, overwriteCard)
@@ -47,6 +49,8 @@ class ConsumerDeviceAPIRoute(private val context: ReactApplicationContext, priva
         Activity.RESULT_OK -> {
           val resultMap = Arguments.createMap()
           resultMap.putString("consumerDeviceNumber", data?.extras?.get(Key.DATA).toString())
+
+          // Log
           Timber.d("consumerDeviceNumber: {$data?.extras?.get(Key.DATA).toString()}")
           promise.resolve(resultMap);
         }

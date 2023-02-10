@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { getWriteProfile } from 'community-pass-react-native-wrapper';
+import {
+  getWriteProfile,
+  ErrorResultType,
+  WriteProfileResultType,
+} from 'community-pass-react-native-wrapper';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { PROGRAM_GUID, RELIANT_APP_GUID } from '@env';
-import type { GetErrorResultType, GetWriteProfileResultType } from 'src/types';
 
 import CustomButton from './components/CustomButton';
 import { themeColors } from '../assets/colors';
@@ -17,8 +20,7 @@ import {
 const { width: WIDTH } = Dimensions.get('screen');
 
 const WriteProfile = ({ route, navigation }: any) => {
-  const rId = route?.params?.rId;
-  const registrationType = route?.params?.registrationType;
+  const { rID, registrationType } = route?.params;
   const [writeProfileError, setWriteProfileError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [overwriteCard, setOverwriteCard] = useState(false);
@@ -26,26 +28,26 @@ const WriteProfile = ({ route, navigation }: any) => {
   const handleWriteProfile = () => {
     setIsLoading(true);
     getWriteProfile({
-      reliantAppGUID: RELIANT_APP_GUID,
+      reliantGUID: RELIANT_APP_GUID,
       programGUID: PROGRAM_GUID,
-      rID: rId,
+      rID: rID,
       overwriteCard: overwriteCard,
     })
-      .then((res: GetWriteProfileResultType) => {
+      .then((res: WriteProfileResultType) => {
         console.log(res);
         setIsLoading(false);
         setWriteProfileError('');
         registrationType === registrationTypes.BASIC_USER
           ? navigation.navigate(screens.WRITE_PASSCODE, {
               consumerDeviceNumber: res.consumerDeviceNumber,
-              rId: rId,
+              rID: rID,
             })
           : navigation.navigate(screens.WRITE_SUCCESSFUL, {
               consumerDeviceNumber: res.consumerDeviceNumber,
-              rId: rId,
+              rID: rID,
             });
       })
-      .catch((e: GetErrorResultType) => {
+      .catch((e: ErrorResultType) => {
         console.log(JSON.stringify(e, null, 2));
         setWriteProfileError(e?.message);
         setIsLoading(false);

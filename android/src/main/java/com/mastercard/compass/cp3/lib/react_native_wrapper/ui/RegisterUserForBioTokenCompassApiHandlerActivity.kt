@@ -6,12 +6,12 @@ import com.mastercard.compass.cp3.lib.react_native_wrapper.util.Key
 
 class RegisterUserForBioTokenCompassApiHandlerActivity: CompassApiHandlerActivity<String>() {
     override suspend fun callCompassApi() {
-        val reliantAppGuid: String = intent.getStringExtra(Key.RELIANT_APP_GUID)!!
-        val programGuid: String = intent.getStringExtra(Key.PROGRAM_GUID)!!
-        val consentId: String = intent.getStringExtra(Key.CONSENT_ID)!!
+        val reliantGUID: String = intent.getStringExtra(Key.RELIANT_APP_GUID)!!
+        val programGUID: String = intent.getStringExtra(Key.PROGRAM_GUID)!!
+        val consentID: String = intent.getStringExtra(Key.CONSENT_ID)!!
 
         val jwt = helper.generateBioTokenJWT(
-            reliantAppGuid, programGuid, consentId, listOf(
+            reliantGUID, programGUID, consentID, listOf(
                 Modality.FACE,
                 Modality.LEFT_PALM,
                 Modality.RIGHT_PALM
@@ -19,7 +19,7 @@ class RegisterUserForBioTokenCompassApiHandlerActivity: CompassApiHandlerActivit
 
         val intent = compassKernelServiceInstance.getRegisterUserForBioTokenActivityIntent(
             jwt,
-            reliantAppGuid,
+            reliantGUID,
             OperationMode.BEST_AVAILABLE
         )
 

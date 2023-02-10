@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { getWritePasscode } from 'community-pass-react-native-wrapper';
+import {
+  getWritePasscode,
+  ErrorResultType,
+  WritePasscodeResultType,
+} from 'community-pass-react-native-wrapper';
 import { PROGRAM_GUID, RELIANT_APP_GUID } from '@env';
-import type { GetErrorResultType, GetWritePasscodeResultType } from 'src/types';
 
 import CustomButton from './components/CustomButton';
 import CustomInput from './components/CustomInput';
@@ -20,8 +23,7 @@ const { width: WIDTH } = Dimensions.get('screen');
 var REG = /^[0-9]{6}$/;
 
 const WritePasscode = ({ route, navigation }: any) => {
-  const rId = route?.params?.rId;
-  const consumerDeviceNumber = route?.params?.consumerDeviceNumber;
+  const { rID, consumerDeviceNumber } = route?.params;
   const [writePasscodeError, setWritePasscodeError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [passcode, setPasscode] = useState('');
@@ -39,22 +41,22 @@ const WritePasscode = ({ route, navigation }: any) => {
 
     setIsLoading(true);
     getWritePasscode({
-      reliantAppGUID: RELIANT_APP_GUID,
+      reliantGUID: RELIANT_APP_GUID,
       programGUID: PROGRAM_GUID,
-      rID: rId,
+      rID: rID,
       passcode: passcode.toString(),
     })
-      .then((res: GetWritePasscodeResultType) => {
+      .then((res: WritePasscodeResultType) => {
         console.log(res);
-        if (res.responseStatus === 'SUCCESS') {
+        if (res.responseStatus === 'Success') {
           setIsLoading(false);
           navigation.navigate(screens.WRITE_SUCCESSFUL, {
             consumerDeviceNumber: consumerDeviceNumber,
-            rId: rId,
+            rID: rID,
           });
         }
       })
-      .catch((e: GetErrorResultType) => {
+      .catch((e: ErrorResultType) => {
         console.log(JSON.stringify(e, null, 2));
         setWritePasscodeError(e?.message);
         setIsLoading(false);

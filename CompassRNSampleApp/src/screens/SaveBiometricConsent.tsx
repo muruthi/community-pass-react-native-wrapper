@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { saveBiometricConsent } from 'community-pass-react-native-wrapper';
-import { PROGRAM_GUID, RELIANT_APP_GUID } from '@env';
-import type {
-  GetErrorResultType,
+import {
+  saveBiometricConsent,
   SaveBiometricConsentResultType,
-} from 'src/types';
+  ErrorResultType,
+} from 'community-pass-react-native-wrapper';
+import { PROGRAM_GUID, RELIANT_APP_GUID } from '@env';
 
 import CustomButton from './components/CustomButton';
 import {
@@ -25,7 +25,7 @@ const SaveBiometricConsent = ({ navigation }: any) => {
   const handleGrantBiometricConsent = () => {
     setIsGrantConsentLoading(true);
     saveBiometricConsent({
-      reliantAppGUID: RELIANT_APP_GUID,
+      reliantGUID: RELIANT_APP_GUID,
       programGUID: PROGRAM_GUID,
       consumerConsentValue: true,
     })
@@ -33,14 +33,14 @@ const SaveBiometricConsent = ({ navigation }: any) => {
         console.log(res);
         setIsGrantConsentLoading(false);
         setRegistrationError('');
-        return res.consentId;
+        return res.consentID;
       })
       .then((id: string) => {
         navigation.navigate(screens.REGISTER_USER_WITH_BIOMETRICS, {
-          consentId: id,
+          consentID: id,
         });
       })
-      .catch((e: GetErrorResultType) => {
+      .catch((e: ErrorResultType) => {
         console.log(JSON.stringify(e, null, 2));
         setRegistrationError(e.message);
         setIsGrantConsentLoading(false);
@@ -50,20 +50,20 @@ const SaveBiometricConsent = ({ navigation }: any) => {
   const handleDeclineBiometricConsent = () => {
     setIsDenyConsentLoading(true);
     saveBiometricConsent({
-      reliantAppGUID: RELIANT_APP_GUID,
+      reliantGUID: RELIANT_APP_GUID,
       programGUID: PROGRAM_GUID,
       consumerConsentValue: false,
     })
       .then((res: SaveBiometricConsentResultType) => {
         setIsDenyConsentLoading(false);
-        return res.consentId;
+        return res.consentID;
       })
       .then((id: string) => {
         navigation.navigate(screens.REGISTER_BASIC_USER, {
-          consentId: id,
+          consentID: id,
         });
       })
-      .catch((e: GetErrorResultType) => {
+      .catch((e: ErrorResultType) => {
         console.log(JSON.stringify(e, null, 2));
         setRegistrationError(e.message);
         setIsDenyConsentLoading(false);

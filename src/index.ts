@@ -1,11 +1,4 @@
 import { NativeModules, Platform } from 'react-native';
-import type {
-  SaveBiometricsParamType,
-  GetWritePasscodeParamType,
-  GetWriteProfileParamType,
-  GetRegisterBasicUserParamType,
-  GetRegisterUserWithBiometricsParamType,
-} from './types';
 
 const LINKING_ERROR =
   `The package 'community-pass-react-native-wrapper' doesn't seem to be linked. Make sure: \n\n` +
@@ -26,25 +19,25 @@ const CompassLibraryReactNativeWrapper =
       );
 
 export function saveBiometricConsent({
-  reliantAppGUID,
+  reliantGUID,
   programGUID,
   consumerConsentValue,
 }: SaveBiometricsParamType) {
   return CompassLibraryReactNativeWrapper.saveBiometricConsent({
-    reliantAppGUID,
+    reliantGUID,
     programGUID,
     consumerConsentValue,
   });
 }
 
 export function getWritePasscode({
-  reliantAppGUID,
+  reliantGUID,
   programGUID,
   rID,
   passcode,
-}: GetWritePasscodeParamType) {
+}: WritePasscodeParamType) {
   return CompassLibraryReactNativeWrapper.getWritePasscode({
-    reliantAppGUID,
+    reliantGUID,
     programGUID,
     rID,
     passcode,
@@ -52,13 +45,13 @@ export function getWritePasscode({
 }
 
 export function getWriteProfile({
-  reliantAppGUID,
+  reliantGUID,
   programGUID,
   rID,
   overwriteCard,
-}: GetWriteProfileParamType) {
+}: WriteProfileParamType) {
   return CompassLibraryReactNativeWrapper.getWriteProfile({
-    reliantAppGUID,
+    reliantGUID,
     programGUID,
     rID,
     overwriteCard,
@@ -66,23 +59,83 @@ export function getWriteProfile({
 }
 
 export function getRegisterBasicUser({
-  reliantAppGUID,
+  reliantGUID,
   programGUID,
-}: GetRegisterBasicUserParamType) {
+}: RegisterBasicUserParamType) {
   return CompassLibraryReactNativeWrapper.getRegisterBasicUser({
-    reliantAppGUID,
+    reliantGUID,
     programGUID,
   });
 }
 
 export function getRegisterUserWithBiometrics({
-  reliantAppGUID,
+  reliantGUID,
   programGUID,
   consentID,
-}: GetRegisterUserWithBiometricsParamType) {
+}: RegisterUserWithBiometricsParamType) {
   return CompassLibraryReactNativeWrapper.getRegisterUserWithBiometrics({
-    reliantAppGUID,
+    reliantGUID,
     programGUID,
     consentID,
   });
+}
+
+export interface SaveBiometricsParamType {
+  reliantGUID: string;
+  programGUID: string;
+  consumerConsentValue: boolean;
+}
+
+export interface WritePasscodeParamType {
+  reliantGUID: string;
+  programGUID: string;
+  rID: string;
+  passcode: string;
+}
+
+export interface WriteProfileParamType {
+  reliantGUID: string;
+  programGUID: string;
+  rID: string;
+  overwriteCard: boolean;
+}
+
+export interface RegisterBasicUserParamType {
+  reliantGUID: string;
+  programGUID: string;
+}
+
+export interface RegisterUserWithBiometricsParamType {
+  reliantGUID: string;
+  programGUID: string;
+  consentID: string;
+}
+
+export interface SaveBiometricConsentResultType {
+  consentID: string;
+  responseStatus: string;
+}
+
+export interface RegisterBasicUserResultType {
+  rID: string;
+}
+
+export interface RegisterUserWithBiometricsResultType {
+  programGUID: string;
+  rID: string;
+  bioToken: string;
+  enrolmentStatus: string;
+}
+
+export interface WriteProfileResultType {
+  consumerDeviceNumber: string;
+}
+
+export interface WritePasscodeResultType {
+  responseStatus: string;
+}
+
+export interface ErrorResultType {
+  code: string;
+  message: string;
 }

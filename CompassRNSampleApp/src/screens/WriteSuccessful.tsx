@@ -12,8 +12,7 @@ import { themeColors } from '../assets/colors';
 const { width: WIDTH } = Dimensions.get('screen');
 
 const WriteSuccessful = ({ route, navigation }: any) => {
-  const consumerDeviceNumber = route?.params?.consumerDeviceNumber;
-  const rId = route?.params?.rId;
+  const { rID, consumerDeviceNumber } = route?.params;
 
   const goToHomeScreen = () => {
     navigation.navigate(screens.HOME);
@@ -33,7 +32,7 @@ const WriteSuccessful = ({ route, navigation }: any) => {
         </View>
         <View style={styles.card}>
           <Text style={styles.label}>{writeSuccessfulScreenStrings.RID}</Text>
-          <Text style={styles.value}>{rId}</Text>
+          <Text style={styles.value}>{rID}</Text>
         </View>
         <CustomButton
           isLoading={false}

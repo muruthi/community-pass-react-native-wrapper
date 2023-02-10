@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { getRegisterBasicUser } from 'community-pass-react-native-wrapper';
+import {
+  getRegisterBasicUser,
+  ErrorResultType,
+  RegisterBasicUserResultType,
+} from 'community-pass-react-native-wrapper';
 import { PROGRAM_GUID, RELIANT_APP_GUID } from '@env';
-import type {
-  GetErrorResultType,
-  GetRegisterBasicUserResultType,
-} from 'src/types';
 
 import CustomButton from './components/CustomButton';
 import { themeColors } from '../assets/colors';
@@ -25,18 +25,18 @@ const RegisterBasicUser = ({ navigation }: any) => {
   const handleRegisterBasicUser = () => {
     setIsLoading(true);
     getRegisterBasicUser({
-      reliantAppGUID: RELIANT_APP_GUID,
+      reliantGUID: RELIANT_APP_GUID,
       programGUID: PROGRAM_GUID,
     })
-      .then((res: GetRegisterBasicUserResultType) => {
+      .then((res: RegisterBasicUserResultType) => {
         console.log(res);
         setIsLoading(false);
         navigation.navigate(screens.WRITE_PROFILE, {
-          rId: res.rId,
+          rID: res.rID,
           registrationType: registrationTypes.BASIC_USER,
         });
       })
-      .catch((e: GetErrorResultType) => {
+      .catch((e: ErrorResultType) => {
         console.log(JSON.stringify(e, null, 2));
         setRegistrationError(e.message);
         setIsLoading(false);

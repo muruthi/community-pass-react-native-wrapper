@@ -8,12 +8,12 @@ import com.mastercard.compass.cp3.lib.react_native_wrapper.util.Key.OVERWRITE_CA
 class WriteProfileCompassApiHandlerActivity : CompassApiHandlerActivity<String>() {
 
     override suspend fun callCompassApi() {
-        val programGuid: String = intent.getStringExtra(PROGRAM_GUID)!!
-        val rId: String = intent.getStringExtra(RID)!!
+        val programGUID: String = intent.getStringExtra(PROGRAM_GUID)!!
+        val rID: String = intent.getStringExtra(RID)!!
         val overwriteCard: Boolean = intent.getBooleanExtra(OVERWRITE_CARD, false)
 
         val intent = compassKernelServiceInstance.getWriteProfileActivityIntent(
-            programGuid, rId
+            programGUID, rID
         )
 
         intent?.putExtra(Constants.EXTRA_OVERWRITE_CARD, overwriteCard)
