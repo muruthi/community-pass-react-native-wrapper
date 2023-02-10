@@ -19,26 +19,26 @@ Then, the Reliant Application must store it with CPK.
 **Input Parameters**
 | **Parameter** | **Type** | **Description** |
 |---------------|----------|------------------------------------------------------|
-| consentRequest | SaveBiometricsParamType | An object that contains a reliantAppGUID, programGUID and consumerConsentValue |
+| consentRequest | SaveBiometricsParamType | An object that contains a reliantGUID, programGUID and consumerConsentValue |
 
 **Response Parameters**
 | **Parameter** | **Type** | **Description** |
 |-----------------|-----------------|----------------------------------------------------------|
-| consentResponse | Promise<`SaveBiometricConsentResultType`> | A promise that resolves to an object containing either a consentId and responseStatus fields or an error field. |
+| consentResponse | Promise<`SaveBiometricConsentResultType`> | A promise that resolves to an object containing either a consentID and responseStatus fields or an error field. |
 
 **Type Aliases**
 
 ```ts
 // SaveBiometricsParamType
 interface SaveBiometricsParamType {
-  reliantAppGUID: string;
+  reliantGUID: string;
   programGUID: string;
   consumerConsentValue: boolean;
 }
 
 // SaveBiometricConsentResultType
 interface SaveBiometricConsentResultType {
-  consentId: string;
+  consentID: string;
   responseStatus: string;
 }
 ```
@@ -64,25 +64,25 @@ This API is used to register an existing user with their card/CP Consumer Device
 **Input Parameters**
 | **Parameter** | **Type** | **Description** |
 |---------------|----------|------------------------------------------------------|
-| registerBasicUserRequest | GetRegisterBasicUserParamType | An object that contains a reliantAppGUID and programGUID |
+| registerBasicUserRequest | RegisterBasicUserParamType | An object that contains a reliantGUID and programGUID |
 
 **Response Parameters**
 | **Parameter** | **Type** | **Description** |
 |-----------------|-----------------|----------------------------------------------------------|
-| registerBasicUserResponse | Promise<`GetRegisterBasicUserResultType`> | A promise that resolves to an object containing either a rId field or an error field. |
+| registerBasicUserResponse | Promise<`RegisterBasicUserResultType`> | A promise that resolves to an object containing either a rID field or an error field. |
 
 **Type Aliases**
 
 ```ts
-// GetRegisterBasicUserParamType
-interface GetRegisterBasicUserParamType {
-  reliantAppGUID: string;
+// RegisterBasicUserParamType
+interface RegisterBasicUserParamType {
+  reliantGUID: string;
   programGUID: string;
 }
 
-// GetRegisterBasicUserResultType
-interface GetRegisterBasicUserResultType {
-  rId: string;
+// RegisterBasicUserResultType
+interface RegisterBasicUserResultType {
+  rID: string;
 }
 ```
 
@@ -95,7 +95,7 @@ In addition to the [general error codes](https://developer.mastercard.com/cp-ker
 This API is used by the Reliant Application to initiate the user registration flow. It returns the Intent object which can be used by the Reliant Application to start the user registration using the user’s biometric data. Following a successful user registration, a user profile is created and associated with a CP Program. If the user’s profile already exists, e.g., the user is already registered in another program, the user’s profile is updated with the new association. Moreover, it enables you to select a formfactor during the registration process i.e. Card, QR or None.
 
 ```
-Warning: Reliant Application must obtain the consentId first using the saveBiometricConsent API before invoking the user registration flow.
+Warning: Reliant Application must obtain the consentID first using the saveBiometricConsent API before invoking the user registration flow.
 ```
 
 **Compatibility**
@@ -106,30 +106,29 @@ Warning: Reliant Application must obtain the consentId first using the saveBiome
 **Input Parameters**
 | **Parameter** | **Type** | **Description** |
 |---------------|----------|------------------------------------------------------|
-| registerUserWithBiometricsRequest | GetRegisterUserWithBiometricsParamType | An object that contains a reliantAppGUID, programGUID and consentId |
+| registerUserWithBiometricsRequest | GetRegisterUserWithBiometricsParamType | An object that contains a reliantGUID, programGUID and consentID |
 
 **Response Parameters**
 | **Parameter** | **Type** | **Description** |
 |-----------------|-----------------|----------------------------------------------------------|
-| registerUserWithBiometricsResponse | Promise<`GetRegisterUserWithBiometricsResultType`> | A promise that resolves to an object containing either a rId, bioToken, enrolmentStatus and programGUID fields or an error field. |
+| registerUserWithBiometricsResponse | Promise<`RegisterUserWithBiometricsResultType`> | A promise that resolves to an object containing either a rID, bioToken, enrolmentStatus and programGUID fields or an error field. |
 
 **Type Aliases**
 
 ```ts
 // GetRegisterUserWithBiometricsParamType
 interface GetRegisterUserWithBiometricsParamType {
-  reliantAppGUID: string;
+  reliantGUID: string;
   programGUID: string;
   consentID: string;
 }
 
-// GetRegisterUserWithBiometricsResultType
-interface GetRegisterUserWithBiometricsResultType {
+// RegisterUserWithBiometricsResultType
+interface RegisterUserWithBiometricsResultType {
   programGUID: string;
-  rId: string;
+  rID: string;
   bioToken: string;
   enrolmentStatus: string;
-  responseStatus: string;
 }
 ```
 
@@ -165,26 +164,26 @@ WARNING: The Passcode that will get stored on the card must be of Integer Dataty
 **Input Parameters**
 | **Parameter** | **Type** | **Description** |
 |---------------|----------|------------------------------------------------------|
-| writePasscodeRequest | GetWritePasscodeParamType | An object that contains a reliantAppGUID, programGUID, rID and passcode |
+| writePasscodeRequest | GetWritePasscodeParamType | An object that contains a reliantGUID, programGUID, rID and passcode |
 
 **Response Parameters**
 | **Parameter** | **Type** | **Description** |
 |-----------------|-----------------|----------------------------------------------------------|
-| writePasscodeResponse | Promise<`GetWritePasscodeResultType`> | A promise that resolves to an object containing either a responseStatus field or an error field. |
+| writePasscodeResponse | Promise<`WritePasscodeResultType`> | A promise that resolves to an object containing either a responseStatus field or an error field. |
 
 **Type Aliases**
 
 ```ts
 // GetWritePasscodeParamType
 interface GetWritePasscodeParamType {
-  reliantAppGUID: string;
+  reliantGUID: string;
   programGUID: string;
   rID: string;
   passcode: string;
 }
 
-// GetWritePasscodeResultType
-interface GetWritePasscodeResultType {
+// WritePasscodeResultType
+interface WritePasscodeResultType {
   responseStatus: string;
 }
 ```
@@ -218,7 +217,7 @@ WARNING: The Passcode that will get stored on the card must be of Integer Dataty
 **Input Parameters**
 | **Parameter** | **Type** | **Description** |
 |---------------|----------|------------------------------------------------------|
-| writeProfileRequest | GetWriteProfileParamType | An object that contains a reliantAppGUID, programGUID, rID and overwriteCard |
+| writeProfileRequest | WriteProfileParamType | An object that contains a reliantGUID, programGUID, rID and overwriteCard |
 
 **Response Parameters**
 | **Parameter** | **Type** | **Description** |
@@ -228,9 +227,9 @@ WARNING: The Passcode that will get stored on the card must be of Integer Dataty
 **Type Aliases**
 
 ```ts
-// GetWriteProfileParamType
-interface GetWriteProfileParamType {
-  reliantAppGUID: string;
+// WriteProfileParamType
+interface WriteProfileParamType {
+  reliantGUID: string;
   programGUID: string;
   rID: string;
   overwriteCard: boolean;
