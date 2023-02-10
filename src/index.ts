@@ -22,7 +22,7 @@ export function saveBiometricConsent({
   reliantGUID,
   programGUID,
   consumerConsentValue,
-}: SaveBiometricsParamType) {
+}: SaveBiometricConsentParamType) {
   return CompassLibraryReactNativeWrapper.saveBiometricConsent({
     reliantGUID,
     programGUID,
@@ -80,7 +80,7 @@ export function getRegisterUserWithBiometrics({
   });
 }
 
-export interface SaveBiometricsParamType {
+export interface SaveBiometricConsentParamType {
   reliantGUID: string;
   programGUID: string;
   consumerConsentValue: boolean;
