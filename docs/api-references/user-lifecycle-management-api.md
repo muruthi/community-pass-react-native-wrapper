@@ -106,7 +106,7 @@ Warning: Reliant Application must obtain the consentID first using the saveBiome
 **Input Parameters**
 | **Parameter** | **Type** | **Description** |
 |---------------|----------|------------------------------------------------------|
-| registerUserWithBiometricsRequest | GetRegisterUserWithBiometricsParamType | An object that contains a reliantGUID, programGUID and consentID |
+| registerUserWithBiometricsRequest | RegisterUserWithBiometricsParamType | An object that contains a reliantGUID, programGUID and consentID |
 
 **Response Parameters**
 | **Parameter** | **Type** | **Description** |
@@ -116,8 +116,8 @@ Warning: Reliant Application must obtain the consentID first using the saveBiome
 **Type Aliases**
 
 ```ts
-// GetRegisterUserWithBiometricsParamType
-interface GetRegisterUserWithBiometricsParamType {
+// RegisterUserWithBiometricsParamType
+interface RegisterUserWithBiometricsParamType {
   reliantGUID: string;
   programGUID: string;
   consentID: string;
@@ -164,7 +164,7 @@ WARNING: The Passcode that will get stored on the card must be of Integer Dataty
 **Input Parameters**
 | **Parameter** | **Type** | **Description** |
 |---------------|----------|------------------------------------------------------|
-| writePasscodeRequest | GetWritePasscodeParamType | An object that contains a reliantGUID, programGUID, rID and passcode |
+| writePasscodeRequest | WritePasscodeParamType | An object that contains a reliantGUID, programGUID, rID and passcode |
 
 **Response Parameters**
 | **Parameter** | **Type** | **Description** |
@@ -174,8 +174,8 @@ WARNING: The Passcode that will get stored on the card must be of Integer Dataty
 **Type Aliases**
 
 ```ts
-// GetWritePasscodeParamType
-interface GetWritePasscodeParamType {
+// WritePasscodeParamType
+interface WritePasscodeParamType {
   reliantGUID: string;
   programGUID: string;
   rID: string;
@@ -222,7 +222,7 @@ WARNING: The Passcode that will get stored on the card must be of Integer Dataty
 **Response Parameters**
 | **Parameter** | **Type** | **Description** |
 |-----------------|-----------------|----------------------------------------------------------|
-| writeProfileResponse | Promise<`GetWriteProfileResultType`> | A promise that resolves to an object containing either a consumerDeviceNumber field or an error field. |
+| writeProfileResponse | Promise<`WriteProfileResultType`> | A promise that resolves to an object containing either a consumerDeviceNumber field or an error field. |
 
 **Type Aliases**
 
@@ -235,8 +235,8 @@ interface WriteProfileParamType {
   overwriteCard: boolean;
 }
 
-// GetWriteProfileResultType
-interface GetWriteProfileResultType {
+// WriteProfileResultType
+interface WriteProfileResultType {
   consumerDeviceNumber: string;
 }
 ```
