@@ -19,7 +19,7 @@ Then, the Reliant Application must store it with CPK.
 **Input Parameters**
 | **Parameter** | **Type** | **Description** |
 |---------------|----------|------------------------------------------------------|
-| consentRequest | SaveBiometricsParamType | An object that contains a reliantGUID, programGUID and consumerConsentValue |
+| consentRequest | SaveBiometricConsentParamType | An object that contains a reliantGUID, programGUID and consumerConsentValue |
 
 **Response Parameters**
 | **Parameter** | **Type** | **Description** |
@@ -29,8 +29,8 @@ Then, the Reliant Application must store it with CPK.
 **Type Aliases**
 
 ```ts
-// SaveBiometricsParamType
-interface SaveBiometricsParamType {
+// SaveBiometricConsentParamType
+interface SaveBiometricConsentParamType {
   reliantGUID: string;
   programGUID: string;
   consumerConsentValue: boolean;
