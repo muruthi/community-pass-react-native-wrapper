@@ -59,8 +59,19 @@ configurations {
     implementation.exclude group: 'org.slf4j', module: 'slf4j-api'
 }
 ```
+6. In the file `android/build.gradle` bump your compileSdkVersion and targetSdkVersion to 33, and your minSdkVersion to 26 
 
-6.  A pop up notification will appear as given in the below image informing you that the Gradle files have changed. Click on Sync Now to synchronize the project with the Gradle files.
+```gradle
+buildscript {
+    ext {
+        minSdkVersion = Integer.parseInt(findProperty('android.minSdkVersion') ?: '26')
+        compileSdkVersion = Integer.parseInt(findProperty('android.compileSdkVersion') ?: '33')
+        targetSdkVersion = Integer.parseInt(findProperty('android.targetSdkVersion') ?: '33')
+    }
+}
+```
+
+7.  A pop up notification will appear as given in the below image informing you that the Gradle files have changed. Click on Sync Now to synchronize the project with the Gradle files.
 
 ![](/docs/assets/android-studio-popup.png)
 
