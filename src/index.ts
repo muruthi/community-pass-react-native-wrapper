@@ -80,6 +80,26 @@ export function getRegisterUserWithBiometrics({
   });
 }
 
+export function getRegistrationData({
+  reliantGUID,
+  programGUID,
+}: GetRegistrationDataParamType) {
+  return CompassLibraryReactNativeWrapper.getRegistrationData({
+    reliantGUID,
+    programGUID
+  })
+}
+
+export interface GetRegistrationDataParamType {
+  reliantGUID: string;
+  programGUID: string;
+}
+
+export interface GetRegistrationDataResultType {
+  isRegisteredInProgram: boolean;
+  authMethods: string[];
+}
+
 export interface SaveBiometricConsentParamType {
   reliantGUID: string;
   programGUID: string;
