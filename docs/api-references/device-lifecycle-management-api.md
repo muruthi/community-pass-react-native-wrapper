@@ -29,13 +29,13 @@ Then, the Reliant Application must store it with CPK.
 **Type Aliases**
 
 ```ts
-// SaveBiometricConsentParamType
+// GetRegistrationDataParamType
 interface GetRegistrationDataParamType {
   reliantGUID: string;
   programGUID: string;
 }
 
-// SaveBiometricConsentResultType
+// GetRegistrationDataResultType
 interface GetRegistrationDataResultType {
   isRegisteredInProgram: boolean;
   authMethods: string[];

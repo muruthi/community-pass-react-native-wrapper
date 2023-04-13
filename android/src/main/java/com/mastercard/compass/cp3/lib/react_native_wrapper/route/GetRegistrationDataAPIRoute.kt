@@ -23,12 +23,12 @@ class GetRegistrationDataAPIRoute(private val context: ReactApplicationContext, 
   }
 
   fun startGetRegistrationIntent(getRegistrationDataParams: ReadableMap){
-    val reliantAppGUID: String = getRegistrationDataParams.getString("reliantGUID")!!
+    val reliantGUID: String = getRegistrationDataParams.getString("reliantGUID")!!
     val programGUID: String = getRegistrationDataParams.getString("programGUID")!!
 
     val intent = Intent(context, GetRegistrationDataCompassApiHandlerActivity::class.java).apply {
       putExtra(Key.PROGRAM_GUID, programGUID)
-      putExtra(Key.RELIANT_APP_GUID, reliantAppGUID )
+      putExtra(Key.RELIANT_APP_GUID, reliantGUID )
     }
 
     currentActivity?.startActivityForResult(intent, GET_REGISTRATION_DATA_REQUEST_CODE)
