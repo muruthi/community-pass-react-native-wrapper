@@ -80,9 +80,9 @@ class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationConte
   }
 
   @ReactMethod
-  fun getRegistrationData(GetRegistrationDataParams: ReadableMap, promise: Promise){
+  fun getRegistrationData(getRegistrationDataParams: ReadableMap, promise: Promise){
     this.promise = promise
-    getRegistrationDataAPIRoute.startGetRegistrationIntent(GetRegistrationDataParams)
+    getRegistrationDataAPIRoute.startGetRegistrationIntent(getRegistrationDataParams)
   }
 
   override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {
