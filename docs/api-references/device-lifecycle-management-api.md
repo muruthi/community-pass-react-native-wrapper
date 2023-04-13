@@ -2,7 +2,7 @@
 
 ## 1 Card Status
 
-### 1.1 getRegistrationDataActivityIntent
+### 1.1 getRegistrationData
 
 This API is used to check the registration status of the card, i.e. if the card user is registered with CP on behalf of the program. For that, this API will fetch the registration data from the card which include the R-ID and the authentication method.
 
