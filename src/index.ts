@@ -90,6 +90,28 @@ export function getRegistrationData({
   })
 }
 
+export function getVerifyPasscode({
+  passcode,
+  programGUID, reliantGUID
+}: GetVerifyPasscodeParamType) {
+  return CompassLibraryReactNativeWrapper.getVerifyPasscode({
+    passcode,
+    programGUID, reliantGUID
+  })
+}
+
+export interface GetVerifyPasscodeParamType {
+  passcode: string;
+  programGUID: string;
+  reliantGUID: string;
+}
+
+export interface GetVerifyPasscodeResultType {
+  status: boolean;
+  rId: string;
+  counter: number;
+}
+
 export interface GetRegistrationDataParamType {
   reliantGUID: string;
   programGUID: string;

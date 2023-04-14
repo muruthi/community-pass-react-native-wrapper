@@ -30,6 +30,9 @@ class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationConte
   private val getRegistrationDataAPIRoute by lazy {
     GetRegistrationDataAPIRoute(reactContext, currentActivity)
   }
+  private val getVerifyPasscodeAPIRoute by lazy {
+    GetVerifyPasscodeAPIRoute(reactContext, currentActivity)
+  }
   override fun getName(): String {
       return "CompassLibraryReactNativeWrapper"
   }
@@ -85,6 +88,12 @@ class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationConte
     getRegistrationDataAPIRoute.startGetRegistrationIntent(getRegistrationDataParams)
   }
 
+  @ReactMethod
+  fun getVerifyPasscode(getVerifyPasscodeParams: ReadableMap, promise: Promise){
+    this.promise = promise
+    getVerifyPasscodeAPIRoute.startGetVerifyPasscodeIntent(getVerifyPasscodeParams)
+  }
+
   override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {
     when(requestCode){
       in BiometricConsentAPIRoute.REQUEST_CODE_RANGE -> handleApiRouteResponse(requestCode, resultCode, data)
@@ -93,6 +102,7 @@ class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationConte
       in RegisterUserWithBiometricsAPIRoute.REQUEST_CODE_RANGE -> handleApiRouteResponse(requestCode, resultCode, data)
       in RegisterBasicUserAPIRoute.REQUEST_CODE_RANGE -> handleApiRouteResponse(requestCode, resultCode, data)
       in GetRegistrationDataAPIRoute.REQUEST_CODE_RANGE -> handleApiRouteResponse(requestCode, resultCode, data)
+      in GetVerifyPasscodeAPIRoute.REQUEST_CODE_RANGE -> handleApiRouteResponse(requestCode, resultCode, data)
     }
   }
 
@@ -113,6 +123,7 @@ class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationConte
       RegisterUserWithBiometricsAPIRoute.REGISTER_BIOMETRICS_REQUEST_CODE -> registerUserWithBiometricsAPIRoute.handleRegisterUserWithBiometricsIntentResponse(resultCode, data, this.promise)
       RegisterBasicUserAPIRoute.REGISTER_BASIC_USER_REQUEST_CODE -> registerBasicUserAPIRoute.handleRegisterBasicUserIntentResponse(resultCode, data, this.promise)
       GetRegistrationDataAPIRoute.GET_REGISTRATION_DATA_REQUEST_CODE -> getRegistrationDataAPIRoute.handleGetRegistrationDataIntentResponse(resultCode, data, this.promise)
+      GetVerifyPasscodeAPIRoute.GET_VERIFY_PASSCODE_REQUEST_CODE -> getVerifyPasscodeAPIRoute.handleGetVerifyPasscodeIntentResponse(resultCode, data, this.promise)
     }
   }
 }
