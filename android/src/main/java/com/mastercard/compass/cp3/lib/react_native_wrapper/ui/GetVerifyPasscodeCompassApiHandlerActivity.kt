@@ -5,10 +5,10 @@ import com.mastercard.compass.model.card.VerifyPasscodeRequest
 
 class GetVerifyPasscodeCompassApiHandlerActivity: CompassApiHandlerActivity<String>() {
   override suspend fun callCompassApi() {
-    val passCode: String = intent.getStringExtra(Key.PASSCODE)!!
+    val passcode: String = intent.getStringExtra(Key.PASSCODE)!!
     val programGUID: String = intent.getStringExtra(Key.PROGRAM_GUID)!!
     val intent = compassKernelServiceInstance.getVerifyPasscodeActivityIntent(
-      VerifyPasscodeRequest(passCode, programGUID)
+      VerifyPasscodeRequest(passcode, programGUID)
     )
     compassApiActivityResult.launch(intent)
   }
