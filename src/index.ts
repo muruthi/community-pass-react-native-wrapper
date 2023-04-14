@@ -101,15 +101,15 @@ export function getVerifyPasscode({
 }
 
 export interface GetVerifyPasscodeParamType {
-  passcode: string,
-  programGUID: string,
-  reliantGUID: string
+  passcode: string;
+  programGUID: string;
+  reliantGUID: string;
 }
 
 export interface GetVerifyPasscodeResultType {
-  status: boolean,
-  rId: string,
-  counter: number
+  status: boolean;
+  rId: string;
+  counter: number;
 }
 
 export interface GetRegistrationDataParamType {

@@ -264,7 +264,7 @@ This API is used to verify that the Passcode provided by the user is the same as
 **Compatibility**
 | **Available as of CPK version #** | **Deprecated as of CPK version #** |
 |-----------------------------------|------------------------------------|
-| + CPK 2.0.1 | + n/a |
+| + CPK 2.4.1 | + n/a |
 
 **Input Parameters**
 | **Parameter** | **Type** | **Description** |

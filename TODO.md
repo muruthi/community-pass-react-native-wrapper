@@ -63,7 +63,7 @@ This phase will include all actions and activities that enable you to conduct a 
           ⬜ Implement method
           ⬜ Add example
 
-⬜ Action: Authenticate Passcode Registered User on Program using Form Factor-Card
+✅ Action: Authenticate Passcode Registered User on Program using Form Factor-Card
 
       getRegistrationDataActivityIntent()
           ✅ Implement method
