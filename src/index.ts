@@ -100,6 +100,25 @@ export function getVerifyPasscode({
   })
 }
 
+export function getUserVerification({
+  reliantGUID,
+  programGUID,
+}: GetUserVerificationParamType) {
+  return CompassLibraryReactNativeWrapper.getUserVerification({
+    reliantGUID,
+    programGUID
+  })
+}
+
+export interface GetUserVerificationParamType {
+  reliantGUID: string;
+  programGUID: string;
+}
+
+export interface GetUserVerificationResultType {
+  bioToken: string;
+}
+
 export interface GetVerifyPasscodeParamType {
   passcode: string;
   programGUID: string;

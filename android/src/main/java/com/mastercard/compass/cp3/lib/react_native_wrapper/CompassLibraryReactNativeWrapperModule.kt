@@ -9,7 +9,7 @@ import timber.log.Timber
 
 class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext),
   ActivityEventListener {
-  lateinit var promise: Promise;
+  private lateinit var promise: Promise;
   private var helperObject = CompassKernelUIController.CompassHelper(reactApplicationContext);
 
   private val consumerDeviceApiRoute: ConsumerDeviceAPIRoute by lazy {
@@ -32,6 +32,9 @@ class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationConte
   }
   private val getVerifyPasscodeAPIRoute by lazy {
     GetVerifyPasscodeAPIRoute(reactContext, currentActivity)
+  }
+  private val getUserVerificationAPIRoute by lazy {
+    GetUserVerificationAPIRoute(reactContext, currentActivity)
   }
   override fun getName(): String {
       return "CompassLibraryReactNativeWrapper"
@@ -94,6 +97,12 @@ class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationConte
     getVerifyPasscodeAPIRoute.startGetVerifyPasscodeIntent(getVerifyPasscodeParams)
   }
 
+  @ReactMethod
+  fun getUserVerification(getUserVerificationParams: ReadableMap, promise: Promise){
+    this.promise = promise
+    getUserVerificationAPIRoute.startGetUserVerificationIntent(getUserVerificationParams)
+  }
+
   override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {
     when(requestCode){
       in BiometricConsentAPIRoute.REQUEST_CODE_RANGE -> handleApiRouteResponse(requestCode, resultCode, data)
@@ -103,6 +112,7 @@ class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationConte
       in RegisterBasicUserAPIRoute.REQUEST_CODE_RANGE -> handleApiRouteResponse(requestCode, resultCode, data)
       in GetRegistrationDataAPIRoute.REQUEST_CODE_RANGE -> handleApiRouteResponse(requestCode, resultCode, data)
       in GetVerifyPasscodeAPIRoute.REQUEST_CODE_RANGE -> handleApiRouteResponse(requestCode, resultCode, data)
+      in GetUserVerificationAPIRoute.REQUEST_CODE_RANGE -> handleApiRouteResponse(requestCode, resultCode, data)
     }
   }
 
@@ -124,6 +134,7 @@ class CompassLibraryReactNativeWrapperModule(reactContext: ReactApplicationConte
       RegisterBasicUserAPIRoute.REGISTER_BASIC_USER_REQUEST_CODE -> registerBasicUserAPIRoute.handleRegisterBasicUserIntentResponse(resultCode, data, this.promise)
       GetRegistrationDataAPIRoute.GET_REGISTRATION_DATA_REQUEST_CODE -> getRegistrationDataAPIRoute.handleGetRegistrationDataIntentResponse(resultCode, data, this.promise)
       GetVerifyPasscodeAPIRoute.GET_VERIFY_PASSCODE_REQUEST_CODE -> getVerifyPasscodeAPIRoute.handleGetVerifyPasscodeIntentResponse(resultCode, data, this.promise)
+      GetUserVerificationAPIRoute.GET_USER_VERIFICATION_REQUEST_CODE -> getUserVerificationAPIRoute.handleGetUserVerificationIntentResponse(resultCode, data, promise)
     }
   }
 }
