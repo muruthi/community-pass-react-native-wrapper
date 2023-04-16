@@ -33,20 +33,20 @@
     "prepare": "bob build",
     "release": "release-it",
     "CompassRNSampleApp": "yarn --cwd CompassRNSampleApp",
-    "bootstrap": "yarn CompassRNSampleApp && yarn install && yarn CompassRNSampleApp pods"
+    "bootstrap": "yarn CompassRNSampleApp && yarn install"
   },
   "keywords": [
     "react-native",
     "ios",
     "android"
   ],
-  "repository": "https://github.com/mudulo/community-pass-react-native-wrapper",
-  "author": "mudulo <duncanmududlo@gmail.com> (https://github.com/mudulo)",
-  "license": "MIT",
+  "repository": "https://github.com/Mastercard/community-pass-react-native-wrapper.git",
+  "author": "Mastercard (https://github.com/Mastercard)",
+  "license": "Apache License 2.0",
   "bugs": {
-    "url": "https://github.com/mudulo/community-pass-react-native-wrapper/issues"
+    "url": "https://github.com/Mastercard/community-pass-react-native-wrapper.git/issues"
   },
-  "homepage": "https://github.com/mudulo/community-pass-react-native-wrapper#readme",
+  "homepage": "https://github.com/Mastercard/community-pass-react-native-wrapper.git#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
