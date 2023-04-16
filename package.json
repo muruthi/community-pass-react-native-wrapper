@@ -42,7 +42,7 @@
   ],
   "repository": "https://github.com/Mastercard/community-pass-react-native-wrapper.git",
   "author": "Mastercard (https://github.com/Mastercard)",
-  "license": "Apache License 2.0",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Mastercard/community-pass-react-native-wrapper.git/issues"
   },
